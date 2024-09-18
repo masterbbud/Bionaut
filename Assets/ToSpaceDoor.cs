@@ -23,7 +23,7 @@ public class ToSpaceDoor : MonoBehaviour
     {
         if (other.gameObject == player) {
             // then enter space
-            SceneManager.LoadScene("SpaceMapScene");
+            SceneManager.LoadScene("PlanetMapScene");
         }
     }
 }

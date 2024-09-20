@@ -25,22 +25,25 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Movement logic
         Vector2 heading = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = heading * moveSpeed;
 
-        if (Input.GetMouseButtonDown(0)) {
+        // Shooting logic
+        if (Input.GetMouseButtonDown(0))
+        {
             Shoot();
         }
 
+        // Animation Update
         UpdateAnimation();
     }
 
-
     void UpdateAnimation()
     {
-
-        if(rb.velocity != Vector2.zero)
+        // Update walking animation
+        if (rb.velocity != Vector2.zero)
         {
             animator.SetBool("Walking", true);
             animator.SetFloat("Horizontal", rb.velocity.x);
@@ -49,6 +52,38 @@ public class Player : MonoBehaviour
         else
         {
             animator.SetBool("Walking", false);
+        }
+
+        // Determine the facing direction based on the mouse position
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 directionToMouse = (mousePosition - (Vector2)transform.position).normalized;
+
+        float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
+
+        // Set the animator parameters based on the direction to the mouse
+        if (angle >= -45f && angle <= 45f)
+        {
+            // Facing right
+            animator.SetFloat("Horizontal", 1f);
+            animator.SetFloat("Vertical", 0f);
+        }
+        else if (angle > 45f && angle < 135f)
+        {
+            // Facing up (backwards)
+            animator.SetFloat("Horizontal", 0f);
+            animator.SetFloat("Vertical", 1f);
+        }
+        else if (angle >= 135f || angle <= -135f)
+        {
+            // Facing left
+            animator.SetFloat("Horizontal", -1f);
+            animator.SetFloat("Vertical", 0f);
+        }
+        else if (angle < -45f && angle > -135f)
+        {
+            // Facing down (forwards)
+            animator.SetFloat("Horizontal", 0f);
+            animator.SetFloat("Vertical", -1f);
         }
     }
 

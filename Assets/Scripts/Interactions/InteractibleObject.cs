@@ -17,6 +17,7 @@ public abstract class InteractibleObject : MonoBehaviour
         emission.rateOverTime = 3;
         var main = particles.main;
         main.startSize = 0.1f;
+        particles.GetComponent<Renderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
     }
 
     // Update is called once per frame

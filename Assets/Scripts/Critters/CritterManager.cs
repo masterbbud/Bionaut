@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CritterManager : Singleton<CritterManager>
 {
-    public GameObject player;
 
     [SerializeField]
     Critter tempCritter;
@@ -40,6 +40,7 @@ public class CritterManager : Singleton<CritterManager>
         {
             Critter newTempCritter = Instantiate(tempCritter, PickRandomPoint(), Quaternion.identity);
             critters.Add(newTempCritter);
+            newTempCritter.AddComponent<LoopAroundPlanet>();
         }
 
     }

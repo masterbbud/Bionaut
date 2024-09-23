@@ -30,7 +30,7 @@ public class Cat : Critter
 
         Vector3 wanderForce = Wander(wanderTime, wanderRadius) * wanderWeight;
 
-        Vector3 seekForce = Seek(CritterManager.Instance.player.transform.position) * seekWeight;
+        Vector3 seekForce = Seek(Player.main.transform.position) * seekWeight;
 
         Vector3 separationForce = Separation(CritterManager.Instance.critters) * separationWeight;
 
@@ -38,7 +38,7 @@ public class Cat : Critter
 
         Vector3 alignmentForce = Alignment(CritterManager.Instance.critters) * alignmentWeight;
 
-        Vector3 fleeForce = Flee(CritterManager.Instance.player.transform.position) * fleeWeight;
+        Vector3 fleeForce = Flee(Player.main.transform.position) * fleeWeight;
 
         if (physicsObject.Direction.x < 0)
         {
@@ -49,7 +49,7 @@ public class Cat : Critter
             spriteRenderer.flipX = true;
         }
 
-        if (Vector3.Distance(CritterManager.Instance.player.transform.position, transform.position) < distance)
+        if (Vector3.Distance(Player.main.transform.position, transform.position) < distance)
         {
             return wanderForce + seekForce + separationForce + cohesionForce + alignmentForce + fleeForce;
         }
@@ -62,9 +62,9 @@ public class Cat : Critter
     {
         Gizmos.color = Color.yellow;
         
-        if (Vector3.Distance(CritterManager.Instance.player.transform.position, transform.position) < distance)
+        if (Vector3.Distance(Player.main.transform.position, transform.position) < distance)
         {
-            Gizmos.DrawLine(CritterManager.Instance.player.transform.position, transform.position);
+            Gizmos.DrawLine(Player.main.transform.position, transform.position);
         }
 
 

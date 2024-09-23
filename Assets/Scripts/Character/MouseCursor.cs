@@ -21,6 +21,7 @@ public class MouseCursor : MonoBehaviour
         position = transform.position;
     }
 
+    // Use this function to get the current mouse position in Vector2 space
     public static Vector2 GetPosition()
     {
         return position;

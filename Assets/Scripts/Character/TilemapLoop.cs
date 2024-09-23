@@ -18,10 +18,18 @@ public class TilemapLoop : MonoBehaviour
         if (transform.parent.childCount > 1) {
             return;
         }
+        GameObject referenceToCopy = null;
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 if (x != 0 || y != 0) {
-                    GameObject newGameObject = Instantiate(gameObject, transform.parent);
+                    GameObject newGameObject;
+                    if (referenceToCopy) {
+                        newGameObject = Instantiate(referenceToCopy, transform);
+                    }
+                    else {
+                        newGameObject = Instantiate(gameObject, transform);
+                        referenceToCopy = newGameObject;
+                    }
                     newGameObject.transform.position = transform.position + new Vector3(x*planetWidth, y*planetHeight);
                     newGameObject.GetComponent<TilemapLoop>().enabled = false;
                 }
@@ -37,18 +45,19 @@ public class TilemapLoop : MonoBehaviour
 
     void LateUpdate()
     {
-        if (transform.position.y > planetHeight / 2) 
+        Vector2 transformToPlayer = transform.position - Player.main.transform.position;
+        if (transformToPlayer.y > planetHeight / 2) 
         {
             TransformSelf(0, -planetHeight);
-        } else if (transform.position.y < -planetHeight / 2) 
+        } else if (transformToPlayer.y < -planetHeight / 2) 
         {
             TransformSelf(0, planetHeight);
         }
 
-        if (transform.position.x > planetWidth / 2)
+        if (transformToPlayer.x > planetWidth / 2)
         {
             TransformSelf(-planetWidth, 0);
-        } else if (transform.position.x < -planetWidth / 2)
+        } else if (transformToPlayer.x < -planetWidth / 2)
         {
             TransformSelf(planetWidth, 0);
         }

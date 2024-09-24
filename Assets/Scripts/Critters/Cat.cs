@@ -38,7 +38,7 @@ public class Cat : Critter
 
         Vector3 alignmentForce = Alignment(CritterManager.Instance.critters) * alignmentWeight;
 
-        Vector3 fleeForce = Flee((Player.main.transform.position) * fleeWeight);
+        Vector3 fleeForce = Flee(Player.main.transform.position) * fleeWeight;
 
         if (physicsObject.Direction.x < 0)
         {

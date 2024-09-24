@@ -6,6 +6,11 @@ using UnityEngine;
 public class PlanetLoader : MonoBehaviour
 {
     public int[] loopAroundIgnoreLayers = new int[]{};
+    public GameObject interactionParticlePrefab;
+    void Awake()
+    {
+        InteractibleObject.particlePrefab = interactionParticlePrefab;
+    }
     // Start is called before the first frame update
     void Start()
     {

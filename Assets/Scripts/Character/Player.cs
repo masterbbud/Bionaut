@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Player : MonoBehaviour
 {
 
@@ -17,9 +18,14 @@ public class Player : MonoBehaviour
     public Animator animator;
     [SerializeField]
     private GameObject podObject;
+
+    private List<Collectible> collectibles = new List<Collectible>();
+
+    public static GameObject main;
     // Start is called before the first frame update
     void Start()
     {
+        main = gameObject;
     }
 
     // Update is called once per frame
@@ -36,7 +42,11 @@ public class Player : MonoBehaviour
             Shoot();
         }
 
-        // Animation Update
+        // interactions
+        if (Input.GetMouseButtonDown(1)) {
+            TryInteract();
+        }
+
         UpdateAnimation();
     }
 
@@ -98,5 +108,40 @@ public class Player : MonoBehaviour
         fab.GetComponent<Rigidbody2D>().velocity = towards * bulletSpeed;
     }
 
-
+    void TryInteract()
+    {
+        if (InteractibleObject.interactions.Count == 0) {
+            return;
+        }
+        InteractibleObject closest = null;
+        float bestDist = 1000;
+        foreach (InteractibleObject obj in InteractibleObject.interactions) {
+            float dist = Vector2.Distance(obj.gameObject.transform.position, transform.position);
+            if (dist < bestDist) {
+                bestDist = dist;
+                closest = obj;
+            }
+        }
+        if (closest == null) { // shouldn't happen, but just in case
+            return;
+        }
+        closest.Interact();
+    }
+    
+    public void GiveObject(Collectible obj)
+    {
+        Collectible existingObj = null;
+        foreach (Collectible coll in collectibles) {
+            if (coll.GetType() == obj.GetType()) {
+                existingObj = coll;
+                break;
+            }
+        }
+        if (existingObj == null) {
+            collectibles.Add(obj);
+        }
+        else {
+            existingObj.quantity += obj.quantity;
+        }
+    }
 }

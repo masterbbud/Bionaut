@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    // DONT use a maxDistance > planetWidth/2 or > planetHeight/2, since this will cause the bullet to never disappear
     [SerializeField]
     private float maxDistance;
 

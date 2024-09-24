@@ -7787,7 +7787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd91c797ae365e54eb0011ea08a0c84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   tempCritter: {fileID: 2806101841898031020, guid: e4234a0be20a84641870a297509e0fb9, type: 3}
   tempCritterCount: 25
   critters: []

@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loopAroundIgnoreLayers: 06000000
+  interactionParticlePrefab: {fileID: 0}
 --- !u!4 &681505606
 Transform:
   m_ObjectHideFlags: 0
@@ -301,6 +302,54 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.7080603, y: -4.5788846, z: -0.010329707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &770495605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 770495607}
+  - component: {fileID: 770495606}
+  m_Layer: 5
+  m_Name: ToolBelt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &770495606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770495605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 972feef80ecf2b2418f968a3a432f8b1, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 05b6754f11ffa73468df362cb9063804, type: 3}
+  m_SortingOrder: 0
+--- !u!4 &770495607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770495605}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -364,6 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f59d0212d9fa9419a7105acb05d0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldCreateCopies: 0
 --- !u!70 &1904571374
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -596,6 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f59d0212d9fa9419a7105acb05d0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldCreateCopies: 0
 --- !u!114 &2492806217109080134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f59d0212d9fa9419a7105acb05d0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldCreateCopies: 0
 --- !u!114 &3231676623003640304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f59d0212d9fa9419a7105acb05d0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldCreateCopies: 0
 --- !u!1 &3416354528684886635
 GameObject:
   m_ObjectHideFlags: 0
@@ -7954,3 +8007,4 @@ SceneRoots:
   - {fileID: 8847800664498115685}
   - {fileID: 412208441}
   - {fileID: 7577693356180741437}
+  - {fileID: 770495607}

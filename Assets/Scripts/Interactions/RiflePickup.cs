@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipPartInteraction : InteractibleObject
+public class RiflePickup : InteractibleObject
 {
-    public ItemData shipPartData;
+    public ItemData rifleData;
     public override void Interact()
     {
-        Player.inventory.GiveObject(shipPartData, 1);
+        Player.inventory.GiveObject(rifleData, 1);
         Destroy(gameObject);
     }
 }

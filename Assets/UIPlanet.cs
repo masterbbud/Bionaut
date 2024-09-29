@@ -13,9 +13,7 @@ public class UIPlanet : MonoBehaviour
     private float expandLerpValue = 0f;
     private static readonly float zoomSeconds = 1;
     
-    public string planetName;
-    public string description;
-    public string sceneName;
+    public PlanetData planetData;
 
     public GameObject planetOverlay;
     // Start is called before the first frame update
@@ -73,15 +71,16 @@ public class UIPlanet : MonoBehaviour
         fullyExpanded = true;
         
         // show planet description
-        planetOverlay.transform.Find("Name").GetComponent<TMP_Text>().text = planetName;
-        planetOverlay.transform.Find("Description").GetComponent<TMP_Text>().text = description;
+        planetOverlay.transform.Find("Name").GetComponent<TMP_Text>().text = planetData.planetName;
+        planetOverlay.transform.Find("Description").GetComponent<TMP_Text>().text = planetData.description;
         // planetOverlay.transform.Find("LaunchButton").GetComponent<Button>().onClick = description;
         planetOverlay.SetActive(true);
 
     }
 
     void GoToThisPlanet() {
-        Debug.Log(sceneName);
+        Debug.Log(planetData.sceneName);
+        SceneManager.LoadScene("InPodScene");
     }
 
     void OnMouseDown()
@@ -92,7 +91,7 @@ public class UIPlanet : MonoBehaviour
         }
         else {
             // go to planet!
-            SceneManager.LoadScene("InPodScene");
+            GoToThisPlanet();
         }
     }
 }

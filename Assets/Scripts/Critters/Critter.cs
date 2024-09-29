@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Critter : MonoBehaviour
+public abstract class Critter : MonoBehaviour, IRifleHittable
 {
-    [SerializeField]
-    public PhysicsObject physicsObject;
 
-    protected Vector3 totalForces = Vector3.zero;
+    protected Vector2 totalForces = Vector2.zero;
 
     [SerializeField]
     float maxForce = 5f;
@@ -21,10 +19,12 @@ public abstract class Critter : MonoBehaviour
     [SerializeField]
     float safeDis;
 
-    public Vector3 min, max;
+    public Vector2 min, max;
+
+    private bool asleep = false;
 
     // list of all positions of obstacles agent has found (each agent has there own list
-    protected List<Vector3> foundObstaclePositions = new List<Vector3>();
+    protected List<Vector2> foundObstaclePositions = new List<Vector2>();
 
 
     // Start is called before the first frame update
@@ -39,70 +39,70 @@ public abstract class Critter : MonoBehaviour
         // parent class does not care what the function does, that depends on code in child class
         totalForces += CalculateSteeringForces();
 
-        totalForces = Vector3.ClampMagnitude(totalForces, maxForce);
+        totalForces = Vector2.ClampMagnitude(totalForces, maxForce);
 
-        physicsObject.ApplyForce(totalForces);
+        ApplyForce(totalForces);
 
-        totalForces = Vector3.zero;
+        totalForces = Vector2.zero;
     }
 
 
     // abstract method = you implement the function in each child class
-    protected abstract Vector3 CalculateSteeringForces();
+    protected abstract Vector2 CalculateSteeringForces();
 
 
-    public Vector3 Seek(Vector3 targetPos)
+    public Vector2 Seek(Vector2 targetPos)
     {
         // Seek is a - b vector subraction for desired velocity
-        Vector3 desiredVelocity = targetPos - transform.position;  // Calculate desired velocity
+        Vector2 desiredVelocity = targetPos - (Vector2)transform.position;  // Calculate desired velocity
 
-        desiredVelocity = desiredVelocity.normalized * physicsObject.MaxSpeed;  // Set desired = max speed
+        desiredVelocity = desiredVelocity.normalized * maxSpeed;  // Set desired = max speed
 
-        Vector3 seekingForce = desiredVelocity - physicsObject.Velocity;  // Calculate seek steering force
+        Vector2 seekingForce = desiredVelocity - rb.velocity;  // Calculate seek steering force
 
         return seekingForce;  // Return seek steering force
     }
 
     // overrides function above to make it easier in seeker script
-    public Vector3 Seek(Critter target)
+    public Vector2 Seek(Critter target)
     {
         return Seek(target.transform.position);
     }
 
-    public Vector3 Flee(Vector3 targetPos)
+    public Vector2 Flee(Vector2 targetPos)
     {
         // Flee is b - a vector subtraction for desired velocity
-        Vector3 desiredVelocity = transform.position - targetPos;  // Calculate desired velocity
+        Vector2 desiredVelocity = (Vector2)transform.position - targetPos;  // Calculate desired velocity
 
-        desiredVelocity = desiredVelocity.normalized * physicsObject.MaxSpeed;  // Set desired = max speed
+        desiredVelocity = desiredVelocity.normalized * maxSpeed;  // Set desired = max speed
 
-        Vector3 fleeingForce = desiredVelocity - physicsObject.Velocity;  // Calculate flee steering force
+        Vector2 fleeingForce = desiredVelocity - rb.velocity;  // Calculate flee steering force
 
         return fleeingForce;  // Return flee steering force
     }
 
     // overrides function above to make it easier in fleer script
-    public Vector3 Flee(Critter target)
+    public Vector2 Flee(Critter target)
     {
         return Flee(target.transform.position);
     }
 
 
     // Evade calculates fleeing from a future position vs. flee is just fleeing in the opposite direction
-    public Vector3 Evade(Critter target)
+    public Vector2 Evade(Critter target)
     {
         return Flee(target.CalcFuturePosition(5f));
     }
 
 
     // picks a somewhat random point to put into Seek() function to look like wandering
-    public Vector3 Wander(float time, float radius)
+    public Vector2 Wander(float time, float radius)
     {
-        Vector3 futurePosition = CalcFuturePosition(time);
+        Vector2 futurePosition = CalcFuturePosition(time);
 
         randAngle += Random.Range(-10f, 10f);   // want in radians for later
 
-        Vector3 wanderTarget = futurePosition;  // set wanderTarget to future position to make it easier later
+        Vector2 wanderTarget = futurePosition;  // set wanderTarget to future position to make it easier later
 
         wanderTarget.x += Mathf.Cos(randAngle * Mathf.Deg2Rad) * radius;
         wanderTarget.y += Mathf.Sin(randAngle * Mathf.Deg2Rad) * radius;
@@ -112,13 +112,13 @@ public abstract class Critter : MonoBehaviour
 
 
     // Separation
-    public Vector3 Separation(List<Critter> agents)
+    public Vector2 Separation(List<Critter> agents)
     {
-        Vector3 separationForce = Vector3.zero;
+        Vector2 separationForce = Vector2.zero;
 
         foreach (Critter agent in agents)
         {
-            float distance = Vector3.Distance(transform.position, agent.transform.position);  //find distance between agent and neighbors
+            float distance = Vector2.Distance(transform.position, agent.transform.position);  //find distance between agent and neighbors
 
             if (distance < 0.5f && agent != this)
             {
@@ -129,25 +129,25 @@ public abstract class Critter : MonoBehaviour
     }
 
     // Cohesion
-    public Vector3 Cohesion(List<Critter> agents)
+    public Vector2 Cohesion(List<Critter> agents)
     {
-        Vector3 cohesionForce = Vector3.zero;
+        Vector2 cohesionForce = Vector2.zero;
 
-        Vector3 posVectorSum = Vector3.zero;
+        Vector2 posVectorSum = Vector2.zero;
 
         int count = 0;
 
         foreach (Critter fish in agents)
         {
-            float distance = Vector3.Distance(transform.position, fish.transform.position);  //find distance between agent and neighbors
+            float distance = Vector2.Distance(transform.position, fish.transform.position);  //find distance between agent and neighbors
 
             if (distance < maxDistance && fish != this)
             {
-                posVectorSum += fish.transform.position;
+                posVectorSum += (Vector2)fish.transform.position;
                 count++;
             }
 
-            Vector3 centroid = posVectorSum / count;
+            Vector2 centroid = posVectorSum / count;
 
             cohesionForce = Seek(centroid);
 
@@ -157,38 +157,65 @@ public abstract class Critter : MonoBehaviour
     }
 
     // Alignment
-    public Vector3 Alignment(List<Critter> agents)
+    public Vector2 Alignment(List<Critter> agents)
     {
-        Vector3 alignmentForce = Vector3.zero;
+        Vector2 alignmentForce = Vector2.zero;
 
-        Vector3 velocitySum = Vector3.zero;
+        Vector2 velocitySum = Vector2.zero;
 
         foreach (Critter fish in agents)
         {
-            float distance = Vector3.Distance(transform.position, fish.transform.position);  //find distance between agent and neighbors
+            float distance = Vector2.Distance(transform.position, fish.transform.position);  //find distance between agent and neighbors
 
             if (distance < maxDistance && fish != this)
             {
-                velocitySum += fish.physicsObject.Velocity;
+                velocitySum += fish.rb.velocity;
             }
         }
 
-        Vector3 desiredVelocity = velocitySum.normalized * physicsObject.MaxSpeed;
+        Vector2 desiredVelocity = velocitySum.normalized * maxSpeed;
 
-        alignmentForce = desiredVelocity - physicsObject.Velocity;
+        alignmentForce = desiredVelocity - rb.velocity;
 
         return alignmentForce;
     }
 
     
     // calculates the future position of agent
-    public Vector3 CalcFuturePosition(float futureTime)
+    public Vector2 CalcFuturePosition(float futureTime)
     {
-        return transform.position + (physicsObject.Velocity * futureTime);  // returns a world point because of the transform.position
+        return (Vector2)transform.position + (rb.velocity * futureTime);  // returns a world point because of the transform.position
+    }
+
+    [SerializeField]
+    protected Rigidbody2D rb;
+    
+    [SerializeField]
+    float mass = 1f, maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
+
+    public void ApplyForce(Vector2 force)
+    {
+        rb.velocity += (force / mass) * Time.deltaTime;   // += REALLY IMPORTANT!
+        float currentMaxSpeed = maxSpeed;
+        if (asleep) {
+            currentMaxSpeed *= 0.1f;
+        }
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, currentMaxSpeed);
     }
 
 
-    
+    public void OnRifleHit()
+    {
+        StartCoroutine(FallAsleep());
+    }
+
+    IEnumerator FallAsleep()
+    {
+        
+        asleep = true;
+        yield return new WaitForSeconds(3);
+        asleep = false;
+    }
 }
 
 
@@ -267,7 +294,7 @@ public abstract class Critter : MonoBehaviour
                         * 1 / vectorFromPlayerToPufferfish.magnitude;  // when sensing multiple obstacles, avoid obstacle closest to you
 
                     // calc steering force
-                    steeringForce += desiredVelocity - physicsObject.Velocity;
+                    steeringForce += desiredVelocity - rb.velocity;
                 }
             }
         }

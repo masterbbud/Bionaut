@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0b3c1a6c854704d84f0de55dd528a6, type: 3}
+  m_Name: TutorialPlanet
+  m_EditorClassIdentifier: 
+  planetName: Tutorial Planet
+  description: This is the first planet
+  critters:
+  - {fileID: 11400000, guid: 5e8297ca5cf3628419e7fb716e546340, type: 2}
+  sceneName: PlanetScene

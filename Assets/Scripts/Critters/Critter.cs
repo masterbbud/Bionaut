@@ -24,7 +24,7 @@ public abstract class Critter : MonoBehaviour
     public Vector3 min, max;
 
     // list of all positions of obstacles agent has found (each agent has there own list
-    protected List<Vector3> foundObstaclePositions = new List<Vector3>();
+    //protected List<Vector3> foundObstaclePositions = new List<Vector3>();
 
 
     // Start is called before the first frame update

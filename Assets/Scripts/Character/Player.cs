@@ -69,33 +69,33 @@ public class Player : MonoBehaviour
         Vector2 directionToMouse = (mousePosition - (Vector2)transform.position).normalized;
 
         float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
-
+        
         // Set the animator parameters based on the direction to the mouse
-        if (angle >= -45f && angle <= 45f)
-        {
-            // Facing right
-            animator.SetFloat("Horizontal", 1f);
-            animator.SetFloat("Vertical", 0f);
-        }
-        else if (angle > 45f && angle < 135f)
-        {
-            // Facing up (backwards)
-            animator.SetFloat("Horizontal", 0f);
-            animator.SetFloat("Vertical", 1f);
-        }
-        else if (angle >= 135f || angle <= -135f)
-        {
-            // Facing left
-            animator.SetFloat("Horizontal", -1f);
-            animator.SetFloat("Vertical", 0f);
-        }
-        else if (angle < -45f && angle > -135f)
-        {
-            // Facing down (forwards)
-            animator.SetFloat("Horizontal", 0f);
-            animator.SetFloat("Vertical", -1f);
-        }
-    }
+        //if (angle >= -45f && angle <= 45f)
+        //{
+        //    // Facing right
+        //    animator.SetFloat("Horizontal", 1f);
+        //    animator.SetFloat("Vertical", 0f);
+        //}
+        //else if (angle > 45f && angle < 135f)
+        //{
+        //    // Facing up (backwards)
+        //    animator.SetFloat("Horizontal", 0f);
+        //    animator.SetFloat("Vertical", 1f);
+        //}
+        //else if (angle >= 135f || angle <= -135f)
+        //{
+        //    // Facing left
+        //    animator.SetFloat("Horizontal", -1f);
+        //    animator.SetFloat("Vertical", 0f);
+        //}
+        //else if (angle < -45f && angle > -135f)
+        //{
+        //    // Facing down (forwards)
+        //    animator.SetFloat("Horizontal", 0f);
+        //    animator.SetFloat("Vertical", -1f);
+        //}
+    }   
 
 
     void Shoot()

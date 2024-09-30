@@ -46,10 +46,10 @@ public class Player : MonoBehaviour
         rb.velocity = heading * moveSpeed;
 
         // Shooting logic
-        if (Input.GetMouseButtonDown(0))
-        {
-            currentTool.Use();
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     currentTool.Use();
+        // }
 
         // interactions
         if (Input.GetMouseButtonDown(1)) {

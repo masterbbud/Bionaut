@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace radial
 {
-    public partial class RadialMenu : VisualElement
+    public partial class RadialMenu : Button
     {
         [UnityEngine.Scripting.Preserve]
         public new class UxmlFactory : UxmlFactory<RadialMenu> { }

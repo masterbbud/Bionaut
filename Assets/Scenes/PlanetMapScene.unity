@@ -528,10 +528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e07884ad47a4a340a82cf10695321f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: 
-  description: 
-  sceneName: 
-  planetOverlay: {fileID: 0}
+  planetData: {fileID: 11400000, guid: af500788d0774944baf9d8dade28a0c7, type: 2}
+  planetOverlay: {fileID: 645026610}
 --- !u!212 &748110779
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -887,9 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e07884ad47a4a340a82cf10695321f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Tutorial Planet
-  description: Some Description
-  sceneName: SomeScene
+  planetData: {fileID: 11400000, guid: 7cfcb1596e3cd9643bfd1e0a29dee6ce, type: 2}
   planetOverlay: {fileID: 645026610}
 --- !u!212 &1956327166
 SpriteRenderer:

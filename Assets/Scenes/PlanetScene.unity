@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362fa4124e6df4914adb75ba2b5a2c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1904571370}
 --- !u!1 &1716271704 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6631679186025007478, guid: 2aecf214e1d9b934c9bb72341f6ebde4, type: 3}
@@ -415,7 +416,7 @@ MonoBehaviour:
   animator: {fileID: 1904571366}
   podObject: {fileID: 412208439}
   currentTool: {fileID: 0}
-  toolbelt: {fileID: 0}
+  toolbelt: {fileID: 770495606}
 --- !u!114 &1904571371
 MonoBehaviour:
   m_ObjectHideFlags: 0

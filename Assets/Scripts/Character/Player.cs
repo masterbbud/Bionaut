@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
     }
     
     // Selects the Nth tool in the "toolbelt"
-    void SelectTool(int toolIndex)
+    public void SelectTool(int toolIndex)
     {
         if (currentTool) {
             currentTool.gameObject.SetActive(false);

@@ -1,0 +1,16 @@
+.panel {
+    opacity: 1;
+    background-color: rgba(48, 48, 48, 0.84);
+    -unity-slice-right: 0;
+    background-image: none;
+    display: none;
+}
+
+.rifle {
+}
+
+.label {
+    font-size: 18px;
+    color: rgb(198, 255, 250);
+    -unity-text-align: upper-center;
+}

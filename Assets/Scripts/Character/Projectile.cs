@@ -8,8 +8,6 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float maxDistance;
 
-    public Player player;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +17,17 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) > maxDistance) {
+        if (Vector2.Distance(Player.main.transform.position, transform.position) > maxDistance) {
             Destroy(gameObject);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        IRifleHittable hittable = coll.GetComponent<IRifleHittable>();
+        if (hittable != null) {
+            hittable.OnRifleHit();
+        }
+        Destroy(gameObject);
     }
 }

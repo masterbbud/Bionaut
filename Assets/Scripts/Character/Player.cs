@@ -19,13 +19,26 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject podObject;
 
-    private List<Collectible> collectibles = new List<Collectible>();
-
     public static GameObject main;
+    public static PlayerInventory inventory;
+
+    [SerializeField]
+    private ItemData rifleData;
+
+    public Tool currentTool;
+
+    public GameObject toolbelt;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         main = gameObject;
+        
+    }
+    
+    void Start()
+    {
+        inventory.GiveObject(rifleData, 1);
+        SelectTool(0);
     }
 
     // Update is called once per frame
@@ -36,10 +49,10 @@ public class Player : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = heading * moveSpeed;
 
-        // Shooting logic
+        // Use current item
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            currentTool.Use();
         }
 
         // interactions
@@ -68,44 +81,33 @@ public class Player : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 directionToMouse = (mousePosition - (Vector2)transform.position).normalized;
 
-        float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
+        // float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
 
-        // Set the animator parameters based on the direction to the mouse
-        if (angle >= -45f && angle <= 45f)
-        {
-            // Facing right
-            animator.SetFloat("Horizontal", 1f);
-            animator.SetFloat("Vertical", 0f);
-        }
-        else if (angle > 45f && angle < 135f)
-        {
-            // Facing up (backwards)
-            animator.SetFloat("Horizontal", 0f);
-            animator.SetFloat("Vertical", 1f);
-        }
-        else if (angle >= 135f || angle <= -135f)
-        {
-            // Facing left
-            animator.SetFloat("Horizontal", -1f);
-            animator.SetFloat("Vertical", 0f);
-        }
-        else if (angle < -45f && angle > -135f)
-        {
-            // Facing down (forwards)
-            animator.SetFloat("Horizontal", 0f);
-            animator.SetFloat("Vertical", -1f);
-        }
-    }
-
-
-    void Shoot()
-    {
-        GameObject fab = Instantiate(bulletFab);
-        fab.GetComponent<Projectile>().player = this;
-        fab.transform.position = transform.position;
-        Vector2 towards = (MouseCursor.GetPosition() - (Vector2)transform.position).normalized;
-        fab.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(towards.y, towards.x) * Mathf.Rad2Deg);
-        fab.GetComponent<Rigidbody2D>().velocity = towards * bulletSpeed;
+        // // Set the animator parameters based on the direction to the mouse
+        // if (angle >= -45f && angle <= 45f)
+        // {
+        //     // Facing right
+        //     animator.SetFloat("Horizontal", 1f);
+        //     animator.SetFloat("Vertical", 0f);
+        // }
+        // else if (angle > 45f && angle < 135f)
+        // {
+        //     // Facing up (backwards)
+        //     animator.SetFloat("Horizontal", 0f);
+        //     animator.SetFloat("Vertical", 1f);
+        // }
+        // else if (angle >= 135f || angle <= -135f)
+        // {
+        //     // Facing left
+        //     animator.SetFloat("Horizontal", -1f);
+        //     animator.SetFloat("Vertical", 0f);
+        // }
+        // else if (angle < -45f && angle > -135f)
+        // {
+        //     // Facing down (forwards)
+        //     animator.SetFloat("Horizontal", 0f);
+        //     animator.SetFloat("Vertical", -1f);
+        // }
     }
 
     void TryInteract()
@@ -128,20 +130,16 @@ public class Player : MonoBehaviour
         closest.Interact();
     }
     
-    public void GiveObject(Collectible obj)
+    // Selects the Nth tool in the "toolbelt"
+    public void SelectTool(int toolIndex)
     {
-        Collectible existingObj = null;
-        foreach (Collectible coll in collectibles) {
-            if (coll.GetType() == obj.GetType()) {
-                existingObj = coll;
-                break;
-            }
+        if (currentTool) {
+            currentTool.gameObject.SetActive(false);
         }
-        if (existingObj == null) {
-            collectibles.Add(obj);
-        }
-        else {
-            existingObj.quantity += obj.quantity;
+        Tool nextTool = toolbelt.transform.GetChild(toolIndex).GetComponent<Tool>();
+        if (inventory.HasTool(nextTool.itemData)) {
+            currentTool = nextTool;
+            currentTool.gameObject.SetActive(true);
         }
     }
 }

@@ -12,12 +12,12 @@ TagManager:
   - Water
   - UI
   - NoLoop
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Projectile
+  - Wall
+  - Hole
+  - Player
+  - Companion
+  - Critter
   - 
   - 
   - 

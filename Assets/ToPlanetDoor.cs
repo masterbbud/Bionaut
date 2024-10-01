@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ToPlanetDoor : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +18,7 @@ public class ToPlanetDoor : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == player) {
+        if (other.gameObject == Player.main) {
             // then enter space
             SceneManager.LoadScene("PlanetScene"); // will depend on the selected planet
         }

@@ -10,8 +10,6 @@ public class ToolBeltBehavior : MonoBehaviour
 
     private Button rifleButton;
     private Button emptyButton;
-
-    [SerializeField]
     private Player player;
 
     /// <summary>
@@ -35,6 +33,7 @@ public class ToolBeltBehavior : MonoBehaviour
     private void Start()
     {
         menuPanel.style.display = DisplayStyle.None;
+        player = Player.main.GetComponent<Player>();
     }
 
     private void Update()

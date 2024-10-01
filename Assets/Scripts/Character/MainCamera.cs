@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;
-
     void Start()
     {
         
@@ -15,6 +12,6 @@ public class MainCamera : MonoBehaviour
     // Follow the player
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+        transform.position = new Vector3(Player.main.transform.position.x, Player.main.transform.position.y, transform.position.z);
     }
 }

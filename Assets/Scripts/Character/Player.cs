@@ -46,10 +46,10 @@ public class Player : MonoBehaviour
         rb.velocity = heading * moveSpeed;
 
         // Shooting logic
-        if (Input.GetMouseButtonDown(0))
-        {
-            currentTool.Use();
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     currentTool.Use();
+        // }
 
         // interactions
         if (Input.GetMouseButtonDown(1)) {
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
     }
     
     // Selects the Nth tool in the "toolbelt"
-    void SelectTool(int toolIndex)
+    public void SelectTool(int toolIndex)
     {
         if (currentTool) {
             currentTool.gameObject.SetActive(false);

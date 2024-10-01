@@ -317,6 +317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 770495607}
   - component: {fileID: 770495606}
+  - component: {fileID: 770495608}
   m_Layer: 5
   m_Name: ToolBelt
   m_TagString: Untagged
@@ -355,6 +356,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &770495608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770495605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362fa4124e6df4914adb75ba2b5a2c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1904571370}
 --- !u!1 &1716271704 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6631679186025007478, guid: 2aecf214e1d9b934c9bb72341f6ebde4, type: 3}
@@ -401,6 +415,8 @@ MonoBehaviour:
   rb: {fileID: 1904571367}
   animator: {fileID: 1904571366}
   podObject: {fileID: 412208439}
+  currentTool: {fileID: 0}
+  toolbelt: {fileID: 770495606}
 --- !u!114 &1904571371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8065,3 +8081,4 @@ SceneRoots:
   - {fileID: 412208441}
   - {fileID: 7577693356180741437}
   - {fileID: 2081943790}
+  - {fileID: 770495607}

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class Critter : MonoBehaviour, IRifleHittable
 {
-
     protected Vector2 totalForces = Vector2.zero;
 
     [SerializeField]

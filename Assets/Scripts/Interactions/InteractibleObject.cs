@@ -16,7 +16,7 @@ public abstract class InteractibleObject : MonoBehaviour
         var emission = particles.emission;
         emission.rateOverTime = 3;
         var main = particles.main;
-        main.startSize = 0.1f;
+        main.startSize = 0.15f;
         particles.GetComponent<Renderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
     }
 
@@ -32,7 +32,7 @@ public abstract class InteractibleObject : MonoBehaviour
             var emission = particles.emission;
             emission.rateOverTime = 8;
             var main = particles.main;
-            main.startSize = 0.2f;
+            main.startSize = 0.3f;
             interactions.Add(this);
         }
     }
@@ -43,7 +43,7 @@ public abstract class InteractibleObject : MonoBehaviour
             var emission = particles.emission;
             emission.rateOverTime = 3;
             var main = particles.main;
-            main.startSize = 0.1f;
+            main.startSize = 0.15f;
             interactions.Remove(this);
         }
     }

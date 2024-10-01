@@ -32,11 +32,11 @@ public class Cat : Critter
 
         Vector2 seekForce = Seek(Player.main.transform.position) * seekWeight;
 
-        Vector2 separationForce = Separation(CritterManager.Instance.critters) * separationWeight;
+        Vector2 separationForce = Separation(CritterManager.critters) * separationWeight;
 
-        Vector2 cohesionForce = Cohesion(CritterManager.Instance.critters) * cohesionWeight;
+        Vector2 cohesionForce = Cohesion(CritterManager.critters) * cohesionWeight;
 
-        Vector2 alignmentForce = Alignment(CritterManager.Instance.critters) * alignmentWeight;
+        Vector2 alignmentForce = Alignment(CritterManager.critters) * alignmentWeight;
 
         Vector2 fleeForce = Flee(Player.main.transform.position) * fleeWeight;
 

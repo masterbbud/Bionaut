@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PodScript : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +19,7 @@ public class PodScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == player) {
+        if (other.gameObject == Player.main) {
             // then enter pod
             SceneManager.LoadScene("InPodScene");
         }

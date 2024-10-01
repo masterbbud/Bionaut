@@ -9,6 +9,18 @@ public class Friend : Critter
 
     [SerializeField]
     float seekWeight;
+    
+    [SerializeField]
+    float followWeight;
+
+    [SerializeField]
+    float wanderWeight;
+
+    [SerializeField]
+    float wanderRadius;
+
+    [SerializeField]
+    float wanderTime;
 
     [SerializeField]
     float distance;  // max distance that critter will flee or seek 
@@ -27,6 +39,10 @@ public class Friend : Critter
 
         Vector2 seekForce = Seek(Player.main.transform.position) * seekWeight;
 
+        Vector2 followForce = Follow(Player.main.transform.position) * followWeight;
+        
+        Vector2 wanderForce = Wander(wanderTime, wanderRadius) * wanderWeight;
+
 
         if (rb.velocity.x < 0)
         {
@@ -37,12 +53,15 @@ public class Friend : Critter
             spriteRenderer.flipX = true;
         }
 
-        //if (Vector2.Distance(Player.main.transform.position, transform.position) > distance)
-        //{
-        //    return seekForce;
-        //}
+        return seekForce + followForce + wanderForce;
+    }
 
-        return seekForce;
+    private Vector2 Follow(Vector2 pos)
+    {
+        if (Vector2.Distance(pos, transform.position) < distance) {
+            return -1 * rb.velocity;
+        }
+        return Seek(pos);
     }
 
     // Drawing Gizmos function

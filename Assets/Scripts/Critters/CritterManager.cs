@@ -15,7 +15,7 @@ public class CritterManager : Singleton<CritterManager>
     
 
     // critter list
-    public List<Critter> critters = new List<Critter>();
+    public static List<Critter> critters = new List<Critter>();
 
     Vector2 screenSize = Vector2.zero;
 
@@ -29,6 +29,8 @@ public class CritterManager : Singleton<CritterManager>
     {
         screenSize.y = Camera.main.orthographicSize;
         screenSize.x = screenSize.y * Camera.main.aspect;
+
+        critters = new List<Critter>();
 
         Spawn();
     }

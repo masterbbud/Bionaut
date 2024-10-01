@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 288621445719373435}
   - component: {fileID: 5180020435681616938}
   - component: {fileID: 371017489431604643}
-  m_Layer: 0
-  m_Name: friend
+  m_Layer: 11
+  m_Name: Cat Companion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,10 +106,14 @@ MonoBehaviour:
   max: {x: 0, y: 0}
   rb: {fileID: 5180020435681616938}
   mass: 1
-  maxSpeed: 2
+  maxSpeed: 4
   spriteRenderer: {fileID: 5374514626127255983}
-  seekWeight: 3
-  distance: 1
+  seekWeight: 0
+  followWeight: 3
+  wanderWeight: 0.2
+  wanderRadius: 1
+  wanderTime: 1
+  distance: 3
 --- !u!50 &5180020435681616938
 Rigidbody2D:
   serializedVersion: 4

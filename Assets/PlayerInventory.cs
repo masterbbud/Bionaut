@@ -37,6 +37,9 @@ public class PlayerInventory : MonoBehaviour
 
     public bool HasTool(ItemData toolData)
     {
+        if (toolData == null) { // nothing equipped
+            return true;
+        }
         return collectedItems.ContainsKey(toolData);
     }
 }

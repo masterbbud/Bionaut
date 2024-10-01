@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class Critter : MonoBehaviour, IRifleHittable
 {
-
     protected Vector2 totalForces = Vector2.zero;
 
     [SerializeField]
@@ -198,7 +197,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
         rb.velocity += (force / mass) * Time.deltaTime;   // += REALLY IMPORTANT!
         float currentMaxSpeed = maxSpeed;
         if (asleep) {
-            currentMaxSpeed *= 0.1f;
+            currentMaxSpeed *= 0.02f;
         }
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, currentMaxSpeed);
     }
@@ -213,7 +212,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
     {
         
         asleep = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         asleep = false;
     }
 }

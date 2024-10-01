@@ -12,9 +12,10 @@ public class CritterManager : Singleton<CritterManager>
 
     [SerializeField]
     int tempCritterCount;
+    
 
-    // agent list
-    public List<Critter> critters = new List<Critter>();
+    // critter list
+    public static List<Critter> critters = new List<Critter>();
 
     Vector2 screenSize = Vector2.zero;
 
@@ -29,13 +30,15 @@ public class CritterManager : Singleton<CritterManager>
         screenSize.y = Camera.main.orthographicSize;
         screenSize.x = screenSize.y * Camera.main.aspect;
 
+        critters = new List<Critter>();
+
         Spawn();
     }
 
 
     void Spawn()
     {
-        // shark spawning
+        // critter spawning
         for (int i = 0; i < tempCritterCount; i++)
         {
             Critter newTempCritter = Instantiate(tempCritter, PickRandomPoint(), Quaternion.identity);

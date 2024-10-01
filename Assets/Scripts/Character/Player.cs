@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     public static GameObject main;
     public static PlayerInventory inventory;
 
+    [SerializeField]
+    private ItemData rifleData;
+
     public Tool currentTool;
 
     public GameObject toolbelt;
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        inventory.GiveObject(rifleData, 1);
         SelectTool(0);
     }
 
@@ -45,19 +49,15 @@ public class Player : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = heading * moveSpeed;
 
-        // Shooting logic
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     currentTool.Use();
-        // }
+        // Use current item
+        if (Input.GetMouseButtonDown(0))
+        {
+            currentTool.Use();
+        }
 
         // interactions
         if (Input.GetMouseButtonDown(1)) {
             TryInteract();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            SelectTool(0);
         }
 
         UpdateAnimation();

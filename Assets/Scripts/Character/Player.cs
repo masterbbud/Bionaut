@@ -31,8 +31,36 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (main != null) {
+            // We don't want to initialize the player if they already exist
+            // Instead, move the player to this position and kill this instance
+            main.transform.position = transform.position;
+            DestroyImmediate(gameObject);
+            return;
+        }
+
+        // Otherwise, we set this to the canon "player" and set it to not destroy on scene load
+        // This makes it way easier to test
         main = gameObject;
-        
+        DontDestroyOnLoad(gameObject);
+        inventory = transform.Find("Inventory").GetComponent<PlayerInventory>();
+
+        // We want the player to be inactive on the planet map scene and the start scene
+        SceneManager.sceneLoaded += SetPlayerActiveByScene;
+    }
+
+    void SetPlayerActiveByScene(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "PlanetMapScene" || scene.name == "StartScene") {
+            main.SetActive(false);
+            Debug.Log(inventory);
+            Debug.Log(inventory.HasTool(rifleData));
+        }
+        else {
+            main.SetActive(true);
+            Debug.Log(inventory);
+            Debug.Log(inventory.HasTool(rifleData));
+        }
     }
     
     void Start()
@@ -49,15 +77,17 @@ public class Player : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = heading * moveSpeed;
 
-        // Use current item
-        if (Input.GetMouseButtonDown(0))
-        {
-            currentTool.Use();
-        }
+        if (!ToolBeltBehavior.showing) { // Don't want to use item or interact if ui is shown
+            // Use current item
+            if (Input.GetMouseButtonDown(0))
+            {
+                currentTool.Use();
+            }
 
-        // interactions
-        if (Input.GetMouseButtonDown(1)) {
-            TryInteract();
+            // interactions
+            if (Input.GetMouseButtonDown(1)) {
+                TryInteract();
+            }
         }
 
         UpdateAnimation();

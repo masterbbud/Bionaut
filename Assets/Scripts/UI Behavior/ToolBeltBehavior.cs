@@ -12,6 +12,10 @@ public class ToolBeltBehavior : MonoBehaviour
     private Button emptyButton;
     private Player player;
 
+    // If true, the UI is being shown. This allows us to stop other events when the
+    // tool selection UI is up
+    public static bool showing;
+
     /// <summary>
     /// Grabs definitions from the UI document
     /// </summary>
@@ -42,11 +46,13 @@ public class ToolBeltBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             menuPanel.style.display = DisplayStyle.Flex;
+            showing = true;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             // Releases UI once space is released
             menuPanel.style.display = DisplayStyle.None;
+            showing = false;
         }
     }
 
@@ -63,5 +69,6 @@ public class ToolBeltBehavior : MonoBehaviour
         {
             player.SelectTool(1);
         }
+        evt.StopPropagation();
     }
 }

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5607843986190932244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1ad41b08a85b0418f4a7200a2ada00, type: 3}
+  m_Script: {fileID: 11500000, guid: fe13dc33d07f4b541a6b390a16282057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 10
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5607843986190932244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f59d0212d9fa9419a7105acb05d0a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b911a891e3bf0142bea2a96df446a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shouldCreateCopies: 0

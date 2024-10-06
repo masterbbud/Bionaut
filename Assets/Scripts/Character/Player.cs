@@ -83,11 +83,6 @@ public class Player : MonoBehaviour
             {
                 currentTool.Use();
             }
-
-            // interactions
-            if (Input.GetMouseButtonDown(1)) {
-                TryInteract();
-            }
         }
 
         UpdateAnimation();
@@ -138,26 +133,6 @@ public class Player : MonoBehaviour
         //     animator.SetFloat("Horizontal", 0f);
         //     animator.SetFloat("Vertical", -1f);
         // }
-    }
-
-    void TryInteract()
-    {
-        if (InteractibleObject.interactions.Count == 0) {
-            return;
-        }
-        InteractibleObject closest = null;
-        float bestDist = 1000;
-        foreach (InteractibleObject obj in InteractibleObject.interactions) {
-            float dist = Vector2.Distance(obj.gameObject.transform.position, transform.position);
-            if (dist < bestDist) {
-                bestDist = dist;
-                closest = obj;
-            }
-        }
-        if (closest == null) { // shouldn't happen, but just in case
-            return;
-        }
-        closest.Interact();
     }
     
     // Selects the Nth tool in the "toolbelt"

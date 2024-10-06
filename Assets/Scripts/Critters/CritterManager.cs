@@ -38,6 +38,8 @@ public class CritterManager : Singleton<CritterManager>
         spawnArea = GetComponent<Collider2D>();
 
         Spawn();
+
+        Destroy(gameObject);
     }
 
 

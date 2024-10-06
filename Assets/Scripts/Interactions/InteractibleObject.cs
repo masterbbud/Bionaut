@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/*
+ * This should be inherited by any object which can be interacted with.
+ * Applies particles to the object which glow when the player is nearby.
+ * Override Interact() to provide custom interaction behavior.
+ */
 public abstract class InteractibleObject : MonoBehaviour
 {
     public static List<InteractibleObject> interactions = new List<InteractibleObject>();
@@ -10,6 +15,7 @@ public abstract class InteractibleObject : MonoBehaviour
     private ParticleSystem particles;
 
     protected bool hasSparkles = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +37,7 @@ public abstract class InteractibleObject : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
+        // If the player's interaction has walked nearby, start glowing brighter
         if (other.gameObject == InteractionCollider.main) {
             var emission = particles.emission;
             emission.rateOverTime = 8;
@@ -42,6 +49,7 @@ public abstract class InteractibleObject : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        // If the player's interaction has walked away, stop glowing brighter
         if (other.gameObject == InteractionCollider.main) {
             var emission = particles.emission;
             emission.rateOverTime = 4;
@@ -53,6 +61,7 @@ public abstract class InteractibleObject : MonoBehaviour
 
     void OnMouseOver()
     {
+        // Interact only if the player is close enough
         if (Input.GetMouseButtonDown(1) && interactions.Contains(this)) {
             Interact();
         }

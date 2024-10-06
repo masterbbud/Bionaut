@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/*
+ * Contains the UI for the Player's toolbelt.
+ */
 public class ToolBeltBehavior : MonoBehaviour
 {
     private UIDocument toolBeltUI;

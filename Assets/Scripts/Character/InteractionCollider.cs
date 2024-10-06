@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * The script for the collider around the Player
+ * which determines if the Player can interact with objects
+ */
 public class InteractionCollider : MonoBehaviour
 {
     public static GameObject main;

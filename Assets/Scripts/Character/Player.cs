@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/*
+ * The main Player script
+ */
 public class Player : MonoBehaviour
 {
 
@@ -53,11 +55,13 @@ public class Player : MonoBehaviour
 
     void SetPlayerActiveByScene(Scene scene, LoadSceneMode mode)
     {
+        // Player should be inactive on the planet map scene and start scene
         if (scene.name == "PlanetMapScene" || scene.name == "StartScene") {
             main.SetActive(false);
             Debug.Log(inventory);
             Debug.Log(inventory.HasTool(rifleData));
         }
+        // Player should be active on all other scenes
         else {
             main.SetActive(true);
             Debug.Log(inventory);
@@ -67,8 +71,11 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        // For debugging purposes, give the player the rifle and net
         inventory.GiveObject(rifleData, 1);
         inventory.GiveObject(netData, 1);
+
+        // Select empty hands to start
         SelectTool(0);
     }
 
@@ -123,6 +130,8 @@ public class Player : MonoBehaviour
         }
         
         // Determine the facing direction based on the mouse position
+        // We commented out these scripts because it generally looks bad to have the player look
+        // this way
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 directionToMouse = (mousePosition - (Vector2)transform.position).normalized;
 

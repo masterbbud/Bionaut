@@ -5,6 +5,9 @@ using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/*
+ * General scripts for all types of critters.
+ */
 public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
 {
     protected Vector2 totalForces = Vector2.zero;
@@ -297,7 +300,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, currentMaxSpeed);
     }
 
-
+    // When the critter is hit with a rifle, it should fall asleep
     public void OnRifleHit()
     {
         StartCoroutine(FallAsleep());
@@ -310,6 +313,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
         asleep = false;
     }
 
+    // When the critter is hit with a net, the player should catch it
     public void OnNetHit()
     {
         // Player catches this critter!

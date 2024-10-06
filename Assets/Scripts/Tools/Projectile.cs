@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Destroy the projectile if it's too far from the player, that way it doesn't loop around the planet
         if (Vector2.Distance(Player.main.transform.position, transform.position) > maxDistance) {
             Destroy(gameObject);
         }
@@ -24,10 +25,15 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
+        // If the object hit was hittable by a rifle, apply the rifle's effects to the object
         IRifleHittable hittable = coll.GetComponent<IRifleHittable>();
         if (hittable != null) {
             hittable.OnRifleHit();
         }
+
+        // In any case, destroy the projectile
+        // NOTE: It's important that the "projectile" layer is managed well so that projectiles don't destroy themselves
+        // when hitting invisible triggers
         Destroy(gameObject);
     }
 }

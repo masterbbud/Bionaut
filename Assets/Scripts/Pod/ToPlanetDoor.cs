@@ -19,8 +19,8 @@ public class ToPlanetDoor : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject == Player.main) {
-            // then enter space
-            SceneManager.LoadScene("PlanetScene"); // will depend on the selected planet
+            // then enter the planet
+            SceneManager.LoadScene("PlanetScene"); // will eventually depend on the selected planet
         }
     }
 }

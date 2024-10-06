@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Script for tracking the main player with the camera
+ */
 public class MainCamera : MonoBehaviour
 {
     void Start()

@@ -18,8 +18,11 @@ public class PlanetLoader : MonoBehaviour
     public float thisPlanetWidth;
     void Awake()
     {
+        // Set up planet height and width for reference
         planetHeight = thisPlanetHeight;
         planetWidth = thisPlanetWidth;
+
+        // Inject prefabs into other classes statically
         InteractibleObject.particlePrefab = interactionParticlePrefab;
     }
     // Start is called before the first frame update

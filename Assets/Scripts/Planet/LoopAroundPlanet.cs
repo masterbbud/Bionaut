@@ -10,10 +10,12 @@ using UnityEngine;
  */
 public class LoopAroundPlanet : MonoBehaviour
 {
-    private float planetWidth = PlanetManager.planetWidth;
-    private float planetHeight = PlanetManager.planetHeight;
+    private float planetWidth = PlanetLoader.planetWidth;
+    private float planetHeight = PlanetLoader.planetHeight;
+
     [SerializeField]
-    private bool shouldCreateCopies = false;
+    private bool shouldCreateCopies = false; // Generally, should be false. Only set to True if the object is larger than half the planet height
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,22 +30,14 @@ public class LoopAroundPlanet : MonoBehaviour
     // screen as they walk around the planet.
     void CreateCopies() 
     {
+        // We save the copy reference to prevent the objects from duplicating the new copies
         GameObject referenceToCopy = null;
+
+        // We have to copy the tilemap looped exactly the planet distance away in all 8 cardinal directions because as the player
+        // moves close to the edge of the screen, they will see the next loop
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 if (x != 0 || y != 0) {
-                    // This is a pretty bad method of copying the Component over. It would be nice to copy the component,
-                    // but that isn't built-in
-                    // GameObject newGameObject = new GameObject("subsprite");
-                    // newGameObject.transform.parent = transform;
-                    // newGameObject.transform.position = transform.position + new Vector3(x*planetWidth, y*planetHeight);
-                    // newGameObject.transform.localScale = new Vector3(1,1,1);
-                    // // newGameObject.transform.rotation = transform.rotation;
-                    // newGameObject.AddComponent<SpriteRenderer>();
-                    // SpriteRenderer sr = newGameObject.GetComponent<SpriteRenderer>();
-                    // SpriteRenderer mySR = GetComponent<SpriteRenderer>();
-                    // sr.sprite = mySR.sprite;
-                    // sr.sortingOrder = mySR.sortingOrder;
                     GameObject newGameObject;
                     if (referenceToCopy) {
                         newGameObject = Instantiate(referenceToCopy, transform);
@@ -74,6 +68,8 @@ public class LoopAroundPlanet : MonoBehaviour
 
     void LateUpdate()
     {
+        // If the "central" object is more than half the planet size away from the player,
+        // we move it so that it is closer than half the planet size away
         Vector2 transformToPlayer = transform.position - Player.main.transform.position;
         if (transformToPlayer.y > planetHeight / 2) 
         {

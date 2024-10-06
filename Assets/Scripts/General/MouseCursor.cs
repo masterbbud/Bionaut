@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/*
+ * Static script for controlling the custom mouse cursor.
+ * Follows the mouse position, but in world space.
+ */
 public class MouseCursor : MonoBehaviour
 {
     private static Vector2 position;
@@ -11,16 +15,18 @@ public class MouseCursor : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Never have multiple mouse cursors on the screen
         if (initialized) {
             DestroyImmediate(gameObject);
             return;
         }
 
+        // This is the first time this has loaded, so make it stay between scenes
         DontDestroyOnLoad(gameObject);
         initialized = true;
     }
 
-    // Update is called once per frame
+    // Keeps this in the same position as the mouse cursor
     void Update()
     {
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);

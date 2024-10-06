@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*
+ * Script for controlling the planet in outer space, on the planet map screen
+ */
 public class UIPlanet : MonoBehaviour
 {
     private bool expanded = false;
@@ -37,6 +40,7 @@ public class UIPlanet : MonoBehaviour
 
     IEnumerator ZoomOut()
     {
+        // Zoom out to see the entire galaxy over zoomSeconds
         planetOverlay.SetActive(false);
         fullyExpanded = false;
         float planetSize = GetComponent<SpriteRenderer>().bounds.extents.y * 2;
@@ -55,6 +59,7 @@ public class UIPlanet : MonoBehaviour
 
     IEnumerator ZoomIn()
     {
+        // Zoom in to see the specific planet over zoomSeconds
         expanded = true;
         float planetSize = GetComponent<SpriteRenderer>().bounds.extents.y * 2;
         Debug.Log(planetSize);

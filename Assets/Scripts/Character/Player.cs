@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,11 +24,12 @@ public class Player : MonoBehaviour
     public static PlayerInventory inventory;
 
     [SerializeField]
-    private ItemData rifleData;
+    private ItemData rifleData, netData;
 
     public Tool currentTool;
 
     public GameObject toolbelt;
+    public Vector3 facingDirection = Vector3.zero;
     // Start is called before the first frame update
     void Awake()
     {
@@ -66,6 +68,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         inventory.GiveObject(rifleData, 1);
+        inventory.GiveObject(netData, 1);
         SelectTool(0);
     }
 
@@ -102,6 +105,23 @@ public class Player : MonoBehaviour
             animator.SetBool("Walking", false);
         }
 
+        // We want to use the facing direction based on the player moving direction
+
+        if (rb.velocity != Vector2.zero) {
+            double angle = Math.Atan2(rb.velocity.y, rb.velocity.x);
+            angle /= Math.PI / 2;
+            if (angle == 1.5 || angle == -0.5) {
+                angle += 0.5;
+                // The animator treats direction slightly differently, so we have to do this to prioritize
+                // the sideways angles
+            }
+            angle = Math.Floor(angle);
+            angle *= Math.PI / 2;
+            facingDirection = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0);
+            
+            // TODO this has imperfect behavior when traveling against a wall
+        }
+        
         // Determine the facing direction based on the mouse position
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 directionToMouse = (mousePosition - (Vector2)transform.position).normalized;

@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Critter : MonoBehaviour, IRifleHittable
+public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
 {
     protected Vector2 totalForces = Vector2.zero;
 
@@ -44,6 +45,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
     [SerializeField]
     float mass = 1f, maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
 
+    public CritterData critterData;
 
     // Start is called before the first frame update
     void Start()
@@ -303,10 +305,17 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
 
     IEnumerator FallAsleep()
     {
-        
         asleep = true;
         yield return new WaitForSeconds(5);
         asleep = false;
+    }
+
+    public void OnNetHit()
+    {
+        // Player catches this critter!
+        Player.inventory.AddCritter(critterData);
+        CritterManager.DeleteCritter(this);
+        Destroy(gameObject);
     }
 }
 

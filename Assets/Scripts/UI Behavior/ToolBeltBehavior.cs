@@ -8,6 +8,7 @@ public class ToolBeltBehavior : MonoBehaviour
     private UIDocument toolBeltUI;
     private VisualElement menuPanel;
 
+    private Button netButton;
     private Button rifleButton;
     private Button emptyButton;
     private Player player;
@@ -22,11 +23,13 @@ public class ToolBeltBehavior : MonoBehaviour
     private void Awake()
     {
         toolBeltUI = GetComponent<UIDocument>();
+        netButton = toolBeltUI.rootVisualElement.Q<Button>("btn-net");
         rifleButton = toolBeltUI.rootVisualElement.Q<Button>("btn-rifle");
         emptyButton = toolBeltUI.rootVisualElement.Q<Button>("btn-empty");
         menuPanel = toolBeltUI.rootVisualElement.Q<VisualElement>("panel");
 
         // Register callback events to button logic
+        netButton.RegisterCallback<ClickEvent>(OnButtonClicked);
         rifleButton.RegisterCallback<ClickEvent>(OnButtonClicked);
         emptyButton.RegisterCallback<ClickEvent>(OnButtonClicked);
     }
@@ -68,6 +71,10 @@ public class ToolBeltBehavior : MonoBehaviour
         else if (evt.target == rifleButton)
         {
             player.SelectTool(1);
+        }
+        else if (evt.target == netButton)
+        {
+            player.SelectTool(2);
         }
         evt.StopPropagation();
     }

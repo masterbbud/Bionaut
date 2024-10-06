@@ -118,6 +118,7 @@ MonoBehaviour:
   rb: {fileID: 7599277267642513931}
   mass: 1
   maxSpeed: 5
+  critterData: {fileID: 11400000, guid: 5e8297ca5cf3628419e7fb716e546340, type: 2}
 --- !u!50 &7599277267642513931
 Rigidbody2D:
   serializedVersion: 4

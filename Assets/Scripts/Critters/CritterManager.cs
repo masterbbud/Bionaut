@@ -38,8 +38,6 @@ public class CritterManager : Singleton<CritterManager>
         spawnArea = GetComponent<Collider2D>();
 
         Spawn();
-
-        Destroy(gameObject);
     }
 
 
@@ -70,6 +68,11 @@ public class CritterManager : Singleton<CritterManager>
 
         return randPoint;
 
+    }
+
+    public static void DeleteCritter(Critter critter)
+    {
+        critters.Remove(critter);
     }
 }
 

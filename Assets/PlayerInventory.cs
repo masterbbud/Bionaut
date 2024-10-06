@@ -31,7 +31,9 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddCritter(CritterData critter)
     {
-        collectedCritters.Add(critter);
+        if (! collectedCritters.Contains(critter)) {
+            collectedCritters.Add(critter);
+        }
     }
 
     public bool HasTool(ItemData toolData)

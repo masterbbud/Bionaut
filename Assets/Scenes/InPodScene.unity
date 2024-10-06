@@ -150,7 +150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 163993191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9baff8525638e094fa0186a1edfbfe1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 86ff5dd382d45a042a8daf0c8f1fb27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &163993193
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 673980020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c23637434d9fc54e8da2c944e156ffa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ca6ae2b0aaf1414c818ff15bfda2464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &673980024
@@ -465,23 +465,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b775653fd05b39e429fbd98957913b87, type: 3}
---- !u!1 &1716271704 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6631679186025007478, guid: 2aecf214e1d9b934c9bb72341f6ebde4, type: 3}
-  m_PrefabInstance: {fileID: 8311611167524660975}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1716271709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716271704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0589c93e7e875d45b9bad97bef0d7ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1394616265402796735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,10 +1244,7 @@ PrefabInstance:
     - {fileID: 6864022422756986846, guid: 2aecf214e1d9b934c9bb72341f6ebde4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6631679186025007478, guid: 2aecf214e1d9b934c9bb72341f6ebde4, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 1716271709}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aecf214e1d9b934c9bb72341f6ebde4, type: 3}
 --- !u!156049354 &8857950708691404157
 Grid:

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class CritterManager : Singleton<CritterManager>
 
     [SerializeField]
     int tempCritterCount;
+
+    private Collider2D spawnArea;
     
 
     // critter list
@@ -32,6 +35,8 @@ public class CritterManager : Singleton<CritterManager>
 
         critters = new List<Critter>();
 
+        spawnArea = GetComponent<Collider2D>();
+
         Spawn();
     }
 
@@ -51,17 +56,18 @@ public class CritterManager : Singleton<CritterManager>
 
     Vector2 PickRandomPoint()
     {
+        Bounds spawnBounds = spawnArea.bounds;
         Vector2 randPoint = Vector2.zero;
 
-        randPoint.x = Random.Range(-ScreenSize.x, ScreenSize.x);
-        randPoint.y = Random.Range(-ScreenSize.y, ScreenSize.y);
+        // Continually pick a random point in the x, y bounds of the spawn collider
+        // until the point falls inside the collider
+        do {
+            randPoint.x = Random.Range(spawnBounds.min.x, spawnBounds.max.x);
+            randPoint.y = Random.Range(spawnBounds.min.y, spawnBounds.max.y);
+        } while (spawnArea.ClosestPoint(randPoint) != randPoint);
 
         return randPoint;
 
     }
-
-
-
-
 }
 

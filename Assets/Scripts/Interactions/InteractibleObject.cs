@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
+/*
+ * This should be inherited by any object which can be interacted with.
+ * Applies particles to the object which glow when the player is nearby.
+ * Override Interact() to provide custom interaction behavior.
+ */
 public abstract class InteractibleObject : MonoBehaviour
 {
     public static List<InteractibleObject> interactions = new List<InteractibleObject>();
     public static GameObject particlePrefab;
     private ParticleSystem particles;
+
+    protected bool hasSparkles = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +23,9 @@ public abstract class InteractibleObject : MonoBehaviour
         var particleShape = particles.shape;
         particleShape.spriteRenderer = GetComponent<SpriteRenderer>();
         var emission = particles.emission;
-        emission.rateOverTime = 3;
+        emission.rateOverTime = 4;
         var main = particles.main;
-        main.startSize = 0.15f;
+        main.startSize = 0.2f;
         particles.GetComponent<Renderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
     }
 
@@ -28,6 +37,7 @@ public abstract class InteractibleObject : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
+        // If the player's interaction has walked nearby, start glowing brighter
         if (other.gameObject == InteractionCollider.main) {
             var emission = particles.emission;
             emission.rateOverTime = 8;
@@ -39,12 +49,21 @@ public abstract class InteractibleObject : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        // If the player's interaction has walked away, stop glowing brighter
         if (other.gameObject == InteractionCollider.main) {
             var emission = particles.emission;
-            emission.rateOverTime = 3;
+            emission.rateOverTime = 4;
             var main = particles.main;
-            main.startSize = 0.15f;
+            main.startSize = 0.2f;
             interactions.Remove(this);
+        }
+    }
+
+    void OnMouseOver()
+    {
+        // Interact only if the player is close enough
+        if (Input.GetMouseButtonDown(1) && interactions.Contains(this)) {
+            Interact();
         }
     }
 

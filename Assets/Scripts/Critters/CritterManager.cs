@@ -5,7 +5,10 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CritterManager : Singleton<CritterManager>
+/*
+ * Scripts for spawning critters of a specific type in a specific area.
+ */
+public class CritterManager : MonoBehaviour
 {
 
     [SerializeField]
@@ -20,19 +23,11 @@ public class CritterManager : Singleton<CritterManager>
     // critter list
     public static List<Critter> critters = new List<Critter>();
 
-    Vector2 screenSize = Vector2.zero;
-
-    public Vector2 ScreenSize { get { return screenSize; } }
-
-
     // prevent non singleton constructor use
     protected CritterManager() { }
 
     private void Start()
     {
-        screenSize.y = Camera.main.orthographicSize;
-        screenSize.x = screenSize.y * Camera.main.aspect;
-
         critters = new List<Critter>();
 
         spawnArea = GetComponent<Collider2D>();
@@ -68,6 +63,12 @@ public class CritterManager : Singleton<CritterManager>
 
         return randPoint;
 
+    }
+
+    // Deletes a critter from the list - this should ALWAYS be done when a critter is destroyed
+    public static void DeleteCritter(Critter critter)
+    {
+        critters.Remove(critter);
     }
 }
 

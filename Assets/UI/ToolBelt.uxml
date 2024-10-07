@@ -10,6 +10,10 @@
                 <radial.RadialMenu name="btn-rifle" class="selector" style="height: 70px; width: 70px; align-self: auto; visibility: visible; overflow: hidden; display: flex; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
                 <ui:Label tabindex="-1" text="Equip Tranq-Rifle" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lb-rifle" class="label" />
             </ui:VisualElement>
+            <ui:VisualElement name="container-net" style="flex-grow: 1; align-items: center; justify-content: center;">
+                <radial.RadialMenu name="btn-net" class="selector" style="height: 70px; width: 70px; align-self: auto; visibility: visible; overflow: hidden; display: flex; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                <ui:Label tabindex="-1" text="Equip Net" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lb-net" class="label" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

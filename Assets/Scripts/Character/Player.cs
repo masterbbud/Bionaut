@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/*
+ * The main Player script
+ */
 public class Player : MonoBehaviour
 {
 
@@ -23,21 +26,56 @@ public class Player : MonoBehaviour
     public static PlayerInventory inventory;
 
     [SerializeField]
-    private ItemData rifleData;
+    private ItemData rifleData, netData;
 
     public Tool currentTool;
 
     public GameObject toolbelt;
+    public Vector3 facingDirection = Vector3.zero;
     // Start is called before the first frame update
     void Awake()
     {
+        if (main != null) {
+            // We don't want to initialize the player if they already exist
+            // Instead, move the player to this position and kill this instance
+            main.transform.position = transform.position;
+            DestroyImmediate(gameObject);
+            return;
+        }
+
+        // Otherwise, we set this to the canon "player" and set it to not destroy on scene load
+        // This makes it way easier to test
         main = gameObject;
-        
+        DontDestroyOnLoad(gameObject);
+        inventory = transform.Find("Inventory").GetComponent<PlayerInventory>();
+
+        // We want the player to be inactive on the planet map scene and the start scene
+        SceneManager.sceneLoaded += SetPlayerActiveByScene;
+    }
+
+    void SetPlayerActiveByScene(Scene scene, LoadSceneMode mode)
+    {
+        // Player should be inactive on the planet map scene and start scene
+        if (scene.name == "PlanetMapScene" || scene.name == "StartScene") {
+            main.SetActive(false);
+            Debug.Log(inventory);
+            Debug.Log(inventory.HasTool(rifleData));
+        }
+        // Player should be active on all other scenes
+        else {
+            main.SetActive(true);
+            Debug.Log(inventory);
+            Debug.Log(inventory.HasTool(rifleData));
+        }
     }
     
     void Start()
     {
+        // For debugging purposes, give the player the rifle and net
         inventory.GiveObject(rifleData, 1);
+        inventory.GiveObject(netData, 1);
+
+        // Select empty hands to start
         SelectTool(0);
     }
 
@@ -49,15 +87,12 @@ public class Player : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = heading * moveSpeed;
 
-        // Use current item
-        if (Input.GetMouseButtonDown(0))
-        {
-            currentTool.Use();
-        }
-
-        // interactions
-        if (Input.GetMouseButtonDown(1)) {
-            TryInteract();
+        if (!ToolBeltBehavior.showing) { // Don't want to use item or interact if ui is shown
+            // Use current item
+            if (Input.GetMouseButtonDown(0))
+            {
+                currentTool.Use();
+            }
         }
 
         UpdateAnimation();
@@ -77,7 +112,26 @@ public class Player : MonoBehaviour
             animator.SetBool("Walking", false);
         }
 
+        // We want to use the facing direction based on the player moving direction
+
+        if (rb.velocity != Vector2.zero) {
+            double angle = Math.Atan2(rb.velocity.y, rb.velocity.x);
+            angle /= Math.PI / 2;
+            if (angle == 1.5 || angle == -0.5) {
+                angle += 0.5;
+                // The animator treats direction slightly differently, so we have to do this to prioritize
+                // the sideways angles
+            }
+            angle = Math.Floor(angle);
+            angle *= Math.PI / 2;
+            facingDirection = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0);
+            
+            // TODO this has imperfect behavior when traveling against a wall
+        }
+        
         // Determine the facing direction based on the mouse position
+        // We commented out these scripts because it generally looks bad to have the player look
+        // this way
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 directionToMouse = (mousePosition - (Vector2)transform.position).normalized;
 
@@ -108,26 +162,6 @@ public class Player : MonoBehaviour
         //     animator.SetFloat("Horizontal", 0f);
         //     animator.SetFloat("Vertical", -1f);
         // }
-    }
-
-    void TryInteract()
-    {
-        if (InteractibleObject.interactions.Count == 0) {
-            return;
-        }
-        InteractibleObject closest = null;
-        float bestDist = 1000;
-        foreach (InteractibleObject obj in InteractibleObject.interactions) {
-            float dist = Vector2.Distance(obj.gameObject.transform.position, transform.position);
-            if (dist < bestDist) {
-                bestDist = dist;
-                closest = obj;
-            }
-        }
-        if (closest == null) { // shouldn't happen, but just in case
-            return;
-        }
-        closest.Interact();
     }
     
     // Selects the Nth tool in the "toolbelt"

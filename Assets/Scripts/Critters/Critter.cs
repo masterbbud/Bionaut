@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Critter : MonoBehaviour, IRifleHittable
+/*
+ * General scripts for all types of critters.
+ */
+public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
 {
-
     protected Vector2 totalForces = Vector2.zero;
 
     [SerializeField]
@@ -26,11 +30,32 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
     // list of all positions of obstacles agent has found (each agent has there own list
     protected List<Vector2> foundObstaclePositions = new List<Vector2>();
 
+    [SerializeField]
+    float wanderTime, wanderRadius;
+
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    float wanderWeight, seekWeight, separationWeight, cohesionWeight, alignmentWeight, fleeWeight, followWeight;
+
+    [SerializeField]
+    float distance;  // max distance that critter will flee or seek 
+
+    [SerializeField]
+    protected Rigidbody2D rb;
+    
+    [SerializeField]
+    float mass = 1f, maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
+
+    public CritterData critterData;
 
     // Start is called before the first frame update
     void Start()
     {
-        randAngle = Random.Range(0f, 360f);
+        randAngle = UnityEngine.Random.Range(0f, 360f);
+        min = spriteRenderer.bounds.min;
+        max = spriteRenderer.bounds.max;
     }
 
     // Update is called once per frame
@@ -46,10 +71,80 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
         totalForces = Vector2.zero;
     }
 
+    // this method was created in parent class but each child class has to implement it separately
+    protected virtual Vector2 CalculateSteeringForces()
+    {
+        min = spriteRenderer.bounds.min;
+        max = spriteRenderer.bounds.max;
 
-    // abstract method = you implement the function in each child class
-    protected abstract Vector2 CalculateSteeringForces();
+        Vector2 wanderForce = Wander(wanderTime, wanderRadius) * wanderWeight;
 
+        Vector2 seekForce = Seek(Player.main.transform.position) * seekWeight;
+
+        Vector2 separationForce = Separation(CritterManager.critters) * separationWeight;
+
+        Vector2 cohesionForce = Cohesion(CritterManager.critters) * cohesionWeight;
+
+        Vector2 alignmentForce = Alignment(CritterManager.critters) * alignmentWeight;
+
+        Vector2 fleeForce = Flee(Player.main.transform.position) * fleeWeight;
+
+        Vector2 followForce = Follow(Player.main.transform.position) * followWeight;
+
+        if (Math.Abs(rb.velocity.x) > 0.1f) { // Prevent sprite jitter
+            if (rb.velocity.x > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+
+        Vector2 totalForce = Vector2.zero;
+
+        if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
+        {
+            totalForce += seekForce + fleeForce;
+        }
+
+        totalForce += wanderForce + separationForce + cohesionForce + alignmentForce + followForce;
+        return totalForce;
+    }
+
+    // Drawing Gizmos function
+    private void OnDrawGizmos()
+    {
+        if (Player.main == null) {
+            return;
+        }
+        Gizmos.color = Color.yellow;
+        
+        if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
+        {
+            Gizmos.DrawLine(Player.main.transform.position, transform.position);
+        }
+
+
+        Gizmos.color = Color.magenta;
+        
+        Vector2 futurePosition = CalcFuturePosition(wanderTime);
+        Gizmos.DrawWireSphere(futurePosition, wanderRadius);
+        
+        Gizmos.color = Color.cyan;
+        float randAngle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
+        
+        Vector2 wanderTarget = futurePosition;
+        
+        wanderTarget.x += Mathf.Cos(randAngle) * wanderRadius;
+        wanderTarget.y += Mathf.Sin(randAngle) * wanderRadius;
+        
+        Gizmos.DrawLine(transform.position, wanderTarget);
+
+        //Gizmos.color = Color.magenta;
+        //Gizmos.DrawWireSphere(transform.position, physicsObject.radius);
+    }
 
     public Vector2 Seek(Vector2 targetPos)
     {
@@ -100,7 +195,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
     {
         Vector2 futurePosition = CalcFuturePosition(time);
 
-        randAngle += Random.Range(-10f, 10f);   // want in radians for later
+        randAngle += UnityEngine.Random.Range(-10f, 10f);   // want in radians for later
 
         Vector2 wanderTarget = futurePosition;  // set wanderTarget to future position to make it easier later
 
@@ -180,6 +275,14 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
         return alignmentForce;
     }
 
+    private Vector2 Follow(Vector2 pos)
+    {
+        if (Vector2.Distance(pos, transform.position) < distance) {
+            return -1 * rb.velocity;
+        }
+        return Seek(pos);
+    }
+
     
     // calculates the future position of agent
     public Vector2 CalcFuturePosition(float futureTime)
@@ -187,23 +290,17 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
         return (Vector2)transform.position + (rb.velocity * futureTime);  // returns a world point because of the transform.position
     }
 
-    [SerializeField]
-    protected Rigidbody2D rb;
-    
-    [SerializeField]
-    float mass = 1f, maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
-
     public void ApplyForce(Vector2 force)
     {
         rb.velocity += (force / mass) * Time.deltaTime;   // += REALLY IMPORTANT!
         float currentMaxSpeed = maxSpeed;
         if (asleep) {
-            currentMaxSpeed *= 0.1f;
+            currentMaxSpeed *= 0.02f;
         }
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, currentMaxSpeed);
     }
 
-
+    // When the critter is hit with a rifle, it should fall asleep
     public void OnRifleHit()
     {
         StartCoroutine(FallAsleep());
@@ -211,10 +308,18 @@ public abstract class Critter : MonoBehaviour, IRifleHittable
 
     IEnumerator FallAsleep()
     {
-        
         asleep = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         asleep = false;
+    }
+
+    // When the critter is hit with a net, the player should catch it
+    public void OnNetHit()
+    {
+        // Player catches this critter!
+        Player.inventory.AddCritter(critterData);
+        CritterManager.DeleteCritter(this);
+        Destroy(gameObject);
     }
 }
 

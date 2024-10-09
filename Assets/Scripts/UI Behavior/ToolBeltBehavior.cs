@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/*
+ * Contains the UI for the Player's toolbelt.
+ */
 public class ToolBeltBehavior : MonoBehaviour
 {
     private UIDocument toolBeltUI;
     private VisualElement menuPanel;
 
+    private Button netButton;
     private Button rifleButton;
     private Button emptyButton;
-
-    [SerializeField]
     private Player player;
+
+    // If true, the UI is being shown. This allows us to stop other events when the
+    // tool selection UI is up
+    public static bool showing;
 
     /// <summary>
     /// Grabs definitions from the UI document
@@ -20,11 +26,13 @@ public class ToolBeltBehavior : MonoBehaviour
     private void Awake()
     {
         toolBeltUI = GetComponent<UIDocument>();
+        netButton = toolBeltUI.rootVisualElement.Q<Button>("btn-net");
         rifleButton = toolBeltUI.rootVisualElement.Q<Button>("btn-rifle");
         emptyButton = toolBeltUI.rootVisualElement.Q<Button>("btn-empty");
         menuPanel = toolBeltUI.rootVisualElement.Q<VisualElement>("panel");
 
         // Register callback events to button logic
+        netButton.RegisterCallback<ClickEvent>(OnButtonClicked);
         rifleButton.RegisterCallback<ClickEvent>(OnButtonClicked);
         emptyButton.RegisterCallback<ClickEvent>(OnButtonClicked);
     }
@@ -35,6 +43,7 @@ public class ToolBeltBehavior : MonoBehaviour
     private void Start()
     {
         menuPanel.style.display = DisplayStyle.None;
+        player = Player.main.GetComponent<Player>();
     }
 
     private void Update()
@@ -43,11 +52,13 @@ public class ToolBeltBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             menuPanel.style.display = DisplayStyle.Flex;
+            showing = true;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             // Releases UI once space is released
             menuPanel.style.display = DisplayStyle.None;
+            showing = false;
         }
     }
 
@@ -64,5 +75,10 @@ public class ToolBeltBehavior : MonoBehaviour
         {
             player.SelectTool(1);
         }
+        else if (evt.target == netButton)
+        {
+            player.SelectTool(2);
+        }
+        evt.StopPropagation();
     }
 }

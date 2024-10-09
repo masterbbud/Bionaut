@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8484354191385408016}
   - component: {fileID: 7599277267642513931}
   - component: {fileID: 137657576480678857}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cat Critter 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,19 +104,21 @@ MonoBehaviour:
   safeDis: 2
   min: {x: 0, y: 0}
   max: {x: 0, y: 0}
-  rb: {fileID: 7599277267642513931}
-  mass: 1
-  maxSpeed: 5
   wanderTime: 1
   wanderRadius: 1
   spriteRenderer: {fileID: 1500949177723076901}
   wanderWeight: 1
   seekWeight: 0
   separationWeight: 4
-  cohesionWeight: 3
-  alignmentWeight: 3
+  cohesionWeight: 2
+  alignmentWeight: 5
   fleeWeight: 10
-  distance: 3
+  followWeight: 0
+  distance: 4
+  rb: {fileID: 7599277267642513931}
+  mass: 1
+  maxSpeed: 5
+  critterData: {fileID: 11400000, guid: 5e8297ca5cf3628419e7fb716e546340, type: 2}
 --- !u!50 &7599277267642513931
 Rigidbody2D:
   serializedVersion: 4

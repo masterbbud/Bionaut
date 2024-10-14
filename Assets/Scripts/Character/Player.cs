@@ -26,12 +26,14 @@ public class Player : MonoBehaviour
     public static PlayerInventory inventory;
 
     [SerializeField]
-    private ItemData rifleData, netData;
+    private ItemData rifleData, netData, knifeData;
 
     public Tool currentTool;
 
     public GameObject toolbelt;
     public Vector3 facingDirection = Vector3.zero;
+
+    private bool freezeMovement;
     // Start is called before the first frame update
     void Awake()
     {
@@ -74,18 +76,24 @@ public class Player : MonoBehaviour
         // For debugging purposes, give the player the rifle and net
         inventory.GiveObject(rifleData, 1);
         inventory.GiveObject(netData, 1);
+        inventory.GiveObject(knifeData, 1);
 
         // Select empty hands to start
-        SelectTool(0);
+        SelectTool(3);
     }
 
     // Update is called once per frame
     void Update()
     {
         // Movement logic
-        Vector2 heading = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = heading * moveSpeed;
+        if (!freezeMovement) {
+            Vector2 heading = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.velocity = heading * moveSpeed;
+        }
+        else {
+            rb.velocity = Vector2.zero;
+        }
 
         if (!ToolBeltBehavior.showing) { // Don't want to use item or interact if ui is shown
             // Use current item
@@ -171,9 +179,21 @@ public class Player : MonoBehaviour
             currentTool.gameObject.SetActive(false);
         }
         Tool nextTool = toolbelt.transform.GetChild(toolIndex).GetComponent<Tool>();
+        Debug.Log(nextTool);
         if (inventory.HasTool(nextTool.itemData)) {
             currentTool = nextTool;
             currentTool.gameObject.SetActive(true);
         }
+    }
+
+    public void AnimateUseKnife(bool useKnife)
+    {
+        animator.SetTrigger("UseKnife");
+        freezeMovement = true;
+    }
+
+    public void UnlockMovement()
+    {
+        freezeMovement = false;
     }
 }

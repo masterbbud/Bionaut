@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipPart
       objectReference: {fileID: 0}
+    - target: {fileID: 2270947704486960759, guid: f6974f61940c47943bbd2af75ed7f21f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9113491536562668082, guid: f6974f61940c47943bbd2af75ed7f21f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.36

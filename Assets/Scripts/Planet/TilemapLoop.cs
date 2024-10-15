@@ -13,6 +13,9 @@ public class TilemapLoop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        planetHeight = PlanetLoader.planetHeight;
+        planetWidth = PlanetLoader.planetWidth;
+        
         if (transform.parent.childCount > 1) {
             return;
         }

@@ -16,6 +16,7 @@ public class PlanetLoader : MonoBehaviour
     public static float planetWidth = 30;
     public float thisPlanetHeight;
     public float thisPlanetWidth;
+    public bool isPlanet = true;
     void Awake()
     {
         // Set up planet height and width for reference
@@ -28,7 +29,9 @@ public class PlanetLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoadPlanet();
+        if (isPlanet) {
+            LoadPlanet();
+        }
     }
 
     // Update is called once per frame

@@ -12,7 +12,7 @@ public class Knife : Tool
         // TODO Trigger animation
         // Something like animator.SetBool("UsingNet", true);
 
-        transform.localPosition = Player.main.GetComponent<Player>().facingDirection * 0.75f;
+        transform.localPosition = Player.main.GetComponent<Player>().facingDirection * 0.25f;
         transform.localRotation = Quaternion.Euler(0, 0, (float)Math.Atan2(transform.localPosition.y, transform.localPosition.x) * Mathf.Rad2Deg - 90);
 
         // Turn off the hitbox in a few frames

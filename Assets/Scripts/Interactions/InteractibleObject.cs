@@ -39,6 +39,7 @@ public abstract class InteractibleObject : MonoBehaviour
     {
         // If the player's interaction has walked nearby, start glowing brighter
         if (other.gameObject == InteractionCollider.main) {
+            OnPlayerNear();
             var emission = particles.emission;
             emission.rateOverTime = 8;
             var main = particles.main;
@@ -51,6 +52,7 @@ public abstract class InteractibleObject : MonoBehaviour
     {
         // If the player's interaction has walked away, stop glowing brighter
         if (other.gameObject == InteractionCollider.main) {
+            OnPlayerLeave();
             var emission = particles.emission;
             emission.rateOverTime = 4;
             var main = particles.main;
@@ -59,8 +61,12 @@ public abstract class InteractibleObject : MonoBehaviour
         }
     }
 
+    protected virtual void OnPlayerNear(){}
+    protected virtual void OnPlayerLeave(){}
+
     void OnMouseOver()
     {
+        Debug.Log("over");
         // Interact only if the player is close enough
         if (Input.GetMouseButtonDown(1) && interactions.Contains(this)) {
             Interact();

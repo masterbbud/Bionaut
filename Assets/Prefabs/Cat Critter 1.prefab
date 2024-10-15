@@ -118,6 +118,7 @@ MonoBehaviour:
   rb: {fileID: 7599277267642513931}
   mass: 1
   maxSpeed: 5
+  maxStamina: 3
   critterData: {fileID: 11400000, guid: 5e8297ca5cf3628419e7fb716e546340, type: 2}
 --- !u!50 &7599277267642513931
 Rigidbody2D:
@@ -132,7 +133,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1000
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

@@ -8,7 +8,7 @@ using UnityEngine;
 /*
  * General scripts for all types of critters.
  */
-public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
+public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKnifeHittable
 {
     protected Vector2 totalForces = Vector2.zero;
 
@@ -48,7 +48,15 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
     [SerializeField]
     float mass = 1f, maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
 
+    [SerializeField]
+    private int maxStamina;
+
     public CritterData critterData;
+    // While true, the critter doesn't move on its own and can go beyond its
+    // max speed.
+    private bool freeBody = false;
+    private bool knockedOut = false;
+    private int stamina;
 
     // Start is called before the first frame update
     void Start()
@@ -56,18 +64,21 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
         randAngle = UnityEngine.Random.Range(0f, 360f);
         min = spriteRenderer.bounds.min;
         max = spriteRenderer.bounds.max;
+        stamina = maxStamina;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!freeBody && !knockedOut) {
+            totalForces += CalculateSteeringForces();
+
+            totalForces = Vector2.ClampMagnitude(totalForces, maxForce);
+
+            ApplyForce(totalForces);
+        }
         // parent class does not care what the function does, that depends on code in child class
-        totalForces += CalculateSteeringForces();
-
-        totalForces = Vector2.ClampMagnitude(totalForces, maxForce);
-
-        ApplyForce(totalForces);
-
+        
         totalForces = Vector2.zero;
     }
 
@@ -297,7 +308,9 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
         if (asleep) {
             currentMaxSpeed *= 0.02f;
         }
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, currentMaxSpeed);
+        if (!freeBody) {
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, currentMaxSpeed);
+        }
     }
 
     // When the critter is hit with a rifle, it should fall asleep
@@ -320,6 +333,36 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable
         Player.inventory.AddCritter(critterData);
         CritterManager.DeleteCritter(this);
         Destroy(gameObject);
+    }
+
+    // When the critter is hit with a knife, it should get pushed back and
+    // lose stamina
+    public void OnKnifeHit()
+    {
+        if (!knockedOut) {
+            StartCoroutine(KnockBack());
+        }
+    }
+
+    IEnumerator KnockBack()
+    {
+        freeBody = true;
+        float knockBackAmount = 250f;
+        stamina -= 1;
+        if (stamina <= 0) {
+            // We have to do this bc color is a readonly field
+            Color c = spriteRenderer.color;
+            c = new Color(0.6f, 0.6f, 0.6f);
+            spriteRenderer.color = c;
+        }
+        ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
+        yield return new WaitForSeconds(0.5f);
+        
+        if (stamina <= 0) {
+            knockedOut = true;
+            rb.drag = 5f;
+        }
+        freeBody = false;
     }
 }
 

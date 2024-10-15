@@ -348,17 +348,19 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     {
         freeBody = true;
         float knockBackAmount = 250f;
-        ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
-        yield return new WaitForSeconds(0.5f);
         stamina -= 1;
         if (stamina <= 0) {
-            knockedOut = true;
-            rb.drag = 5f;
-
             // We have to do this bc color is a readonly field
             Color c = spriteRenderer.color;
             c = new Color(0.6f, 0.6f, 0.6f);
             spriteRenderer.color = c;
+        }
+        ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
+        yield return new WaitForSeconds(0.5f);
+        
+        if (stamina <= 0) {
+            knockedOut = true;
+            rb.drag = 5f;
         }
         freeBody = false;
     }

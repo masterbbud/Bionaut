@@ -19,7 +19,7 @@ namespace radial
         [SerializeField]
         float innerRadius = 20.0f;
 
-        static int numItems = 10;
+        static int numItems = 5;
 
         Vector2[] pointListOuter = new Vector2[numItems];
         Vector2[] pointListInner = new Vector2[numItems];
@@ -41,7 +41,7 @@ namespace radial
             Vector2 origin = new Vector2(width / 2, height / 2);
             GeneratePoints(height / 2, width / 2);
 
-            for (int i = 0; i < numItems; i++)
+/*            for (int i = 0; i < numItems; i++)
             {
                 painter.MoveTo(origin);
                 painter.BeginPath();
@@ -52,7 +52,12 @@ namespace radial
                 painter.Fill(FillRule.OddEven);
                 painter.Stroke();
                 painter.ClosePath();
-            }
+            }*/
+            painter.MoveTo(origin);
+            painter.BeginPath();
+            painter.Arc(origin, 20, 0, 360);
+            painter.Fill(FillRule.NonZero);
+            painter.ClosePath();
         }
 
         private void GeneratePoints(float height, float width)

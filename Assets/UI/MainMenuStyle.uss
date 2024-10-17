@@ -1,0 +1,21 @@
+.title {
+    font-size: 30px;
+    -unity-text-align: upper-center;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.sectionTitle {
+    font-size: 20px;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.text {
+    white-space: normal;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.tabButtons {
+}

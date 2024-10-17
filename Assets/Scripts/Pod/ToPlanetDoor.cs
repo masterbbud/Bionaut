@@ -20,7 +20,7 @@ public class ToPlanetDoor : MonoBehaviour
     {
         if (other.gameObject == Player.main) {
             // then enter the planet
-            SceneManager.LoadScene("PlanetScene"); // will eventually depend on the selected planet
+            SceneManager.LoadScene("Silva"); // will eventually depend on the selected planet
         }
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: bushBorder
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1713854668, guid: da02409111799304e9a580819308fde1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -1712038314, guid: da02409111799304e9a580819308fde1, type: 3}
+  m_Color: {r: 0.13027255, g: 0.4339623, b: 0.0750563, a: 1}
   m_Transform:
     e00: 1
     e01: 0

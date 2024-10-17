@@ -773,6 +773,7 @@ MonoBehaviour:
   rb: {fileID: 5180020436067367643}
   mass: 1
   maxSpeed: 4
+  maxStamina: 0
   critterData: {fileID: 0}
 --- !u!58 &371017488711365458
 CircleCollider2D:

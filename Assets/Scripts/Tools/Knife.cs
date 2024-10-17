@@ -7,8 +7,13 @@ public class Knife : Tool
 {
     [SerializeField]
     private Collider2D coll;
+
+    private bool onCooldown = false;
     public override void Use()
     {
+        if (onCooldown) {
+            return;
+        }
         // TODO Trigger animation
         // Something like animator.SetBool("UsingNet", true);
 
@@ -25,6 +30,7 @@ public class Knife : Tool
 
         // Enable the collider for a few frames
         coll.enabled = true;
+        onCooldown = true;
         
         Player.main.GetComponent<Player>().AnimateUseKnife(true);
 
@@ -34,6 +40,9 @@ public class Knife : Tool
 
         // Disable the collider
         coll.enabled = false;
+
+        yield return new WaitForSeconds(0.5f);
+        onCooldown = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)

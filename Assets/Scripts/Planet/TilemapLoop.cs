@@ -16,7 +16,7 @@ public class TilemapLoop : MonoBehaviour
         planetHeight = PlanetLoader.planetHeight;
         planetWidth = PlanetLoader.planetWidth;
         
-        if (transform.parent.childCount > 1) {
+        if (transform.parent.Find(name + "copy")) {
             return;
         }
 
@@ -36,6 +36,7 @@ public class TilemapLoop : MonoBehaviour
                         newGameObject = Instantiate(gameObject, transform);
                         referenceToCopy = newGameObject;
                     }
+                    newGameObject.name = name + "copy";
                     newGameObject.transform.position = transform.position + new Vector3(x*planetWidth, y*planetHeight);
                     newGameObject.GetComponent<TilemapLoop>().enabled = false;
                 }

@@ -1,7 +1,9 @@
 using System;
 using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+
 
 
 namespace radial
@@ -10,6 +12,17 @@ namespace radial
     {
         [UnityEngine.Scripting.Preserve]
         public new class UxmlFactory : UxmlFactory<RadialMenu> { }
+
+        [SerializeField]
+        float outerRadius = 50.0f;
+
+        [SerializeField]
+        float innerRadius = 20.0f;
+
+        static int numItems = 5;
+
+        Vector2[] pointListOuter = new Vector2[numItems];
+        Vector2[] pointListInner = new Vector2[numItems];
 
         public RadialMenu()
         {
@@ -22,40 +35,44 @@ namespace radial
             float height = contentRect.height;
 
             var painter = context.painter2D;
-            painter.BeginPath();
-            painter.lineWidth = 0f;
-            painter.Arc(new Vector2(width * 0.5f, height * 0.5f), width * 0.25f, 360f, 0f);
-            painter.ClosePath();
+            painter.strokeColor = Color.black;
             painter.fillColor = Color.white;
+            painter.lineWidth = 1;
+            Vector2 origin = new Vector2(width / 2, height / 2);
+            GeneratePoints(height / 2, width / 2);
+
+/*            for (int i = 0; i < numItems; i++)
+            {
+                painter.MoveTo(origin);
+                painter.BeginPath();
+                painter.LineTo(pointListOuter[i]);
+                painter.ArcTo(pointListOuter[i], pointListOuter[(i + 1) % numItems], 500);
+                painter.LineTo(pointListInner[(i + 1) % numItems]);
+                painter.ArcTo(pointListInner[(i + 1) % numItems], pointListInner[i], 2);
+                painter.Fill(FillRule.OddEven);
+                painter.Stroke();
+                painter.ClosePath();
+            }*/
+            painter.MoveTo(origin);
+            painter.BeginPath();
+            painter.Arc(origin, 20, 0, 360);
             painter.Fill(FillRule.NonZero);
-            painter.Stroke();
+            painter.ClosePath();
         }
 
-        private void RadialVisualElement(MeshGenerationContext context)
+        private void GeneratePoints(float height, float width)
         {
-            float width = contentRect.width;
-            float height = contentRect.height;
-
-            var painter = context.painter2D;
-
-            float angle = 360.0f / 5.0f;
-
-            float innerRadius = width / 3;
-            float outerRadius = width / 2 - 10;
-            
-            for (uint i = 0; i < 5; i++)
+            float angle = (2.0f * Mathf.PI) / numItems;
+            for (int i = 0; i < numItems; i++)
             {
-                painter.BeginPath();
-                painter.lineWidth = 0;
-                painter.MoveTo(new Vector2(Mathf.Cos(angle * i) * innerRadius, Mathf.Sin(angle * i) * innerRadius));
-                painter.LineTo(new Vector2(Mathf.Cos(angle * i) * innerRadius, Mathf.Sin(angle * i) * outerRadius));
-                // painter.ArcTo(new Vector2(Mathf.Cos(angle * (i + 1)) * outerRadius, Mathf.Sin(angle * (i + 1)) * outerRadius), 5.0f);
-                painter.LineTo(new Vector2(Mathf.Cos(angle * (i + 1)) * innerRadius, Mathf.Sin(angle * (i + 1)) * innerRadius));
-                painter.ClosePath();
-                painter.fillColor = Color.white;
-                painter.Fill(FillRule.NonZero);
-                painter.Stroke();
+                pointListOuter[i] = new Vector2((float)Math.Cos(angle * i) * outerRadius + width, (float)Math.Sin(angle * i) * outerRadius + height);
+                pointListInner[i] = new Vector2((float)Math.Cos(angle * i) * innerRadius + width, (float)Math.Sin(angle * i) * innerRadius + height);
             }
+        }
+
+        private void GenerateButton(float height, float width)
+        {
+            var button = new Button();
         }
     }
 }

@@ -17,6 +17,8 @@ public class ToolBeltBehavior : MonoBehaviour
     private Button emptyButton;
     private Player player;
 
+    private ButtonCreation radialButton = new ButtonCreation();
+
     // If true, the UI is being shown. This allows us to stop other events when the
     // tool selection UI is up
     public static bool showing;
@@ -32,6 +34,8 @@ public class ToolBeltBehavior : MonoBehaviour
         emptyButton = toolBeltUI.rootVisualElement.Q<Button>("btn-empty");
         knifeButton = toolBeltUI.rootVisualElement.Q<Button>("btn-knife");
         menuPanel = toolBeltUI.rootVisualElement.Q<VisualElement>("panel");
+
+        menuPanel.Add(radialButton);
 
         // Register callback events to button logic
         netButton.RegisterCallback<ClickEvent>(OnButtonClicked);

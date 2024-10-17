@@ -5,11 +5,12 @@ using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
-/*
- * General scripts for all types of critters.
- */
+
 public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKnifeHittable
 {
+    [SerializeField]
+    protected SpriteRenderer spriteRenderer;
+
     protected Vector2 totalForces = Vector2.zero;
 
     [SerializeField]
@@ -20,36 +21,9 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
 
     float randAngle;
 
-    [SerializeField]
-    float safeDis;
-
-    public Vector2 min, max;
+    protected Vector2 min, max;
 
     private bool asleep = false;
-
-    // list of all positions of obstacles agent has found (each agent has there own list
-    protected List<Vector2> foundObstaclePositions = new List<Vector2>();
-
-    [SerializeField]
-    float wanderTime, wanderRadius;
-
-    [SerializeField]
-    SpriteRenderer spriteRenderer;
-
-    [SerializeField]
-    float wanderWeight, seekWeight, separationWeight, cohesionWeight, alignmentWeight, fleeWeight, followWeight;
-
-    [SerializeField]
-    float distance;  // max distance that critter will flee or seek 
-
-    [SerializeField]
-    protected Rigidbody2D rb;
-    
-    [SerializeField]
-    float mass = 1f, maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
-
-    [SerializeField]
-    private int maxStamina;
 
     public CritterData critterData;
     // While true, the critter doesn't move on its own and can go beyond its
@@ -57,13 +31,24 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     private bool freeBody = false;
     private bool knockedOut = false;
     private int stamina;
+    
+    [SerializeField]
+    protected Rigidbody2D rb;
+
+    [SerializeField]
+    float mass = 1f;
+
+    [SerializeField]
+    protected float maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
+
+    //[SerializeField]
+    private int maxStamina;
+
 
     // Start is called before the first frame update
     void Start()
     {
         randAngle = UnityEngine.Random.Range(0f, 360f);
-        min = spriteRenderer.bounds.min;
-        max = spriteRenderer.bounds.max;
         stamina = maxStamina;
     }
 
@@ -77,85 +62,14 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
 
             ApplyForce(totalForces);
         }
-        // parent class does not care what the function does, that depends on code in child class
         
         totalForces = Vector2.zero;
     }
 
-    // this method was created in parent class but each child class has to implement it separately
-    protected virtual Vector2 CalculateSteeringForces()
-    {
-        min = spriteRenderer.bounds.min;
-        max = spriteRenderer.bounds.max;
-
-        Vector2 wanderForce = Wander(wanderTime, wanderRadius) * wanderWeight;
-
-        Vector2 seekForce = Seek(Player.main.transform.position) * seekWeight;
-
-        Vector2 separationForce = Separation(CritterManager.critters) * separationWeight;
-
-        Vector2 cohesionForce = Cohesion(CritterManager.critters) * cohesionWeight;
-
-        Vector2 alignmentForce = Alignment(CritterManager.critters) * alignmentWeight;
-
-        Vector2 fleeForce = Flee(Player.main.transform.position) * fleeWeight;
-
-        Vector2 followForce = Follow(Player.main.transform.position) * followWeight;
-
-        if (Math.Abs(rb.velocity.x) > 0.1f) { // Prevent sprite jitter
-            if (rb.velocity.x > 0)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else
-            {
-                spriteRenderer.flipX = true;
-            }
-        }
-
-        Vector2 totalForce = Vector2.zero;
-
-        if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
-        {
-            totalForce += seekForce + fleeForce;
-        }
-
-        totalForce += wanderForce + separationForce + cohesionForce + alignmentForce + followForce;
-        return totalForce;
-    }
-
-    // Drawing Gizmos function
-    private void OnDrawGizmos()
-    {
-        if (Player.main == null) {
-            return;
-        }
-        Gizmos.color = Color.yellow;
-        
-        if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
-        {
-            Gizmos.DrawLine(Player.main.transform.position, transform.position);
-        }
+    // abstract method = you implement the function in each child class
+    protected abstract Vector2 CalculateSteeringForces();
 
 
-        Gizmos.color = Color.magenta;
-        
-        Vector2 futurePosition = CalcFuturePosition(wanderTime);
-        Gizmos.DrawWireSphere(futurePosition, wanderRadius);
-        
-        Gizmos.color = Color.cyan;
-        float randAngle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
-        
-        Vector2 wanderTarget = futurePosition;
-        
-        wanderTarget.x += Mathf.Cos(randAngle) * wanderRadius;
-        wanderTarget.y += Mathf.Sin(randAngle) * wanderRadius;
-        
-        Gizmos.DrawLine(transform.position, wanderTarget);
-
-        //Gizmos.color = Color.magenta;
-        //Gizmos.DrawWireSphere(transform.position, physicsObject.radius);
-    }
 
     public Vector2 Seek(Vector2 targetPos)
     {
@@ -174,6 +88,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     {
         return Seek(target.transform.position);
     }
+
 
     public Vector2 Flee(Vector2 targetPos)
     {
@@ -235,7 +150,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     }
 
     // Cohesion
-    public Vector2 Cohesion(List<Critter> agents)
+    public Vector2 Cohesion(List<Critter> critters)
     {
         Vector2 cohesionForce = Vector2.zero;
 
@@ -243,13 +158,13 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
 
         int count = 0;
 
-        foreach (Critter fish in agents)
+        foreach (Critter critter in critters)
         {
-            float distance = Vector2.Distance(transform.position, fish.transform.position);  //find distance between agent and neighbors
+            float distance = Vector2.Distance(transform.position, critter.transform.position);  //find distance between agent and neighbors
 
-            if (distance < maxDistance && fish != this)
+            if (distance < maxDistance && critter != this)
             {
-                posVectorSum += (Vector2)fish.transform.position;
+                posVectorSum += (Vector2)critter.transform.position;
                 count++;
             }
 
@@ -263,19 +178,19 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     }
 
     // Alignment
-    public Vector2 Alignment(List<Critter> agents)
+    public Vector2 Alignment(List<Critter> critters)
     {
         Vector2 alignmentForce = Vector2.zero;
 
         Vector2 velocitySum = Vector2.zero;
 
-        foreach (Critter fish in agents)
+        foreach (Critter critter in critters)
         {
-            float distance = Vector2.Distance(transform.position, fish.transform.position);  //find distance between agent and neighbors
+            float distance = Vector2.Distance(transform.position, critter.transform.position);  //find distance between agent and neighbors
 
-            if (distance < maxDistance && fish != this)
+            if (distance < maxDistance && critter != this)
             {
-                velocitySum += fish.rb.velocity;
+                velocitySum += critter.rb.velocity;
             }
         }
 
@@ -286,13 +201,6 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
         return alignmentForce;
     }
 
-    private Vector2 Follow(Vector2 pos)
-    {
-        if (Vector2.Distance(pos, transform.position) < distance) {
-            return -1 * rb.velocity;
-        }
-        return Seek(pos);
-    }
 
     
     // calculates the future position of agent
@@ -312,6 +220,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
             rb.velocity = Vector2.ClampMagnitude(rb.velocity, currentMaxSpeed);
         }
     }
+
 
     // When the critter is hit with a rifle, it should fall asleep
     public virtual void OnRifleHit()
@@ -364,97 +273,6 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
         }
         freeBody = false;
     }
+
+
 }
-
-
-
-
-/*   Stuff not needed rn
-
-// -----------------------------------------------
-
- // checks if agent is in bounds for stay in bounds function
-    protected bool CheckIfInBounds(Vector3 position)
-    {
-        if (position.x > AgentManager.Instance.ScreenSize.x ||
-            position.x < -AgentManager.Instance.ScreenSize.x ||
-            position.y > AgentManager.Instance.ScreenSize.y ||
-            position.y < -AgentManager.Instance.ScreenSize.y)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-// -----------------------------------------------
- 
- // stay in bounds of screen function
-    public Vector3 StayInBounds()
-    {
-        Vector3 steeringForce = Vector3.zero;
-
-        if (CheckIfInBounds(transform.position))
-        {
-            steeringForce += Seek(Vector3.zero);
-        }
-
-        return steeringForce;
-    }
- 
- // -----------------------------------------------
-
-    // avoid obstacles
-    public Vector3 AvoidObstacles()
-    {
-        foundObstaclePositions.Clear();
-
-        Vector3 steeringForce = Vector3.zero;
-
-        Vector3 vectorFromPlayerToPufferfish = Vector3.zero;
-
-        float forwardDot, rightDot;
-
-        Vector3 right = Vector3.Cross(Vector3.back, physicsObject.Direction);  // instead of transform.right
-
-        foreach (Pufferfish pufferfish in AgentManager.Instance.pufferfishList)
-        {
-            vectorFromPlayerToPufferfish = pufferfish.transform.position - transform.position;
-
-            // calc foward and right dot products
-            forwardDot = Vector3.Dot(physicsObject.Direction, vectorFromPlayerToPufferfish);
-            rightDot = Vector3.Dot(right, vectorFromPlayerToPufferfish);
-
-            // calc safe distance
-            float safe = safeDis + pufferfish.radius;
-
-            // if obstacle is in front and within safe distance
-            if (forwardDot > 0f && forwardDot < safeDis)
-            {
-                // if obstacle is within side bounds
-                if (Mathf.Abs(rightDot) < pufferfish.radius + physicsObject.radius)
-                {
-                    // Found something to avoid
-                    foundObstaclePositions.Add(pufferfish.transform.position);
-
-                    // calc desired velocity
-                    Vector3 desiredVelocity = right * -Mathf.Sign(rightDot) * physicsObject.MaxSpeed
-                        * 1 / vectorFromPlayerToPufferfish.magnitude;  // when sensing multiple obstacles, avoid obstacle closest to you
-
-                    // calc steering force
-                    steeringForce += desiredVelocity - rb.velocity;
-                }
-            }
-        }
-        return steeringForce;
-    }
-
-// -----------------------------------------------
-
-// -----------------------------------------------
-
-// -----------------------------------------------
- 
- 
- 
- */

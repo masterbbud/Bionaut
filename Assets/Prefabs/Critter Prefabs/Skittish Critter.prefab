@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6012376703041566037}
   - component: {fileID: 1500949177723076901}
-  - component: {fileID: 8484354191385408016}
   - component: {fileID: 7599277267642513931}
   - component: {fileID: 137657576480678857}
+  - component: {fileID: 6091291411343304234}
   m_Layer: 12
-  m_Name: Cat Critter 1
+  m_Name: Skittish Critter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: e0fcebaba599d8244bdfd10a7709493c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6bfe328942c69f64792e74ccbfe05701, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,39 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8484354191385408016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3189112910823606195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3db0f85e2a7704c4aacd0f7b93d7f06a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxForce: 5
-  maxDistance: 1
-  safeDis: 2
-  min: {x: 0, y: 0}
-  max: {x: 0, y: 0}
-  wanderTime: 1
-  wanderRadius: 1
-  spriteRenderer: {fileID: 1500949177723076901}
-  wanderWeight: 1
-  seekWeight: 0
-  separationWeight: 4
-  cohesionWeight: 2
-  alignmentWeight: 5
-  fleeWeight: 10
-  followWeight: 0
-  distance: 4
-  rb: {fileID: 7599277267642513931}
-  mass: 1
-  maxSpeed: 5
-  maxStamina: 3
-  critterData: {fileID: 11400000, guid: 5e8297ca5cf3628419e7fb716e546340, type: 2}
 --- !u!50 &7599277267642513931
 Rigidbody2D:
   serializedVersion: 4
@@ -179,6 +146,33 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.55}
+  m_Offset: {x: 0.059333086, y: -0.084704936}
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.7060686
+--- !u!114 &6091291411343304234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189112910823606195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a140e159eac53954e8d46c09aaa39104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1500949177723076901}
+  maxForce: 15
+  maxDistance: 1
+  critterData: {fileID: 0}
+  rb: {fileID: 7599277267642513931}
+  mass: 1
+  maxSpeed: 4
+  wanderTime: 1
+  wanderRadius: 1
+  wanderWeight: 1
+  fleeWeight: 4
+  separationWeight: 3
+  cohesionWeight: 2
+  alignmentWeight: 2
+  distance: 5

@@ -56,11 +56,13 @@ public class MainMenuBehavior : MonoBehaviour
         {
             mainMenuUI.rootVisualElement.style.display = DisplayStyle.Flex;
             showing = true;
+            Time.timeScale = 0;
         }
         else if(Input.GetKeyDown(KeyCode.E) && showing)
         {
             mainMenuUI.rootVisualElement.style.display= DisplayStyle.None;
             showing = false;
+            Time.timeScale = 1;
         }
     }
 

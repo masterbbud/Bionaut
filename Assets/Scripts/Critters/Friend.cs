@@ -20,4 +20,8 @@ public class Friend : Critter
     {
         GetComponent<ParticleSystem>().Play();
     }
+
+    public override void OnNetHit() {}
+    public override void OnKnifeHit() {}
+    public override void OnRifleHit() {}
 }

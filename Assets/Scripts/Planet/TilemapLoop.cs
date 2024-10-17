@@ -16,7 +16,7 @@ public class TilemapLoop : MonoBehaviour
         planetHeight = PlanetLoader.planetHeight;
         planetWidth = PlanetLoader.planetWidth;
         
-        if (transform.parent.transform.Find(name + "copy")) {
+        if (transform.parent.Find(name + "copy")) {
             return;
         }
 

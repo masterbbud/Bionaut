@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5028702975061127704}
   - component: {fileID: 1197981393068635144}
   - component: {fileID: 6698972676364584604}
+  - component: {fileID: 6130072210830008580}
   m_Layer: 0
   m_Name: RockBorder
   m_TagString: Untagged
@@ -74,10 +75,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 320147233, guid: da02409111799304e9a580819308fde1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -920164394, guid: da02409111799304e9a580819308fde1, type: 3}
+  m_Color: {r: 0.44654083, g: 0.16383557, b: 0.046339095, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6130072210830008580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741943956010640402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df770e8934ee864fb0e2116ef77459e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

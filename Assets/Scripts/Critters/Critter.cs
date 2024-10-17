@@ -314,7 +314,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     }
 
     // When the critter is hit with a rifle, it should fall asleep
-    public void OnRifleHit()
+    public virtual void OnRifleHit()
     {
         StartCoroutine(FallAsleep());
     }
@@ -327,7 +327,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     }
 
     // When the critter is hit with a net, the player should catch it
-    public void OnNetHit()
+    public virtual void OnNetHit()
     {
         // Player catches this critter!
         Player.inventory.AddCritter(critterData);
@@ -337,7 +337,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
 
     // When the critter is hit with a knife, it should get pushed back and
     // lose stamina
-    public void OnKnifeHit()
+    public virtual void OnKnifeHit()
     {
         if (!knockedOut) {
             StartCoroutine(KnockBack());

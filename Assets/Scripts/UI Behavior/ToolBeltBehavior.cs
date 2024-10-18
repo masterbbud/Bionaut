@@ -35,7 +35,7 @@ public class ToolBeltBehavior : MonoBehaviour
         knifeButton = toolBeltUI.rootVisualElement.Q<Button>("btn-knife");
         menuPanel = toolBeltUI.rootVisualElement.Q<VisualElement>("panel");
 
-        menuPanel.Add(radialButton);
+        // menuPanel.Add(radialButton);
 
         // Register callback events to button logic
         netButton.RegisterCallback<ClickEvent>(OnButtonClicked);

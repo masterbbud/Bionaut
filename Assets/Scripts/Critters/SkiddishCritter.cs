@@ -19,7 +19,7 @@ public class SkiddishCritter : Critter
     float distance;  // max distance that critter will flee or seek 
 
 
-    void Start()
+    protected override void StartSubclass()
     {
         min = spriteRenderer.bounds.min;
         max = spriteRenderer.bounds.max;

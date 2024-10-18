@@ -11,12 +11,14 @@
             <ui:Label text="Controls" name="Controls" class="title" />
             <ui:Label text="Movement" name="Movement" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;W A S D" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WASD" class="text" style="-unity-text-align: upper-left;" />
-            <ui:Label tabindex="-1" text="Ineract:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="Interact:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;Right Click" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RightClick" class="text" />
             <ui:Label tabindex="-1" text="Open Tool Belt" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenToolBelt" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;Spacebar" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SpaceBar" class="text" />
             <ui:Label tabindex="-1" text="Use Tool" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UseTool" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;Left Click" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LeftClick" class="text" />
+            <ui:Label tabindex="-1" text="Open Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenMenu" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="E" parse-escape-sequences="true" display-tooltip-when-elided="true" name="E" class="text" />
         </ui:VisualElement>
         <ui:VisualElement name="CrittersContent" style="flex-grow: 1; display: none;" />
         <ui:VisualElement name="ToolsContent" style="flex-grow: 1; display: none;">
@@ -32,4 +34,5 @@
             <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Close" class="tabButtons" style="position: absolute; right: 10px; bottom: auto; top: 10px;" />
 </ui:UXML>

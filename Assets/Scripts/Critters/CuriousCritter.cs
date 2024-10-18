@@ -22,7 +22,7 @@ public class CuriousCritter : Critter
     float seekDistance;  // max distance that critter will seek
 
 
-    void Start()
+    protected override void StartSubclass()
     {
         min = spriteRenderer.bounds.min;
         max = spriteRenderer.bounds.max;

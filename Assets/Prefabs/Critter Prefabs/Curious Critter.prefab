@@ -168,6 +168,7 @@ MonoBehaviour:
   rb: {fileID: 1242396684705484395}
   mass: 1
   maxSpeed: 3
+  maxStamina: 1
   wanderTime: 1
   wanderRadius: 1
   wanderWeight: 1

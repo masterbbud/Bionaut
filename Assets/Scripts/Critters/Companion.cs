@@ -72,4 +72,8 @@ public class Companion : Critter
             Gizmos.DrawLine(Player.main.transform.position, transform.position);
         }
     }
+
+    public override void OnKnifeHit() {}
+    public override void OnRifleHit() {}
+    public override void OnNetHit() {}
 }

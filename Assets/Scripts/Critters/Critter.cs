@@ -41,8 +41,8 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     [SerializeField]
     protected float maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
 
-    //[SerializeField]
-    private int maxStamina;
+    [SerializeField]
+    protected int maxStamina;
 
 
     // Start is called before the first frame update
@@ -50,7 +50,10 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     {
         randAngle = UnityEngine.Random.Range(0f, 360f);
         stamina = maxStamina;
+        StartSubclass();
     }
+
+    protected virtual void StartSubclass() {}
 
     // Update is called once per frame
     void Update()
@@ -223,7 +226,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
 
 
     // When the critter is hit with a rifle, it should fall asleep
-    public void OnRifleHit()
+    public virtual void OnRifleHit()
     {
         StartCoroutine(FallAsleep());
     }
@@ -236,7 +239,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     }
 
     // When the critter is hit with a net, the player should catch it
-    public void OnNetHit()
+    public virtual void OnNetHit()
     {
         // Player catches this critter!
         Player.inventory.AddCritter(critterData);
@@ -246,7 +249,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
 
     // When the critter is hit with a knife, it should get pushed back and
     // lose stamina
-    public void OnKnifeHit()
+    public virtual void OnKnifeHit()
     {
         if (!knockedOut) {
             StartCoroutine(KnockBack());
@@ -258,6 +261,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
         freeBody = true;
         float knockBackAmount = 250f;
         stamina -= 1;
+        Debug.Log(stamina);
         if (stamina <= 0) {
             // We have to do this bc color is a readonly field
             Color c = spriteRenderer.color;

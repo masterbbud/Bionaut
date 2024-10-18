@@ -13,6 +13,7 @@ public class MainMenuBehavior : MonoBehaviour
     private Button toolsButton;
     private Button optionsButton;
     private Button quitButton;
+    private Button closeButton;
 
     //content
     private VisualElement controlsContent;
@@ -21,6 +22,7 @@ public class MainMenuBehavior : MonoBehaviour
     private VisualElement optionsContent;
 
     public static bool showing = false;
+    private static bool shouldShowMenu = false;
 
     //a ton of query selectors, and registering callback function
     private void Awake()
@@ -31,6 +33,7 @@ public class MainMenuBehavior : MonoBehaviour
         toolsButton = mainMenuUI.rootVisualElement.Q<Button>("Tools");
         optionsButton = mainMenuUI.rootVisualElement.Q<Button>("Options");
         quitButton = mainMenuUI.rootVisualElement.Q<Button>("Quit");
+        closeButton = mainMenuUI.rootVisualElement.Q<Button>("Close");
 
         controlsContent = mainMenuUI.rootVisualElement.Q<VisualElement>("ControlsContent");
         crittersContent = mainMenuUI.rootVisualElement.Q<VisualElement>("CrittersContent");
@@ -42,6 +45,7 @@ public class MainMenuBehavior : MonoBehaviour
         toolsButton.RegisterCallback<ClickEvent>(ButtonClicked);
         optionsButton.RegisterCallback<ClickEvent>(ButtonClicked);
         quitButton.RegisterCallback<ClickEvent>(ButtonClicked);
+        closeButton.RegisterCallback<ClickEvent>(ButtonClicked);
     }
 
     public void Start()
@@ -52,16 +56,28 @@ public class MainMenuBehavior : MonoBehaviour
     private void Update()
     {
         //turn off and on the mainUI
-        if (Input.GetKeyDown(KeyCode.E) && !showing)
+        if ((Input.GetKeyDown(KeyCode.E) || shouldShowMenu) && !showing)
         {
+            shouldShowMenu = false;
             mainMenuUI.rootVisualElement.style.display = DisplayStyle.Flex;
             showing = true;
+            Time.timeScale = 0;
         }
         else if(Input.GetKeyDown(KeyCode.E) && showing)
         {
-            mainMenuUI.rootVisualElement.style.display= DisplayStyle.None;
-            showing = false;
+            CloseUI();
         }
+    }
+
+    private void CloseUI()
+    {
+        mainMenuUI.rootVisualElement.style.display= DisplayStyle.None;
+        showing = false;
+        Time.timeScale = 1;
+    }
+
+    public static void ShowMenu() {
+        shouldShowMenu = true;
     }
 
     /// <summary>
@@ -103,6 +119,10 @@ public class MainMenuBehavior : MonoBehaviour
         {
             Application.Quit();
             Debug.Log("Game Quit");
+        }
+        else if (evt.target == closeButton) //quits game
+        {
+            CloseUI();
         }
     }
 }

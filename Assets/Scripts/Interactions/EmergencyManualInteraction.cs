@@ -13,9 +13,14 @@ public class EmergencyManualInteraction : InteractibleObject
     public override void Interact()
     {
         // Give the planet 1 ship part
-        broken = true;
-        GetComponent<SpriteRenderer>().sprite = openBook;
-        Destroy(flashingLight);
+        if (broken) {
+            MainMenuBehavior.ShowMenu();
+        }
+        else {
+            broken = true;
+            GetComponent<SpriteRenderer>().sprite = openBook;
+            Destroy(flashingLight);
+        }
     }
 
     protected override void OnPlayerNear()

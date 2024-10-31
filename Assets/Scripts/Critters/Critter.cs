@@ -36,10 +36,10 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     protected Rigidbody2D rb;
 
     [SerializeField]
-    float mass = 1f;
+    float mass = 1f;    // mass is 1 because default float value is 0 which would end up having division by 0
 
     [SerializeField]
-    protected float maxSpeed;    // mass is 1 because default float value is 0 which would end up having division by 0
+    protected float maxSpeed;
 
     [SerializeField]
     protected int maxStamina;
@@ -49,7 +49,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     void Start()
     {
         randAngle = UnityEngine.Random.Range(0f, 360f);
-        stamina = maxStamina;
+        stamina = maxStamina;        
         StartSubclass();
     }
 

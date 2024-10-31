@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class AggressiveCritter : Critter
 {
@@ -17,6 +17,15 @@ public class AggressiveCritter : Critter
 
     [SerializeField]
     float distance;  // max distance that critter will flee or seek 
+
+    NavMeshAgent agent;
+
+    protected void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
 
 
     protected override void StartSubclass()
@@ -56,10 +65,12 @@ public class AggressiveCritter : Critter
 
         if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
         {
-            maxSpeed = 5;
-            return -1 * rb.velocity + wanderForce + seekForce + separationForce + cohesionForce + alignmentForce;
+            agent.SetDestination(seekForce);
+            //maxSpeed = 5;
+            //return -1 * rb.velocity + wanderForce + seekForce + separationForce + cohesionForce + alignmentForce;
         }
-        maxSpeed = 3;
+        //agent.ResetPath();
+        //maxSpeed = 3;
         return wanderForce + separationForce + cohesionForce + alignmentForce;
 
     }

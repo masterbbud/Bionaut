@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class SkiddishCritter : Critter
@@ -18,12 +19,22 @@ public class SkiddishCritter : Critter
     [SerializeField]
     float distance;  // max distance that critter will flee or seek 
 
+    NavMeshAgent agent;
+
+
+    protected void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
 
     protected override void StartSubclass()
     {
         min = spriteRenderer.bounds.min;
         max = spriteRenderer.bounds.max;
     }
+
 
     protected override Vector2 CalculateSteeringForces()
     {
@@ -56,10 +67,12 @@ public class SkiddishCritter : Critter
 
         if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
         {
-            maxSpeed = 10;
-            return wanderForce + fleeForce + separationForce + cohesionForce + alignmentForce;
+            agent.SetDestination(fleeForce);
+            //maxSpeed = 10;
+            return fleeForce + separationForce + cohesionForce + alignmentForce;
         }
-        maxSpeed = 4;
+        agent.ResetPath();
+        //maxSpeed = 4;
         return wanderForce + separationForce + cohesionForce + alignmentForce;
 
 

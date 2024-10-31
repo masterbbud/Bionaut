@@ -16,5 +16,8 @@ public class Rifle : Tool
 
         // Make it move
         fab.GetComponent<Rigidbody2D>().velocity = towards * bulletSpeed;
+
+        // Play laser sound
+        FindObjectOfType<AudioManager>().Play("LaserSound");
     }
 }

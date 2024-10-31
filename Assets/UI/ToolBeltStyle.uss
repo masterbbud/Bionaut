@@ -14,3 +14,16 @@
     color: rgb(198, 255, 250);
     -unity-text-align: upper-center;
 }
+
+.button {
+    color: rgb(73, 166, 116);
+    background-color: rgb(113, 113, 113);
+    border-left-color: rgb(55, 55, 55);
+    border-right-color: rgb(55, 55, 55);
+    border-top-color: rgb(55, 55, 55);
+    border-bottom-color: rgb(55, 55, 55);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}

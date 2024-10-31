@@ -12,6 +12,8 @@ public class PlayerInventory : MonoBehaviour
     
     public List<CritterData> collectedCritters = new();
     public Dictionary<ItemData, int> collectedItems = new();
+
+    public Dictionary<CritterData, string> critterNames = new();
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -50,5 +52,19 @@ public class PlayerInventory : MonoBehaviour
             return true;
         }
         return collectedItems.ContainsKey(toolData);
+    }
+
+    public CritterData GetCritter(string critterName)
+    {
+        foreach (CritterData c in collectedCritters) {
+            if (c.name == critterName) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public void NameCritter(CritterData critter, string name) {
+        critterNames[critter] = name;
     }
 }

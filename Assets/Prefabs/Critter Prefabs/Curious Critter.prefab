@@ -164,7 +164,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6462873572162511502}
   maxForce: 20
   maxDistance: 1
-  critterData: {fileID: 0}
+  critterData: {fileID: 11400000, guid: b50a1accd29fd5148b68a1897fb8e920, type: 2}
   rb: {fileID: 1242396684705484395}
   mass: 1
   maxSpeed: 3
@@ -178,4 +178,4 @@ MonoBehaviour:
   cohesionWeight: 1
   alignmentWeight: 1
   fleeDistance: 3
-  seekDistance: 6
+  seekDistance: 10

@@ -62,14 +62,15 @@ public class Player : MonoBehaviour
         // Player should be inactive on the planet map scene and start scene
         if (scene.name == "PlanetMapScene" || scene.name == "StartScene") {
             main.SetActive(false);
-            Debug.Log(inventory);
-            Debug.Log(inventory.HasTool(rifleData));
         }
         // Player should be active on all other scenes
         else {
             main.SetActive(true);
-            Debug.Log(inventory);
-            Debug.Log(inventory.HasTool(rifleData));
+
+            // Handle first time on Silva
+            if (scene.name == "Silva" && inventory.collectedCritters.Count == 0) {
+                StartCoroutine(TellPlayerToCatchBlob());
+            }
         }
     }
     
@@ -201,8 +202,13 @@ public class Player : MonoBehaviour
         freezeMovement = false;
     }
 
-    public static implicit operator Player(Character v)
-    {
-        throw new NotImplementedException();
+    IEnumerator TellPlayerToCatchBlob() {
+        DialogBoxBehavior.ShowBanner("Aw, look, that critter is so cute! I should use my net to catch it so I can bring it along with me on my journey. (Hold Spacebar to select your net)", 8);
+        yield return new WaitForSeconds(20);
+
+        // Keep telling the player until they catch the critter
+        if (inventory.collectedCritters.Count == 0) {
+            StartCoroutine(TellPlayerToCatchBlob());
+        }
     }
 }

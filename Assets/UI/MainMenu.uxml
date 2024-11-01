@@ -1,0 +1,38 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=4c273ef272e8525428b93c5f2d114c4a&amp;type=3#MainMenuStyle" />
+    <ui:VisualElement name="TabBar" style="flex-grow: 1; flex-direction: row; align-items: flex-start; justify-content: center; height: 12%; padding-top: 15px; background-color: rgb(173, 201, 202);">
+        <ui:Button text="Controls" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Controls" class="tabButtons" />
+        <ui:Button text="Critters" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Critters" class="tabButtons" />
+        <ui:Button text="Tools" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tools" class="tabButtons" />
+        <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Options" class="tabButtons" />
+    </ui:VisualElement>
+    <ui:VisualElement name="Content" style="flex-grow: 1; align-items: stretch; flex-direction: column; height: 88%; background-color: rgb(173, 201, 202);">
+        <ui:VisualElement name="ControlsContent" style="flex-grow: 1; display: flex;">
+            <ui:Label text="Controls" name="Controls" class="title" />
+            <ui:Label text="Movement" name="Movement" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="&#x9;W A S D" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WASD" class="text" style="-unity-text-align: upper-left;" />
+            <ui:Label tabindex="-1" text="Interact:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="&#x9;Right Click" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RightClick" class="text" />
+            <ui:Label tabindex="-1" text="Open Tool Belt" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenToolBelt" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="&#x9;Spacebar" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SpaceBar" class="text" />
+            <ui:Label tabindex="-1" text="Use Tool" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UseTool" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="&#x9;Left Click" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LeftClick" class="text" />
+            <ui:Label tabindex="-1" text="Open Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenMenu" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="&#x9;E" parse-escape-sequences="true" display-tooltip-when-elided="true" name="E" class="text" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CrittersContent" style="flex-grow: 1; display: none;" />
+        <ui:VisualElement name="ToolsContent" style="flex-grow: 1; display: none;">
+            <ui:Label tabindex="-1" text="Tools" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tools" class="title" />
+            <ui:Label tabindex="-1" text="Tranq-Rifle" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tranq-Rifle" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="Standard issued tranq-rifle, after constant asking by your peer astro-biologists, the higher-ups finally caved. Took two months of training to be able to use" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tranq-RifleDsc" class="text" />
+            <ui:Label tabindex="-1" text="Net" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Net" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="A simple net, can capture smaller creatures for study." parse-escape-sequences="true" display-tooltip-when-elided="true" name="NetDsc" class="text" />
+            <ui:Label tabindex="-1" text="Knife" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Knife" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="Your trusty knife, a basic survival tool that you keep on you at all times. A gift from your mother back home." parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeDsc" class="text" />
+        </ui:VisualElement>
+        <ui:VisualElement name="OptionsContent" style="flex-grow: 1; display: none; justify-content: center; align-items: center;">
+            <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Close" class="tabButtons" style="position: absolute; right: 10px; bottom: auto; top: 10px;" />
+</ui:UXML>

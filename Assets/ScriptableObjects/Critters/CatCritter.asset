@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d80283ec5f73b4fa5d2c54a427bbcb, type: 3}
+  m_Name: CatCritter
+  m_EditorClassIdentifier: 
+  critterName: Cat Critter
+  description: This is a Cat Critter
+  sprite: {fileID: 21300000, guid: e0fcebaba599d8244bdfd10a7709493c, type: 3}

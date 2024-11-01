@@ -9,12 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/InPodScene.unity
+    guid: 5f187a3d53fbeaf4490454846f9b1399
+  - enabled: 0
     path: Assets/Scenes/PlanetScene.unity
     guid: 11e6106cd3a68ef41a331bfff307c0fb
   - enabled: 1
-    path: Assets/Scenes/InPodScene.unity
-    guid: 5f187a3d53fbeaf4490454846f9b1399
-  - enabled: 1
-    path: Assets/PlanetMapScene.unity
+    path: Assets/Scenes/PlanetMapScene.unity
     guid: 2edd5205e24cd364380472f3163b3d1b
+  - enabled: 0
+    path: Assets/Scenes/TestPlanetScene.unity
+    guid: 3cf018d55a8600345b32bbc7d8bbd052
+  - enabled: 1
+    path: Assets/Scenes/Silva.unity
+    guid: 0378314c312144a438270fd1a6696d18
   m_configObjects: {}

@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; padding-top: 15%; padding-right: 30%; padding-bottom: 15%; padding-left: 30%; align-items: center; align-self: center; justify-content: center;">
+        <radial.RadialMenu style="height: 125px; width: 131px; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
+    </ui:VisualElement>
+</ui:UXML>

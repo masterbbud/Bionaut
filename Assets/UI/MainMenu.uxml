@@ -18,7 +18,7 @@
             <ui:Label tabindex="-1" text="Use Tool" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UseTool" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;Left Click" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LeftClick" class="text" />
             <ui:Label tabindex="-1" text="Open Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenMenu" class="sectionTitle" />
-            <ui:Label tabindex="-1" text="E" parse-escape-sequences="true" display-tooltip-when-elided="true" name="E" class="text" />
+            <ui:Label tabindex="-1" text="&#x9;E" parse-escape-sequences="true" display-tooltip-when-elided="true" name="E" class="text" />
         </ui:VisualElement>
         <ui:VisualElement name="CrittersContent" style="flex-grow: 1; display: none; flex-direction: row;">
             <ui:VisualElement name="CritterGridContainer" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 60%; padding-top: 0; padding-right: 5%; padding-bottom: 0; padding-left: 5%;" />
@@ -36,12 +36,12 @@
         </ui:VisualElement>
         <ui:VisualElement name="ToolsContent" style="flex-grow: 1; display: none;">
             <ui:Label tabindex="-1" text="Tools" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tools" class="title" />
-            <ui:Label tabindex="-1" text="Knife" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Knife" class="sectionTitle" />
-            <ui:Label tabindex="-1" text="Your trusty knife, a basic survival tool that you keep on you at all times. A gift from your mother back home." parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeDsc" class="text" />
             <ui:Label tabindex="-1" text="Tranq-Rifle" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tranq-Rifle" class="sectionTitle" />
             <ui:Label tabindex="-1" text="Standard issued tranq-rifle, after constant asking by your peer astro-biologists, the higher-ups finally caved. Took two months of training to be able to use" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tranq-RifleDsc" class="text" />
             <ui:Label tabindex="-1" text="Net" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Net" class="sectionTitle" />
             <ui:Label tabindex="-1" text="A simple net, can capture smaller creatures for study." parse-escape-sequences="true" display-tooltip-when-elided="true" name="NetDsc" class="text" />
+            <ui:Label tabindex="-1" text="Knife" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Knife" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="Your trusty knife, a basic survival tool that you keep on you at all times. A gift from your mother back home." parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeDsc" class="text" />
         </ui:VisualElement>
         <ui:VisualElement name="OptionsContent" style="flex-grow: 1; display: none; justify-content: center; align-items: center;">
             <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" />

@@ -17,7 +17,7 @@ public class ToolBeltBehavior : MonoBehaviour
     private Button emptyButton;
     private Player player;
 
-    private ButtonCreation radialButton = new ButtonCreation();
+    //private ButtonCreation radialButton = new ButtonCreation();
 
     // If true, the UI is being shown. This allows us to stop other events when the
     // tool selection UI is up
@@ -56,7 +56,7 @@ public class ToolBeltBehavior : MonoBehaviour
     private void Update()
     {
         // Ensures that the UI will be visible and interactible whenever space is held down
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !CatchCritterDialogBehavior.showing)
         {
             menuPanel.style.display = DisplayStyle.Flex;
             showing = true;

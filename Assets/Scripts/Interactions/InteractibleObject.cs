@@ -17,7 +17,7 @@ public abstract class InteractibleObject : MonoBehaviour
     protected bool hasSparkles = true;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         particles = Instantiate(particlePrefab, transform).GetComponent<ParticleSystem>();
         var particleShape = particles.shape;

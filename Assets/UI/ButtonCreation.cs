@@ -15,11 +15,12 @@ public partial class ButtonCreation : Button
 
     public ButtonCreation() 
     {
-        generateVisualContent += GenerateVisualContent;
+        // generateVisualContent += GenerateVisualContent;
     }
 
     private void GenerateVisualContent(MeshGenerationContext context)
     {
+        return;
         float width = contentRect.width;
         float height = contentRect.height;
 

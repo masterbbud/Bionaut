@@ -893,6 +893,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 401448145380976708, guid: 9154303d2e4f9264fadfaaf0ff75fa3e, type: 3}
+      propertyPath: critterTemplate
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: 11dfdc39d98c89d48800239fa9181f4f, type: 3}
+    - target: {fileID: 401448145380976708, guid: 9154303d2e4f9264fadfaaf0ff75fa3e, type: 3}
+      propertyPath: animationSpeedMs
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4487271013361081532, guid: 9154303d2e4f9264fadfaaf0ff75fa3e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

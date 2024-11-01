@@ -31,6 +31,7 @@ namespace radial
 
         private void GenerateVisualContent(MeshGenerationContext context)
         {
+            return;
             float width = contentRect.width;
             float height = contentRect.height;
 

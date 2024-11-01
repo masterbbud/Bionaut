@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 /*
  * The main Player script
  */
 public class Player : MonoBehaviour
 {
+    private SpriteRenderer m_SpriteRenderer;
+    public SpriteRenderer SpriteRenderer => m_SpriteRenderer;
 
     [SerializeField]
     private GameObject bulletFab;
-
     [SerializeField]
     private float bulletSpeed;
     public float moveSpeed = 5f;
@@ -60,19 +62,22 @@ public class Player : MonoBehaviour
         // Player should be inactive on the planet map scene and start scene
         if (scene.name == "PlanetMapScene" || scene.name == "StartScene") {
             main.SetActive(false);
-            Debug.Log(inventory);
-            Debug.Log(inventory.HasTool(rifleData));
         }
         // Player should be active on all other scenes
         else {
             main.SetActive(true);
-            Debug.Log(inventory);
-            Debug.Log(inventory.HasTool(rifleData));
+
+            // Handle first time on Silva
+            if (scene.name == "Silva" && inventory.collectedCritters.Count == 0) {
+                StartCoroutine(TellPlayerToCatchBlob());
+            }
         }
     }
     
     void Start()
     {
+        //sprite render for tree check
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
         // For debugging purposes, give the player the rifle and net
         inventory.GiveObject(rifleData, 1);
         inventory.GiveObject(netData, 1);
@@ -195,5 +200,15 @@ public class Player : MonoBehaviour
     public void UnlockMovement()
     {
         freezeMovement = false;
+    }
+
+    IEnumerator TellPlayerToCatchBlob() {
+        DialogBoxBehavior.ShowBanner("Aw, look, that critter is so cute! I should use my net to catch it so I can bring it along with me on my journey. (Hold Spacebar to select your net)", 8);
+        yield return new WaitForSeconds(20);
+
+        // Keep telling the player until they catch the critter
+        if (inventory.collectedCritters.Count == 0) {
+            StartCoroutine(TellPlayerToCatchBlob());
+        }
     }
 }

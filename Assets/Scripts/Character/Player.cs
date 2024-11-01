@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 /*
  * The main Player script
  */
 public class Player : MonoBehaviour
 {
+    private SpriteRenderer m_SpriteRenderer;
+    public SpriteRenderer SpriteRenderer => m_SpriteRenderer;
 
     [SerializeField]
     private GameObject bulletFab;
-
     [SerializeField]
     private float bulletSpeed;
     public float moveSpeed = 5f;
@@ -74,6 +76,8 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        //sprite render for tree check
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
         // For debugging purposes, give the player the rifle and net
         inventory.GiveObject(rifleData, 1);
         inventory.GiveObject(netData, 1);

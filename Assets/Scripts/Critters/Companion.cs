@@ -67,7 +67,7 @@ public class Companion : Critter
     {
         Gizmos.color = Color.yellow;
     
-        if (Vector3.Distance(Player.main.transform.position, transform.position) < distance)
+        if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
         {
             Gizmos.DrawLine(Player.main.transform.position, transform.position);
         }

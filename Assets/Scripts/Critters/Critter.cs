@@ -112,13 +112,6 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     }
 
 
-    // Evade calculates fleeing from a future position vs. flee is just fleeing in the opposite direction
-    public Vector2 Evade(Critter target)
-    {
-        return Flee(target.CalcFuturePosition(5f));
-    }
-
-
     // picks a somewhat random point to put into Seek() function to look like wandering
     public Vector2 Wander(float time, float radius)
     {

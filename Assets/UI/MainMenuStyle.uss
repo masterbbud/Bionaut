@@ -19,3 +19,11 @@
 
 .tabButtons {
 }
+
+.grid-container {
+    white-space: normal;
+    padding-right: 10%;
+    padding-left: 10%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

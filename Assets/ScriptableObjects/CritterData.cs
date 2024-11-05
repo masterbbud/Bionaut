@@ -7,5 +7,7 @@ public class CritterData : ScriptableObject
 {
     public string critterName;
     public string description;
-    public Sprite sprite;
+    public List<Sprite> sprites;
+    public Color planetColor;
+    public GameObject prefab;
 }

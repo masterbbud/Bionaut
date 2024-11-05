@@ -6,7 +6,7 @@
         <ui:Button text="Tools" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tools" class="tabButtons" />
         <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Options" class="tabButtons" />
     </ui:VisualElement>
-    <ui:VisualElement name="Content" style="flex-grow: 1; align-items: stretch; flex-direction: column; height: 88%; background-color: rgb(173, 201, 202);">
+    <ui:VisualElement name="Content" style="flex-grow: 1; align-items: stretch; flex-direction: column; height: 88%; background-color: rgb(173, 201, 202); display: flex;">
         <ui:VisualElement name="ControlsContent" style="flex-grow: 1; display: flex;">
             <ui:Label text="Controls" name="Controls" class="title" />
             <ui:Label text="Movement" name="Movement" class="sectionTitle" />
@@ -18,17 +18,30 @@
             <ui:Label tabindex="-1" text="Use Tool" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UseTool" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;Left Click" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LeftClick" class="text" />
             <ui:Label tabindex="-1" text="Open Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenMenu" class="sectionTitle" />
-            <ui:Label tabindex="-1" text="E" parse-escape-sequences="true" display-tooltip-when-elided="true" name="E" class="text" />
+            <ui:Label tabindex="-1" text="&#x9;E" parse-escape-sequences="true" display-tooltip-when-elided="true" name="E" class="text" />
         </ui:VisualElement>
-        <ui:VisualElement name="CrittersContent" style="flex-grow: 1; display: none;" />
+        <ui:VisualElement name="CrittersContent" style="flex-grow: 1; display: none; flex-direction: row;">
+            <ui:VisualElement name="CritterGridContainer" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 60%; padding-top: 0; padding-right: 5%; padding-bottom: 0; padding-left: 5%;" />
+            <ui:VisualElement name="RightBar" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 40%; padding-right: 5%; padding-left: 5%; padding-top: 0; padding-bottom: 0;">
+                <ui:VisualElement name="TextContent" style="flex-grow: 1; background-color: rgb(225, 225, 225);">
+                    <ui:VisualElement name="CritterAnimation" style="flex-grow: 2; background-image: none; -unity-background-scale-mode: scale-to-fit; margin-top: 20px; margin-bottom: 20px; margin-left: 20px; margin-right: 20px; background-color: rgba(255, 255, 255, 0);" />
+                    <ui:VisualElement name="Description" style="flex-grow: 1; padding-right: 40px; padding-left: 40px;">
+                        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterDescription" style="-unity-text-align: middle-center; margin-top: 0; margin-right: auto; margin-bottom: auto; margin-left: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ChooseButton" style="flex-grow: 1;">
+                        <ui:Button text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterSelectButton" tooltip="Critter Selection is only available inside the Pod!" style="margin-top: auto; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; display: none; background-color: rgb(214, 149, 64);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="ToolsContent" style="flex-grow: 1; display: none;">
             <ui:Label tabindex="-1" text="Tools" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tools" class="title" />
-            <ui:Label tabindex="-1" text="Knife" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Knife" class="sectionTitle" />
-            <ui:Label tabindex="-1" text="Your trusty knife, a basic survival tool that you keep on you at all times. A gift from your mother back home." parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeDsc" class="text" />
             <ui:Label tabindex="-1" text="Tranq-Rifle" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tranq-Rifle" class="sectionTitle" />
             <ui:Label tabindex="-1" text="Standard issued tranq-rifle, after constant asking by your peer astro-biologists, the higher-ups finally caved. Took two months of training to be able to use" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tranq-RifleDsc" class="text" />
             <ui:Label tabindex="-1" text="Net" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Net" class="sectionTitle" />
             <ui:Label tabindex="-1" text="A simple net, can capture smaller creatures for study." parse-escape-sequences="true" display-tooltip-when-elided="true" name="NetDsc" class="text" />
+            <ui:Label tabindex="-1" text="Knife" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Knife" class="sectionTitle" />
+            <ui:Label tabindex="-1" text="Your trusty knife, a basic survival tool that you keep on you at all times. A gift from your mother back home." parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeDsc" class="text" />
         </ui:VisualElement>
         <ui:VisualElement name="OptionsContent" style="flex-grow: 1; display: none; justify-content: center; align-items: center;">
             <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" />

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Companion : Critter
 {
@@ -14,10 +15,31 @@ public class Companion : Critter
     [SerializeField]
     float distance;  // max distance that critter will flee or seek 
 
+    public static GameObject main;
+
+
     void Start()
     {
         min = spriteRenderer.bounds.min;
         max = spriteRenderer.bounds.max;
+        DontDestroyOnLoad(gameObject);
+        main = gameObject;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDestroy() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        if (scene.name == "PlanetMapScene" || scene.name == "StartScene") {
+            main.SetActive(false);
+        }
+        // Player should be active on all other scenes
+        else {
+            main.SetActive(true);
+            main.transform.position = Player.main.transform.position;
+        }
     }
 
     // this method was created in parent class but each child class has to implement it separately

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 
 /*
@@ -42,6 +43,8 @@ public class TilemapLoop : MonoBehaviour
                 }
             }
         }
+
+        StartCoroutine(FlashColliders());
     }
 
     // Update is called once per frame
@@ -71,6 +74,17 @@ public class TilemapLoop : MonoBehaviour
             TransformSelf(planetWidth, 0);
         }
     }
+
+    IEnumerator FlashColliders() {
+        
+        yield return new WaitForSeconds(0.2f);
+
+        TilemapCollider2D coll = GetComponent<TilemapCollider2D>();
+        if (coll) {
+            coll.enabled = true;
+        }
+    }
+
     void TransformSelf(float x, float y)
     {
         transform.position += new Vector3(x, y, 0);

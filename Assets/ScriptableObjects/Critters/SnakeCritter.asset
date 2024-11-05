@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d80283ec5f73b4fa5d2c54a427bbcb, type: 3}
+  m_Name: SnakeCritter
+  m_EditorClassIdentifier: 
+  critterName: Snake
+  description: It's got spikes on its back- don't let it out of your sight.
+  sprites:
+  - {fileID: 21300000, guid: 34f6be55ddbba564e9e8c32910fbf524, type: 3}
+  - {fileID: 21300000, guid: 6ed9c1f6d51982b42a54a7deef0c69e8, type: 3}
+  planetColor: {r: 0.1764706, g: 0.5686275, b: 0.20392157, a: 1}
+  prefab: {fileID: 3222268276995171313, guid: b35adc9bee4c7cf449ef3e274ff9829e, type: 3}

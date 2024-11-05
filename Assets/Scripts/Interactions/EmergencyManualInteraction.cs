@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class EmergencyManualInteraction : InteractibleObject
 {
-    bool broken = false;
     [SerializeField]
     private Sprite openBook;
     [SerializeField]
     private GameObject flashingLight, mouseHelper;
+
+    public static bool broken = false;
+    public override void Start() {
+        base.Start();
+        if (broken) {
+            GetComponent<SpriteRenderer>().sprite = openBook;
+            Destroy(flashingLight);
+        }
+    }
     public override void Interact()
     {
         // Give the planet 1 ship part

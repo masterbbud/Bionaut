@@ -235,9 +235,14 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     public virtual void OnNetHit()
     {
         // Player catches this critter!
+        if (Player.inventory.collectedCritters.Contains(critterData)) {
+            // Don't want to catch the same critter twice
+            return;
+        }
         Player.inventory.AddCritter(critterData);
         CritterManager.DeleteCritter(this);
         Destroy(gameObject);
+        CatchCritterDialogBehavior.Show(critterData);
     }
 
     // When the critter is hit with a knife, it should get pushed back and

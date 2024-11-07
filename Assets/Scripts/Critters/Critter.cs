@@ -44,6 +44,9 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     [SerializeField]
     protected int maxStamina;
 
+    // Instance of the audio manager
+    public AudioManager audioManager;
+
 
     // Start is called before the first frame update
     void Start()

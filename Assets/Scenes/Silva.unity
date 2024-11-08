@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -799,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -1672,7 +1672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -2494,7 +2494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -2669,6 +2669,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2550435348911598583, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
@@ -3790,7 +3794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -30085,7 +30089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -31325,7 +31329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -31698,7 +31702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -31779,7 +31783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -31860,7 +31864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -32215,7 +32219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -32369,7 +32373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -32664,6 +32668,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2550435348911598583, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
@@ -33738,7 +33746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -34170,7 +34178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -34565,7 +34573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name
@@ -36419,7 +36427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413619333394343577, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Name

@@ -20,6 +20,7 @@ public class TransparentObject : MonoBehaviour
     // Shortcut to access the alpha value of the main background object
     private float BackgroundObjectAlpha => BackgroundObject.color.a;
 
+
     void Start()
     {
         // Gets all SpriteRenderer components in this object and its children

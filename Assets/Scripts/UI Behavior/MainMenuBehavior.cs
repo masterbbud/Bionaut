@@ -58,7 +58,7 @@ public class MainMenuBehavior : MonoBehaviour
         optionsButton = mainMenuUI.rootVisualElement.Q<Button>("Options");
         quitButton = mainMenuUI.rootVisualElement.Q<Button>("Quit");
 
-        volume = mainMenuUI.rootVisualElement.Q<Slider>("Volume");
+        //volume = mainMenuUI.rootVisualElement.Q<Slider>("Volume");
 
         menuButton = mainMenuUI.rootVisualElement.Q<Button>("Menu");
 
@@ -81,7 +81,7 @@ public class MainMenuBehavior : MonoBehaviour
         closeButton.RegisterCallback<ClickEvent>(ButtonClicked);
         selectCritterButton.RegisterCallback<ClickEvent>(ChoosePlayerCritter);
         menuButton.RegisterCallback<ClickEvent>(menuClicked);
-        volume.RegisterCallback<ChangeEvent<float>>(volumeSlide);
+        //volume.RegisterCallback<ChangeEvent<Vector2>>(volumeSlide);
 
     }
 
@@ -169,16 +169,16 @@ public class MainMenuBehavior : MonoBehaviour
             CloseUI();
         }
     }
-    private void volumeSlide(ChangeEvent<float> evt)
+    private void volumeSlide(ChangeEvent<Vector2> evt)
     {
-        AudioManager.volumeControl = (int)evt.newValue;
+        AudioManager.volumeControl = (int)evt.newValue.x; 
     }
 
     private void menuClicked(ClickEvent evt)
     {
         if (evt.target == menuButton)
         {
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

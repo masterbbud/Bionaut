@@ -15,7 +15,10 @@ public class MainMenuBehavior : MonoBehaviour
     private Button toolsButton;
     private Button optionsButton;
     private Button quitButton;
+    private Button menuButton;
     private Button closeButton;
+
+    private Slider volume;
 
     private Button selectCritterButton;
     private VisualElement critterAnimation;
@@ -54,6 +57,11 @@ public class MainMenuBehavior : MonoBehaviour
         toolsButton = mainMenuUI.rootVisualElement.Q<Button>("Tools");
         optionsButton = mainMenuUI.rootVisualElement.Q<Button>("Options");
         quitButton = mainMenuUI.rootVisualElement.Q<Button>("Quit");
+
+        volume = mainMenuUI.rootVisualElement.Q<Slider>("Volume");
+
+        menuButton = mainMenuUI.rootVisualElement.Q<Button>("Menu");
+
         closeButton = mainMenuUI.rootVisualElement.Q<Button>("Close");
         selectCritterButton = mainMenuUI.rootVisualElement.Q<Button>("CritterSelectButton");
         critterDescription = mainMenuUI.rootVisualElement.Q<Label>("CritterDescription");
@@ -72,6 +80,8 @@ public class MainMenuBehavior : MonoBehaviour
         quitButton.RegisterCallback<ClickEvent>(ButtonClicked);
         closeButton.RegisterCallback<ClickEvent>(ButtonClicked);
         selectCritterButton.RegisterCallback<ClickEvent>(ChoosePlayerCritter);
+        menuButton.RegisterCallback<ClickEvent>(menuClicked);
+        volume.RegisterCallback<ChangeEvent<float>>(volumeSlide);
 
     }
 
@@ -159,6 +169,19 @@ public class MainMenuBehavior : MonoBehaviour
             CloseUI();
         }
     }
+    private void volumeSlide(ChangeEvent<float> evt)
+    {
+        AudioManager.volumeControl = (int)evt.newValue;
+    }
+
+    private void menuClicked(ClickEvent evt)
+    {
+        if (evt.target == menuButton)
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
+    }
+
 
     private void OnOpenCrittersPage() {
         ResetCritters();

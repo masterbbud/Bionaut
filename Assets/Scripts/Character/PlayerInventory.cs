@@ -64,7 +64,21 @@ public class PlayerInventory : MonoBehaviour
         return null;
     }
 
+    public ItemData GetItem(string itemName)
+    {
+        foreach (ItemData i in collectedItems.Keys) {
+            if (i.itemName == itemName) {
+                return i;
+            }
+        }
+        return null;
+    }
+
     public void NameCritter(CritterData critter, string name) {
         critterNames[critter] = name;
+    }
+
+    public string GetCritterName(CritterData critter) {
+        return critterNames[critter];
     }
 }

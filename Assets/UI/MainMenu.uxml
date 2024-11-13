@@ -8,7 +8,7 @@
         <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Options" class="tabButtons" />
     </ui:VisualElement>
     <ui:VisualElement name="Content" style="flex-grow: 1; align-items: stretch; flex-direction: column; height: 88%; background-color: rgb(173, 201, 202); display: flex;">
-        <ui:VisualElement name="ControlsContent" style="flex-grow: 1; display: none;">
+        <ui:VisualElement name="ControlsContent" style="flex-grow: 1; display: flex;">
             <ui:Label text="Controls" name="Controls" class="title" />
             <ui:Label text="Movement" name="Movement" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;W A S D" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WASD" class="text" style="-unity-text-align: upper-left;" />
@@ -64,7 +64,9 @@
             <ui:Label tabindex="-1" text="Your trusty knife, a basic survival tool that you keep on you at all times. A gift from your mother back home." parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeDsc" class="text" />
         </ui:VisualElement>
         <ui:VisualElement name="OptionsContent" style="flex-grow: 1; display: none; justify-content: center; align-items: center;">
-            <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" />
+            <ui:Button text="Main Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Menu" style="margin-bottom: 10px;" />
+            <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" style="margin-bottom: 10px;" />
+            <ui:Slider label="Volume" high-value="100" style="background-color: rgba(255, 255, 255, 0.8); opacity: 1;" />
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Close" class="tabButtons" style="position: absolute; right: 10px; bottom: auto; top: 10px;" />

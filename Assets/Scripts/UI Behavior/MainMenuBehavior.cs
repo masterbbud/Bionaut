@@ -29,6 +29,7 @@ public class MainMenuBehavior : MonoBehaviour
     private VisualElement critterGridContiner;
     private CritterData selectedCritter;
     private int spriteIdx;
+    [SerializeField] private int animationSpeedMs;
 
     //content pages
     private VisualElement controlsContent;

@@ -23,14 +23,14 @@ public class MainMenuBehavior : MonoBehaviour
     private Button selectCritterButton;
     private VisualElement critterAnimation;
     private Label critterDescription;
+
     [SerializeField]
     private VisualTreeAsset critterTemplate;
     private VisualElement critterGridContiner;
     private CritterData selectedCritter;
     private int spriteIdx;
-    [SerializeField] private int animationSpeedMs;
 
-    //content
+    //content pages
     private VisualElement controlsContent;
     private VisualElement crittersContent;
     private VisualElement toolsContent;
@@ -41,17 +41,30 @@ public class MainMenuBehavior : MonoBehaviour
 
     private static bool initialized = false;
 
-    //a ton of query selectors, and registering callback function
+    //ensure that the UI does not destroy on load unless initialied, grab main document, and initalize buttons and callback functions
     private void Awake()
     {
-        if (initialized) {
+        if (initialized)
+        {
             DestroyImmediate(gameObject);
             return;
-        } else {
+        }
+        else
+        {
             DontDestroyOnLoad(gameObject);
             initialized = true;
         }
         mainMenuUI = GetComponent<UIDocument>();
+
+        //call intialization and callback rendering functions
+        InitializeContent();
+        RegisterAllCallbacks();
+
+    }
+
+    //initializes all buttons and dynamically changed items and grabs them from the document
+    private void InitializeContent()
+    {
         controlsButton = mainMenuUI.rootVisualElement.Q<Button>("Controls");
         crittersButton = mainMenuUI.rootVisualElement.Q<Button>("Critters");
         toolsButton = mainMenuUI.rootVisualElement.Q<Button>("Tools");
@@ -72,7 +85,11 @@ public class MainMenuBehavior : MonoBehaviour
         crittersContent = mainMenuUI.rootVisualElement.Q<VisualElement>("CrittersContent");
         toolsContent = mainMenuUI.rootVisualElement.Q<VisualElement>("ToolsContent");
         optionsContent = mainMenuUI.rootVisualElement.Q<VisualElement>("OptionsContent");
+    }
 
+    //registers all button behavior
+    private void RegisterAllCallbacks()
+    {
         controlsButton.RegisterCallback<ClickEvent>(ButtonClicked);
         crittersButton.RegisterCallback<ClickEvent>(ButtonClicked);
         toolsButton.RegisterCallback<ClickEvent>(ButtonClicked);
@@ -91,10 +108,15 @@ public class MainMenuBehavior : MonoBehaviour
         critterAnimation.schedule.Execute(SwapAnimationTexture).Every(animationSpeedMs);
     }
 
+    //handle events with opening the menu and using critters menu page
     private void Update()
     {
         //turn off and on the mainUI
-        if ((Input.GetKeyDown(KeyCode.E) || shouldShowMenu) && !showing && !CatchCritterDialogBehavior.showing)
+        if (
+            (Input.GetKeyDown(KeyCode.E) || shouldShowMenu)
+            && !showing
+            && !CatchCritterDialogBehavior.showing
+        )
         {
             shouldShowMenu = false;
             mainMenuUI.rootVisualElement.style.display = DisplayStyle.Flex;
@@ -102,11 +124,12 @@ public class MainMenuBehavior : MonoBehaviour
             Time.timeScale = 0;
 
             // Handle critters page logic
-            if (crittersContent.style.display == DisplayStyle.Flex) {
+            if (crittersContent.style.display == DisplayStyle.Flex)
+            {
                 OnOpenCrittersPage();
             }
         }
-        else if(Input.GetKeyDown(KeyCode.E) && showing)
+        else if (Input.GetKeyDown(KeyCode.E) && showing)
         {
             CloseUI();
         }
@@ -114,12 +137,13 @@ public class MainMenuBehavior : MonoBehaviour
 
     private void CloseUI()
     {
-        mainMenuUI.rootVisualElement.style.display= DisplayStyle.None;
+        mainMenuUI.rootVisualElement.style.display = DisplayStyle.None;
         showing = false;
         Time.timeScale = 1;
     }
 
-    public static void ShowMenu() {
+    public static void ShowMenu()
+    {
         shouldShowMenu = true;
     }
 
@@ -145,7 +169,7 @@ public class MainMenuBehavior : MonoBehaviour
             optionsContent.style.display = DisplayStyle.None;
             OnOpenCrittersPage();
         }
-        else if ( evt.target == toolsButton)
+        else if (evt.target == toolsButton)
         {
             controlsContent.style.display = DisplayStyle.None;
             crittersContent.style.display = DisplayStyle.None;
@@ -183,17 +207,22 @@ public class MainMenuBehavior : MonoBehaviour
     }
 
 
-    private void OnOpenCrittersPage() {
+    private void OnOpenCrittersPage()
+    {
         ResetCritters();
-        
-        if (SceneManager.GetActiveScene().name == "InPodScene") {
+
+        if (SceneManager.GetActiveScene().name == "InPodScene")
+        {
             selectCritterButton.SetEnabled(true);
-        } else {
+        }
+        else
+        {
             selectCritterButton.SetEnabled(false);
         }
     }
 
-    private void SelectCritter(ClickEvent evt) {
+    private void SelectCritter(ClickEvent evt)
+    {
         // Select critter based on currently chosen critter
         CritterData c = Player.inventory.GetCritter(((VisualElement)evt.target).name);
         selectCritterButton.style.display = DisplayStyle.Flex;
@@ -206,32 +235,43 @@ public class MainMenuBehavior : MonoBehaviour
         }
     }
 
-    private void ChoosePlayerCritter(ClickEvent evt) {
-        if (Companion.main) {
+    private void ChoosePlayerCritter(ClickEvent evt)
+    {
+        if (Companion.main)
+        {
             DestroyImmediate(Companion.main);
         }
         Instantiate(selectedCritter.prefab);
     }
 
-    private void SwapAnimationTexture() {
-        if (!selectedCritter) { return; }
+    private void SwapAnimationTexture()
+    {
+        if (!selectedCritter)
+        {
+            return;
+        }
         spriteIdx = (spriteIdx + 1) % selectedCritter.sprites.Count;
-        critterAnimation.style.backgroundImage = new StyleBackground(selectedCritter.sprites[spriteIdx].texture);
+        critterAnimation.style.backgroundImage = new StyleBackground(
+            selectedCritter.sprites[spriteIdx].texture
+        );
     }
 
-    private void ResetCritters() {
+    private void ResetCritters()
+    {
         spriteIdx = 0;
-        foreach (VisualElement s in critterGridContiner.Children().ToList()) {
+        foreach (VisualElement s in critterGridContiner.Children().ToList())
+        {
             critterGridContiner.Remove(s);
         }
         Debug.Log("reset");
         foreach (CritterData c in Player.inventory.collectedCritters) {
             VisualElement newCritter = critterTemplate.Instantiate();
             critterGridContiner.Add(newCritter);
-            newCritter.Q<VisualElement>("Background").style.backgroundImage = new StyleBackground(c.sprites[0].texture);
+            newCritter.Q<VisualElement>("Background").style.backgroundImage = new StyleBackground(
+                c.sprites[0].texture
+            );
             newCritter.Q<VisualElement>("Background").RegisterCallback<ClickEvent>(SelectCritter);
             newCritter.Q<VisualElement>("Background").name = c.name;
         }
-        
     }
 }

@@ -15,6 +15,9 @@ public class CritterManager : MonoBehaviour
     Critter tempCritter;
 
     [SerializeField]
+    AudioManager audioManager;
+
+    [SerializeField]
     int tempCritterCount;
 
     private Collider2D spawnArea;
@@ -44,6 +47,9 @@ public class CritterManager : MonoBehaviour
             Critter newTempCritter = Instantiate(tempCritter, PickRandomPoint(), Quaternion.identity);
             critters.Add(newTempCritter);
             newTempCritter.AddComponent<LoopAroundPlanet>();
+
+            // Link up to the audio manager so each critter can play their own voice
+            newTempCritter.audioManager = audioManager;
         }
 
     }

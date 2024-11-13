@@ -29922,6 +29922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempCritter: {fileID: 2865813514067467809, guid: 2d8226fdeab1d174bb39dfe23c05ee40, type: 3}
+  audioManager: {fileID: 329367969}
   tempCritterCount: 1
 --- !u!4 &690826740
 Transform:
@@ -30832,6 +30833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempCritter: {fileID: 1105663142395349783, guid: d4bd8181fc0b5a34eafb32c6250dd150, type: 3}
+  audioManager: {fileID: 329367969}
   tempCritterCount: 2
 --- !u!4 &994751695
 Transform:
@@ -31662,6 +31664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempCritter: {fileID: 6091291411343304234, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+  audioManager: {fileID: 329367969}
   tempCritterCount: 2
 --- !u!4 &1179864653
 Transform:
@@ -34991,6 +34994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempCritter: {fileID: 1105663142395349783, guid: d4bd8181fc0b5a34eafb32c6250dd150, type: 3}
+  audioManager: {fileID: 329367969}
   tempCritterCount: 5
 --- !u!4 &1930242737
 Transform:
@@ -36282,6 +36286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempCritter: {fileID: 6091291411343304234, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+  audioManager: {fileID: 329367969}
   tempCritterCount: 5
 --- !u!4 &2049186787
 Transform:

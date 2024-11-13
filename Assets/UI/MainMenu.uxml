@@ -33,7 +33,7 @@
                         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterDescription" style="-unity-text-align: middle-center; margin-top: 0; margin-right: auto; margin-bottom: auto; margin-left: auto;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="ChooseButton" style="flex-grow: 1;">
-                        <ui:Button text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterSelectButton" tooltip="Critter Selection is only available inside the Pod!" style="margin-top: auto; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; display: none; background-color: rgb(214, 149, 64);" />
+                        <ui:Button text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterSelectButton" tooltip="Critter Selection is only available inside the Pod!" class="tabButtons" style="margin-top: auto; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; display: none; background-color: rgb(214, 149, 64);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

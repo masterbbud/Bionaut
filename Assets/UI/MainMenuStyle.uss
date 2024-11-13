@@ -18,6 +18,16 @@
 }
 
 .tabButtons {
+    background-color: rgb(156, 156, 156);
+}
+
+.tabButtons:hover {
+    background-color: rgb(130, 130, 130);
+}
+
+.tabButtons:active {
+    color: rgb(80, 80, 80);
+    background-color: rgb(180, 180, 180);
 }
 
 .grid-container {

@@ -6,7 +6,7 @@
                 <ui:Button text="Empty" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-empty" class="button" />
             </ui:VisualElement>
             <ui:VisualElement name="container-rifle" style="flex-grow: 1; align-items: center; justify-content: center;">
-                <ui:Button text="Tranq-Rifle" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-rifle" class="button" />
+                <ui:Button text="Tranquilizer" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-rifle" class="button" />
             </ui:VisualElement>
             <ui:VisualElement name="container-net" style="flex-grow: 1; align-items: center; justify-content: center;">
                 <ui:Button text="Net" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-net" class="button" />

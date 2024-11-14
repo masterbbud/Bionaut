@@ -6,7 +6,7 @@ using Pathfinding;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 
-public abstract class CritterAI : MonoBehaviour
+public abstract class CritterAI : MonoBehaviour //, IRifleHittable, INetHittable, IKnifeHittable
 {
     [SerializeField]
     protected SpriteRenderer spriteRenderer;
@@ -41,10 +41,27 @@ public abstract class CritterAI : MonoBehaviour
 
     protected bool reachedEndOfPath;  // T/F if critter has reached the end of the path
 
+    [SerializeField]
+    protected float endDistance = 1.0f;  // distance for critter to stop
 
 
-    // implement in each child class - calculates if it is seeking, fleeing, etc
-    protected abstract Vector2 CalculateBehavior();
+
+
+
+    private bool asleep = false;   // was the critter hit
+
+    public CritterData critterData;
+
+    // While true, the critter doesn't move on its own and can go beyond its
+    // max speed.
+    private bool freeBody = false;    // ??
+    private bool knockedOut = false;   // is the critter knocked out
+    private int stamina;   // like health?
+
+
+
+
+
 
 
     // Start Method
@@ -60,19 +77,25 @@ public abstract class CritterAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius)
         {
-            spriteRenderer.sprite = ActiveSprite;
             seekingOnPath();
+        }
+
+        if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius - 0.5f)
+        {
+            spriteRenderer.sprite = ActiveSprite;
         }
         else
         {
             spriteRenderer.sprite = StoppedSprite;
         }
-
-        
-
     }
 
-    
+
+
+    // implement in each child class - calculates if it is seeking, fleeing, etc
+    protected abstract Vector2 CalculateBehavior();
+
+
     // method that makes critter seek on the path
     void seekingOnPath()
     {
@@ -125,6 +148,8 @@ public abstract class CritterAI : MonoBehaviour
 
         transform.position += velocity * Time.deltaTime;  // modify the agent position
 
+
+
         // flips sprite
         if (Math.Abs(velocity.x) > 0.15f)  // Prevent sprite jitter
         {
@@ -167,5 +192,102 @@ public abstract class CritterAI : MonoBehaviour
 
         return closestPoint;
     }
+
+
+
+    // radius around player for attack player to stop
+    public Vector2 StopAttackPoint()
+    {
+        // Get the vector from the GameObject to the circle's center
+        Vector2 directionToCenter = (transform.position - Player.main.transform.position).normalized;
+
+        // Calculate the closest point on the circle
+        Vector2 stopPoint = (Vector2)Player.main.transform.position + (directionToCenter * endDistance);
+
+        return stopPoint;
+    }
+
+
+
+
+
+
+
+
+    /*
+
+
+    
+    //    ------ Player Tools Interacting with Critters ------
+    
+
+
+    // When the critter is hit with a rifle, call FallAsleep()
+    public virtual void OnRifleHit()
+    {
+        StartCoroutine(FallAsleep());
+    }
+
+    // critter falls asleep for 5 seconds
+    IEnumerator FallAsleep()
+    {
+        asleep = true;
+        yield return new WaitForSeconds(5);
+        asleep = false;
+    }
+
+    // When the critter is hit with a net, the player catches it
+    public virtual void OnNetHit()
+    {
+        // Player catches this critter!
+        if (Player.inventory.collectedCritters.Contains(critterData))
+        {
+            // Don't want to catch the same critter twice
+            return;
+        }
+        Player.inventory.AddCritter(critterData);
+        CritterManager.DeleteCritter(this);
+        Destroy(gameObject);
+        CatchCritterDialogBehavior.Show(critterData);
+    }
+
+    // When the critter is hit with a knife, call Knockback()
+    public virtual void OnKnifeHit()
+    {
+        if (!knockedOut)
+        {
+            StartCoroutine(KnockBack());
+        }
+    }
+
+    // critter gets knocked back and loses stamina
+    IEnumerator KnockBack()
+    {
+        freeBody = true;
+        float knockBackAmount = 250f;
+        stamina -= 1;
+        Debug.Log(stamina);
+        if (stamina <= 0)
+        {
+            // We have to do this bc color is a readonly field
+            Color c = spriteRenderer.color;
+            c = new Color(0.6f, 0.6f, 0.6f);
+            spriteRenderer.color = c;
+        }
+        ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
+        yield return new WaitForSeconds(0.5f);
+
+        if (stamina <= 0)
+        {
+            knockedOut = true;
+            rb.drag = 5f;
+        }
+        freeBody = false;
+    }
+
+
+
+
+    */
 
 }

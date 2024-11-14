@@ -23,8 +23,6 @@ public class FleeingBush : CritterAI
 
 
 
-
-
     // Gizmos Method
     private void OnDrawGizmos()
     {

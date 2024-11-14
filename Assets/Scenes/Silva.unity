@@ -32050,7 +32050,7 @@ Transform:
   m_GameObject: {fileID: 986599870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.26, y: -12.84, z: 0}
+  m_LocalPosition: {x: 7.22, y: -12.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32069,13 +32069,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 986599875}
-  speed: 5.5
-  fleePointPlayerRadius: 13
+  ActiveSprite: {fileID: 21300000, guid: 6bfe328942c69f64792e74ccbfe05701, type: 3}
+  StoppedSprite: {fileID: 21300000, guid: 2e8513e4af205b54f89da837e1f0e671, type: 3}
+  speed: 6
+  playerRadius: 8
   nextWaypointDistance: 3
   repathRate: 0.5
-  FleeSprite: {fileID: 21300000, guid: 6bfe328942c69f64792e74ccbfe05701, type: 3}
-  StoppedSprite: {fileID: 21300000, guid: 2e8513e4af205b54f89da837e1f0e671, type: 3}
-  minDisToFlee: 6
 --- !u!1 &994751691
 GameObject:
   m_ObjectHideFlags: 0

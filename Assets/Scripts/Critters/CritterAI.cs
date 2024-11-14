@@ -11,6 +11,12 @@ public abstract class CritterAI : MonoBehaviour
     [SerializeField]
     protected SpriteRenderer spriteRenderer;
 
+    [SerializeField]
+    Sprite ActiveSprite;
+
+    [SerializeField]
+    Sprite StoppedSprite;
+
     protected Rigidbody2D rb;
 
     protected Seeker seeker;  // seeker script
@@ -18,10 +24,10 @@ public abstract class CritterAI : MonoBehaviour
     protected Path path;  // current path
 
     [SerializeField]
-    protected float speed = 4.0f;
+    protected float speed = 5.5f;
 
     [SerializeField]
-    protected float fleePointPlayerRadius = 10.0f;    // radius of the circle around the player where the flee points come from
+    protected float playerRadius = 10.0f;    // radius of the circle around the player where the flee points come from
 
     [SerializeField]
     protected float nextWaypointDistance = 1.0f;  // how far the nextWaypoint should be
@@ -52,12 +58,30 @@ public abstract class CritterAI : MonoBehaviour
     // Update Method
     void Update()
     {
+        if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius)
+        {
+            spriteRenderer.sprite = ActiveSprite;
+            seekingOnPath();
+        }
+        else
+        {
+            spriteRenderer.sprite = StoppedSprite;
+        }
+
+        
+
+    }
+
+    
+    // method that makes critter seek on the path
+    void seekingOnPath()
+    {
         // updates lastRepath and calls StartPath()
         if (Time.time > lastRepath + repathRate && seeker.IsDone())
         {
             lastRepath = Time.time;
             seeker.StartPath(transform.position, CalculateBehavior(), OnPathComplete);  // start the path (startPos, endPos, callback)
-            // CalculateBahavior() sets the position for the critter to seek
+                                                                                        // CalculateBahavior() sets the position for the critter to seek
         }
 
         // if there is no valid path, return
@@ -71,7 +95,7 @@ public abstract class CritterAI : MonoBehaviour
         float distanceToWaypoint;  // distance to the next waypoint in the path
 
         // check if agent is close enough to the current waypoint to switch to the next one
-        while(true)
+        while (true)
         {
             distanceToWaypoint = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);  // calculates distance to next waypoint
             if (distanceToWaypoint < nextWaypointDistance)
@@ -79,15 +103,18 @@ public abstract class CritterAI : MonoBehaviour
                 if (currentWaypoint + 1 < path.vectorPath.Count)  // is there another waypoint or is the agent at the end of the path
                 {
                     currentWaypoint++;
-                } else {
+                }
+                else
+                {
                     reachedEndOfPath = true;  // can use this variable to trigger special code if needed
                     break;
                 }
-            } else {
+            }
+            else
+            {
                 break;
             }
         }
-
 
         // Slow down smoothly (goes from 1 to 0) upon approaching the last waypoint at the end of the path
         float speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint / nextWaypointDistance) : 1f;
@@ -98,9 +125,8 @@ public abstract class CritterAI : MonoBehaviour
 
         transform.position += velocity * Time.deltaTime;  // modify the agent position
 
-
         // flips sprite
-        if (Math.Abs(velocity.x) > 0.1f)  // Prevent sprite jitter
+        if (Math.Abs(velocity.x) > 0.15f)  // Prevent sprite jitter
         {
             if (velocity.x > 0)
             {
@@ -112,7 +138,10 @@ public abstract class CritterAI : MonoBehaviour
             }
         }
 
+        
     }
+
+
 
 
     // if there is no error for p, set path to p
@@ -134,7 +163,7 @@ public abstract class CritterAI : MonoBehaviour
         Vector2 directionToCenter = (transform.position - Player.main.transform.position).normalized;
 
         // Calculate the closest point on the circle
-        Vector2 closestPoint = (Vector2)Player.main.transform.position + (directionToCenter * fleePointPlayerRadius);
+        Vector2 closestPoint = (Vector2)Player.main.transform.position + (directionToCenter * playerRadius);
 
         return closestPoint;
     }

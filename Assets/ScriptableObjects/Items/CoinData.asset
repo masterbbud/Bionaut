@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6747999e23072049951c06ab526e675, type: 3}
-  m_Name: KnifeData
+  m_Name: CoinData
   m_EditorClassIdentifier: 
-  itemName: Knife
-  description: This is a knife
-  sprite: {fileID: 21300000, guid: acc04f4dd878d4c188af31fc94ddadc8, type: 3}
+  itemName: Coin
+  description: Has monetary value
+  sprite: {fileID: 1517112349, guid: 333d5c7caff260441b3d33887a69e3d3, type: 3}

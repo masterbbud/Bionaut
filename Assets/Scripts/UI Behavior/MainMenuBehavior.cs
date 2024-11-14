@@ -16,6 +16,9 @@ public class MainMenuBehavior : MonoBehaviour
     private Button toolsButton;
     private Button optionsButton;
     private Button quitButton;
+    private Button menuButton;
+
+    private Slider volume;
     private Button closeButton;
 
     private Button selectCritterButton;
@@ -60,6 +63,12 @@ public class MainMenuBehavior : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             initialized = true;
         }
+
+        InitializeContent();
+        RegisterAllCallbacks();
+    }
+
+    private void InitializeContent() {
         mainMenuUI = GetComponent<UIDocument>();
         controlsButton = mainMenuUI.rootVisualElement.Q<Button>("Controls");
         itemsButton = mainMenuUI.rootVisualElement.Q<Button>("Inventory");
@@ -67,6 +76,9 @@ public class MainMenuBehavior : MonoBehaviour
         toolsButton = mainMenuUI.rootVisualElement.Q<Button>("Tools");
         optionsButton = mainMenuUI.rootVisualElement.Q<Button>("Options");
         quitButton = mainMenuUI.rootVisualElement.Q<Button>("Quit");
+
+        //volume = mainMenuUI.rootVisualElement.Q<Slider>("Volume");
+        menuButton = mainMenuUI.rootVisualElement.Q<Button>("Menu");
         closeButton = mainMenuUI.rootVisualElement.Q<Button>("Close");
 
         selectCritterButton = mainMenuUI.rootVisualElement.Q<Button>("CritterSelectButton");
@@ -86,7 +98,9 @@ public class MainMenuBehavior : MonoBehaviour
         crittersContent = mainMenuUI.rootVisualElement.Q<VisualElement>("CrittersContent");
         toolsContent = mainMenuUI.rootVisualElement.Q<VisualElement>("ToolsContent");
         optionsContent = mainMenuUI.rootVisualElement.Q<VisualElement>("OptionsContent");
+    }
 
+    private void RegisterAllCallbacks() {
         controlsButton.RegisterCallback<ClickEvent>(ButtonClicked);
         itemsButton.RegisterCallback<ClickEvent>(ButtonClicked);
         crittersButton.RegisterCallback<ClickEvent>(ButtonClicked);
@@ -95,6 +109,8 @@ public class MainMenuBehavior : MonoBehaviour
         quitButton.RegisterCallback<ClickEvent>(ButtonClicked);
         closeButton.RegisterCallback<ClickEvent>(ButtonClicked);
         selectCritterButton.RegisterCallback<ClickEvent>(ChoosePlayerCritter);
+        menuButton.RegisterCallback<ClickEvent>(menuClicked);
+        //volume.RegisterCallback<ChangeEvent<Vector2>>(volumeSlide);
     }
 
     public void Start()
@@ -195,6 +211,19 @@ public class MainMenuBehavior : MonoBehaviour
         else if (evt.target == closeButton) //quits game
         {
             CloseUI();
+        }
+    }
+
+    private void volumeSlide(ChangeEvent<Vector2> evt)
+    {
+        AudioManager.volumeControl = (int)evt.newValue.x;
+    }
+
+    private void menuClicked(ClickEvent evt)
+    {
+        if (evt.target == menuButton)
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

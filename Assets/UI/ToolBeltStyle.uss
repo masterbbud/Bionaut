@@ -27,3 +27,11 @@
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
 }
+
+.button:hover {
+    color: rgb(88, 186, 130);
+}
+
+.button:active {
+    background-color: rgb(140, 140, 140);
+}

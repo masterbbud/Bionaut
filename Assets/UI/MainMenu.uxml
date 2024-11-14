@@ -72,7 +72,9 @@
         <ui:VisualElement name="OptionsContent" style="flex-grow: 1; display: none; flex-direction: column;">
             <ui:Label text="Options" name="Options" class="title" />
             <ui:VisualElement name="VerticalContainer" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" />
+                <ui:Slider label="Volume" high-value="100" style="background-color: rgba(255, 255, 255, 0.8); opacity: 1;" />
+                <ui:Button text="Main Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Menu" style="margin-bottom: 10px;" />
+                <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" style="margin-bottom: 10px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

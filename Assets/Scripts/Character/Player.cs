@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements.Experimental;
 
 /*
  * The main Player script
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
     public Vector3 facingDirection = Vector3.zero;
 
     private bool freezeMovement;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -100,6 +103,7 @@ public class Player : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
+
         if (!ToolBeltBehavior.showing) { // Don't want to use item or interact if ui is shown
             // Use current item
             if (Input.GetMouseButtonDown(0))
@@ -109,6 +113,7 @@ public class Player : MonoBehaviour
         }
 
         UpdateAnimation();
+
     }
 
     void UpdateAnimation()

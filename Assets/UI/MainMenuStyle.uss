@@ -27,3 +27,15 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.primary-button {
+    background-color: rgb(224, 156, 18);
+}
+
+.primary-button:hover {
+    background-color: rgb(209, 146, 13);
+}
+
+.primary-button:active {
+    background-color: rgb(250, 182, 37);
+}

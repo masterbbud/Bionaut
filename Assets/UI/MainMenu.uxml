@@ -8,9 +8,9 @@
         <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Options" class="tabButtons" />
     </ui:VisualElement>
     <ui:VisualElement name="Content" style="flex-grow: 1; align-items: stretch; flex-direction: column; height: 88%; background-color: rgb(173, 201, 202); display: flex;">
-        <ui:VisualElement name="ControlsContent" style="flex-grow: 1; display: none;">
+        <ui:VisualElement name="ControlsContent" style="flex-grow: 1; display: flex;">
             <ui:Label text="Controls" name="Controls" class="title" />
-            <ui:Label text="Movement" name="Movement" class="sectionTitle" />
+            <ui:Label text="Movement" name="Movement" class="sectionTitle" style="-unity-font: initial;" />
             <ui:Label tabindex="-1" text="&#x9;W A S D" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WASD" class="text" style="-unity-text-align: upper-left;" />
             <ui:Label tabindex="-1" text="Interact:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;Right Click" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RightClick" class="text" />
@@ -21,35 +21,41 @@
             <ui:Label tabindex="-1" text="Open Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OpenMenu" class="sectionTitle" />
             <ui:Label tabindex="-1" text="&#x9;E" parse-escape-sequences="true" display-tooltip-when-elided="true" name="E" class="text" />
         </ui:VisualElement>
-        <ui:VisualElement name="CrittersContent" style="flex-grow: 1; display: none; flex-direction: row;">
-            <ui:VisualElement name="CritterGridContainer" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 60%; padding-top: 0; padding-right: 5%; padding-bottom: 0; padding-left: 5%;" />
-            <ui:VisualElement name="RightBar" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 40%; padding-right: 5%; padding-left: 5%; padding-top: 0; padding-bottom: 0;">
-                <ui:VisualElement name="TextContent" style="flex-grow: 1; background-color: rgb(225, 225, 225);">
-                    <ui:VisualElement name="CritterAnimation" style="flex-grow: 2; background-image: none; -unity-background-scale-mode: scale-to-fit; margin-top: 20px; margin-bottom: 20px; margin-left: 20px; margin-right: 20px; background-color: rgba(255, 255, 255, 0);" />
-                    <ui:VisualElement name="Name" style="flex-grow: 1;">
-                        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterName" style="-unity-text-align: upper-center; -unity-font-style: bold;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Description" style="flex-grow: 1; padding-right: 40px; padding-left: 40px;">
-                        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterDescription" style="-unity-text-align: middle-center; margin-top: 0; margin-right: auto; margin-bottom: auto; margin-left: auto;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="ChooseButton" style="flex-grow: 1;">
-                        <ui:Button text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterSelectButton" tooltip="Critter Selection is only available inside the Pod!" style="margin-top: auto; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; display: none; background-color: rgb(214, 149, 64);" />
+        <ui:VisualElement name="CrittersContent" style="flex-grow: 1; display: none; flex-direction: column;">
+            <ui:Label text="Critters" name="Critters" class="title" />
+            <ui:VisualElement name="VerticalContainer" style="flex-grow: 1; display: flex; flex-direction: row;">
+                <ui:VisualElement name="CritterGridContainer" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 60%; padding-top: 0; padding-right: 5%; padding-bottom: 0; padding-left: 5%;" />
+                <ui:VisualElement name="RightBar" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 40%; padding-right: 5%; padding-left: 5%; padding-top: 0; padding-bottom: 0;">
+                    <ui:VisualElement name="TextContent" style="flex-grow: 1; background-color: rgb(225, 225, 225);">
+                        <ui:VisualElement name="CritterAnimation" style="flex-grow: 2; background-image: none; -unity-background-scale-mode: scale-to-fit; margin-top: 20px; margin-bottom: 20px; margin-left: 20px; margin-right: 20px; background-color: rgba(255, 255, 255, 0);" />
+                        <ui:VisualElement name="Name" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterName" style="-unity-text-align: upper-center; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Description" style="flex-grow: 1; padding-right: 40px; padding-left: 40px;">
+                            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterDescription" style="-unity-text-align: middle-center; margin-top: 0; margin-right: auto; margin-bottom: auto; margin-left: auto;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="ChooseButton" style="flex-grow: 1;">
+                            <ui:Button text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CritterSelectButton" tooltip="Critter Selection is only available inside the Pod!" class="primary-button" style="margin-top: auto; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; display: flex;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="InventoryContent" style="flex-grow: 1; display: flex; flex-direction: row;">
-            <ui:VisualElement name="InventoryGridContainer" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 60%; padding-top: 0; padding-right: 5%; padding-bottom: 0; padding-left: 5%;" />
-            <ui:VisualElement name="RightBar" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 40%; padding-right: 5%; padding-left: 5%; padding-top: 0; padding-bottom: 0;">
-                <ui:VisualElement name="TextContent" style="flex-grow: 1; background-color: rgb(225, 225, 225);">
-                    <ui:VisualElement name="ItemSprite" style="flex-grow: 2; background-image: none; -unity-background-scale-mode: scale-to-fit; margin-top: 20px; margin-bottom: 20px; margin-left: 20px; margin-right: 20px; background-color: rgba(255, 255, 255, 0);">
-                        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemCount" style="position: absolute; right: 5px; bottom: 5px; -unity-font-style: bold; font-size: 24px; -unity-font: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;);" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Name" style="flex-grow: 1;">
-                        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemName" style="-unity-text-align: upper-center; -unity-font-style: bold;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Description" style="flex-grow: 1; padding-right: 40px; padding-left: 40px;">
-                        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemDescription" style="-unity-text-align: middle-center; margin-top: 0; margin-right: auto; margin-bottom: auto; margin-left: auto;" />
+        <ui:VisualElement name="InventoryContent" style="flex-grow: 1; display: none; flex-direction: column;">
+            <ui:Label text="Inventory" name="Inventory" class="title" />
+            <ui:VisualElement name="VerticalContainer" style="flex-grow: 1; display: flex; flex-direction: row;">
+                <ui:VisualElement name="InventoryGridContainer" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 60%; padding-top: 0; padding-right: 5%; padding-bottom: 0; padding-left: 5%;" />
+                <ui:VisualElement name="RightBar" class="grid-container" style="flex-grow: 0; flex-shrink: 0; width: 40%; padding-right: 5%; padding-left: 5%; padding-top: 0; padding-bottom: 0;">
+                    <ui:VisualElement name="TextContent" style="flex-grow: 1; background-color: rgb(225, 225, 225);">
+                        <ui:VisualElement name="ItemSprite" style="flex-grow: 2; background-image: none; -unity-background-scale-mode: scale-to-fit; margin-top: 20px; margin-bottom: 20px; margin-left: 20px; margin-right: 20px; background-color: rgba(255, 255, 255, 0);">
+                            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemCount" style="position: absolute; right: 5px; bottom: 5px; -unity-font-style: bold; font-size: 24px; -unity-font: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;);" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Name" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemName" style="-unity-text-align: upper-center; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Description" style="flex-grow: 1; padding-right: 40px; padding-left: 40px;">
+                            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemDescription" style="-unity-text-align: middle-center; margin-top: 0; margin-right: auto; margin-bottom: auto; margin-left: auto;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
@@ -63,8 +69,11 @@
             <ui:Label tabindex="-1" text="Knife" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Knife" class="sectionTitle" />
             <ui:Label tabindex="-1" text="Your trusty knife, a basic survival tool that you keep on you at all times. A gift from your mother back home." parse-escape-sequences="true" display-tooltip-when-elided="true" name="KnifeDsc" class="text" />
         </ui:VisualElement>
-        <ui:VisualElement name="OptionsContent" style="flex-grow: 1; display: none; justify-content: center; align-items: center;">
-            <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" />
+        <ui:VisualElement name="OptionsContent" style="flex-grow: 1; display: none; flex-direction: column;">
+            <ui:Label text="Options" name="Options" class="title" />
+            <ui:VisualElement name="VerticalContainer" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Close" class="tabButtons" style="position: absolute; right: 10px; bottom: auto; top: 10px;" />

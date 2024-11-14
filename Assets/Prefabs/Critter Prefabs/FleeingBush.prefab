@@ -197,3 +197,7 @@ MonoBehaviour:
   playerRadius: 8
   nextWaypointDistance: 3
   repathRate: 0.5
+  endDistance: 1
+  audioManager: {fileID: 0}
+  critterData: {fileID: 11400000, guid: 27d98e4eb9d9d83488682a5009ec0828, type: 2}
+  maxStamina: 1

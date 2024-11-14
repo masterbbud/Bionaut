@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Ship Part
   description: This is a part that can be used to rebuild your ship
-  sprite: {fileID: -1020341108, guid: 2dec5ffc74a019248883c42876cc1bae, type: 3}
+  sprite: {fileID: 21300000, guid: 28aa59cd230dc064293bb79add6cdfe9, type: 3}

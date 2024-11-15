@@ -61,3 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83314b09ff1e5d44e95dc5de6f8ce71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  critterTemplate: {fileID: 9197481963319205126, guid: 11dfdc39d98c89d48800239fa9181f4f, type: 3}
+  animationSpeedMs: 0
+  itemTemplate: {fileID: 9197481963319205126, guid: 2f5a1329efc5de44d91c1719d082a5b7, type: 3}

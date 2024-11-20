@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     void SetPlayerActiveByScene(Scene scene, LoadSceneMode mode)
     {
         // Player should be inactive on the planet map scene and start scene
-        if (scene.name == "PlanetMapScene" || scene.name == "StartScene") {
+        if (scene.name == "PlanetMapScene" || scene.name == "MainMenu") {
             main.SetActive(false);
         }
         // Player should be active on all other scenes
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (!ToolBeltBehavior.showing) { // Don't want to use item or interact if ui is shown
+        if (!ToolBeltBehavior.showing && !MainMenuBehavior.showing) { // Don't want to use item or interact if ui is shown
             // Use current item
             if (Input.GetMouseButtonDown(0))
             {

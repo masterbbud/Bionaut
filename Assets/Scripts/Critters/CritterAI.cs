@@ -54,9 +54,12 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
     // max speed.
     private bool freeBody = false;    // ??
     private bool knockedOut = false;   // is the critter knocked out
-    private int stamina;   // like health?
 
-    [SerializeField] private int maxStamina = 1;
+    [SerializeField]
+    private int maxHealth = 3;  // starting health variable
+
+    [SerializeField]
+    private int health;  // changing health variable
 
     private Vector2 externalVelocity;
 
@@ -67,7 +70,7 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        stamina = maxStamina;
+        health = maxHealth;
     }
 
 
@@ -215,7 +218,10 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
         return stopPoint;
     }
 
+
+
     //    ------ Player Tools Interacting with Critters ------
+
 
     // When the critter is hit with a rifle, call FallAsleep()
     public virtual void OnRifleHit()
@@ -260,28 +266,67 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
     {
         freeBody = true;
         float knockBackAmount = 10f;
-        stamina -= 1;
-        Debug.Log(stamina);
-        if (stamina <= 0)
-        {
-            // We have to do this bc color is a readonly field
-            Color c = spriteRenderer.color;
-            c = new Color(0.6f, 0.6f, 0.6f);
-            spriteRenderer.color = c;
-        }
-        ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
-        yield return new WaitForSeconds(0.5f);
+        
+        // make red color and turn sprite red
+        spriteRenderer.color = Color.red;
 
-        if (stamina <= 0)
+        health -= 1;
+
+        if (health <= 0)
         {
             knockedOut = true;
             rb.drag = 5f;
+
+            GetComponent<ParticleSystem>().Play();
+            spriteRenderer.color = Color.clear;
+            yield return new WaitForSeconds(1.5f);
+
+            CritterManager.DeleteCritter(this);
+            Destroy(gameObject);
         }
+
+        ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
+        yield return new WaitForSeconds(0.5f);
+
+        // return sprite color back to normal
+        spriteRenderer.color = Color.white;
+
         freeBody = false;
     }
 
     private void ApplyForce(Vector2 force) {
         externalVelocity += force;
     }
+
+
+    // calls DamagePlayer if an attack critter is within endDistance
+    public virtual void AttackCritterHit()
+    {
+        // if distance bettween critter and Player is 
+        if (Vector2.Distance(transform.position, Player.main.transform.position) < endDistance)
+        {
+            StartCoroutine(DamagePlayer());
+        }
+    }
+
+    // Subtracts health from player
+    IEnumerator DamagePlayer()
+    {
+        if (Player.main.GetComponent<Player>().health <= 0)
+        {
+            Debug.Log("Player dead");
+        }
+
+        // make red color and turn sprite red
+        Player.main.GetComponent<Player>().SpriteRenderer.color = Color.red;
+
+        Player.main.GetComponent<Player>().health -= 1;
+
+        yield return new WaitForSeconds(1.0f);
+
+        // return sprite color back to normal
+        Player.main.GetComponent<Player>().SpriteRenderer.color = Color.white;
+    }
+
 
 }

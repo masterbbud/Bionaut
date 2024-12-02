@@ -39,6 +39,14 @@ public class Player : MonoBehaviour
 
     private bool freezeMovement;
 
+    [SerializeField]
+    private int maxHealth = 10;  // starting health variable
+
+    [SerializeField]
+    public int health;  // changing health variable
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -88,6 +96,8 @@ public class Player : MonoBehaviour
 
         // Select empty hands to start
         SelectTool(3);
+
+        health = maxHealth;
     }
 
     // Update is called once per frame

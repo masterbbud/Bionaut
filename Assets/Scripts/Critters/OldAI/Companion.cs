@@ -68,7 +68,11 @@ public class Companion : Critter
         return seekForce;
     }
 
+    protected override Vector2 CalculateBehavior()
+    {
+        return StopAttackPoint();
 
+    }
 
     void OnMouseOver()
     {

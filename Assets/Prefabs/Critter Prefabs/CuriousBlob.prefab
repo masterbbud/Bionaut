@@ -120,9 +120,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.036858797, y: -0.044979572}
+  m_Offset: {x: -0.016251922, y: -0.007887125}
   serializedVersion: 2
-  m_Radius: 0.85514665
+  m_Radius: 0.69441414
 --- !u!50 &5386816835124600713
 Rigidbody2D:
   serializedVersion: 4
@@ -135,7 +135,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 2.2973707
+  m_Mass: 1.5149106
   m_LinearDrag: 0.05
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   speed: 5.5
   playerRadius: 8
   nextWaypointDistance: 3
-  repathRate: 0.5
+  repathRate: 0.2
   endDistance: 4
   audioManager: {fileID: 0}
   critterData: {fileID: 11400000, guid: b50a1accd29fd5148b68a1897fb8e920, type: 2}

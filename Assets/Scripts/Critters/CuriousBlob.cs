@@ -11,18 +11,29 @@ public class CuriousBlob : CritterAI
     Vector2 stopPoint;   // point for critter to seek/stop around player
 
 
+
     // sets the position for the critter to "flee" to
     protected override Vector2 CalculateBehavior()
     {
+        if (stayInStateTime > 0) {
+            stayInStateTime -= Time.deltaTime;
+            if (lastBehavior == BehaviourEnum.FLEE) {
+                return PickFleePoint();
+            }
+            else if (lastBehavior == BehaviourEnum.ATTACK) {
+                return StopAttackPoint();
+            }
+        }
+        stayInStateTime = 0.5f;
         if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius / 2)
         {
-            fleePoint = PickFleePoint();
-            return fleePoint;
+            lastBehavior = BehaviourEnum.FLEE;
+            return PickFleePoint();
         }
         else
         {
-            stopPoint = StopAttackPoint();
-            return stopPoint;
+            lastBehavior = BehaviourEnum.ATTACK;
+            return StopAttackPoint();
         }
         
     }

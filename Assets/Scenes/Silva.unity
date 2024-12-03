@@ -196,7 +196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -819,7 +823,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -1696,7 +1704,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -2522,7 +2534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -2704,8 +2720,16 @@ PrefabInstance:
       value: BushW
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -3807,7 +3831,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -30931,7 +30959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd91c797ae365e54eb0011ea08a0c84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempCritter: {fileID: 8271217516146086661, guid: 1bfcc396c0d56d740a91aa807c32b1b9, type: 3}
+  tempCritter: {fileID: 2865813514067467809, guid: 2d8226fdeab1d174bb39dfe23c05ee40, type: 3}
   audioManager: {fileID: 0}
   tempCritterCount: 1
 --- !u!4 &690826740
@@ -31104,7 +31132,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -31208,7 +31240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+u0S5ouWgIAABIFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMzqVj05hOemuBkB4SmNBMLr4IaY01yJJHH3wkw3+vVraxQ05R3nu7+/bDfBChbA3MabM0gj9pDuTXiOCbfBv15COc6E6rjXiHTvMmuCtRRKPmhTqhA55imNUVOCPYb7WTKE4C6JUotKkWfAczbZ0NcEGlhUAZ7TBaBehjRE7hz/geQ87hNfmJr/fwuk9Gl/BkoByYXtoJx2mra2ReMUmrGjh67tXTTj5tZCp00yownmkphW2tEHeuY6ubugQD2CsXNHQWy6O8BLErHbocxq6KwoJrrRl6ngsTBtQkJX90M7WK2n1j60ClxzKTbBotNUmfvvDjNNKF0dVjVzdNsIYrBdu/0DOj1g3GOoTnn417daRyT7cS3kpQz3pptFc8kM54DPUWJvP+32trsxLYvscbqzegr78up9sh9nCJ3Z9mUlRbpL7fNcBG6jjuuHowYTF/g+F4GLZNEVB08WrhH90NL6glHoSxLlBtlwrtbbU3KCWLODPsxruZNgoi3JquQVHpzuuQxt2u8IYblL1hHih+K23xlus+gZuQCPf6JLmh1vp4XZYt9fEJbLnyTgoFvWkknsOcZlqp5sKGM+nCNt4UlA3Cdl7wz6dFspQxlnKebCeQsHQ6hu2P9C7Jsgymd9mUZyTenlChTyrXjdF2PGFrqk+uwp11PyGjpaF1vHZu6HEp3is9GLlQhd4wA6BWTYarcTChSPgo+YKLMKANOCdU3Df5yInUbA88vybKY6eLkzM077PkpBYH7RDJySz+ZuQE4estrw0cBByxeJfsQi7/AVBLAwQUAAAICAAAmJ/rj1swxG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kqlhcnKyYUqKQZJRqkGyoZluapKxoYmBqalpqpmJqVmKqVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/rtEuaLloCAAASBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rj1swxG0AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
+    dataString: UEsDBBQAAAgIAACYn+uxAaYVWgIAABMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE2T2jAM/SuMz6WTUEJne2uBZXtgYZbu7CUXYyvEg2NnbIfP4b9Xdr4oOz3Flp6k9yQ5VyKULYE5bRZG8KXmQH4MiD+TL4Pe+QInutNqIy7QYj4Ed7kH0YB5o05otMc+zOoCnBHsp9pJD47QWCmRaVPM+Q6m2jqL5oxKC+gy2vlohabrgJzwM3zyIWc8jb770wVPT9HghkcGyoHpoS1wGDe4GlYpJmlRAvece/SkhU9qmEI1DcLHMy2lsA0V4s5lkLopczDgtXJBUVkoP8JrDmKXu+bSxa6yzIJrqBl6ngmDDaqTkl+67lpB7b6mdaCy8mVGySRQqpMuP/mHcXBnRhcvbd048jVcLtj+jZ4Zte6urffmWU88Dt05UrmnWwkfOahXvTC6UhydzlQ+tLIwmvXXTto0B7bv7TXVB2NVfh5OO0Ov4RbUn6ZSFFvv+jquDRupQ7vD6MHgYH4j4bAYtkmBVs/i3cIfurvfoMbxLIx16GpUKk9vqyvjoWQeeubVVG6qjQJzn6EERaU7rzGPe5zhg+//Uc/UP5ameuNr38BDSDD3+Ch6cK31sZuWzfVxCTZfVU4KBX2rveMVGzXVStUrdi+pDdtUJqPsLmxXCf7vbpEkZozFnEfbEUQsngxh+y0eR0mSwGScTHhCwvIJhTqpXNdEm/bg2FSfXOGitf+QwcLQMqw7N/S4EJdC2x4pVKY3zACoVZ2hIw4Gi+Cr5HMusEEbcE6oMHByTYnUbA887RKlQen85AxN+ywpKcVBO29JyTT8NFLizd0yrw0cBBx98TbZjdz+AlBLAwQUAAAICAAAmJ/rj1swxG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kqlhcnKyYUqKQZJRqkGyoZluapKxoYmBqalpqpmJqVmKqVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/rsQGmFVoCAAATBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rj1swxG0AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -32013,7 +32045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd91c797ae365e54eb0011ea08a0c84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempCritter: {fileID: 8516879051102913588, guid: 95d5dd13182100d45a78cac3315e15a6, type: 3}
+  tempCritter: {fileID: 1105663142395349783, guid: d4bd8181fc0b5a34eafb32c6250dd150, type: 3}
   audioManager: {fileID: 0}
   tempCritterCount: 2
 --- !u!4 &994751695
@@ -32566,7 +32598,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -33062,7 +33098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd91c797ae365e54eb0011ea08a0c84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempCritter: {fileID: 7933420863685163261, guid: 234f8e10c11192a40a71267dc5379d05, type: 3}
+  tempCritter: {fileID: 6091291411343304234, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
   audioManager: {fileID: 0}
   tempCritterCount: 2
 --- !u!4 &1179864653
@@ -33154,7 +33190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -33239,7 +33279,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -33324,7 +33368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -33760,7 +33808,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -33934,7 +33986,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -34236,8 +34292,16 @@ PrefabInstance:
       value: BushW
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -35315,7 +35379,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -35751,7 +35819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -36093,7 +36165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite
@@ -36238,7 +36314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd91c797ae365e54eb0011ea08a0c84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempCritter: {fileID: 8516879051102913588, guid: 95d5dd13182100d45a78cac3315e15a6, type: 3}
+  tempCritter: {fileID: 1105663142395349783, guid: d4bd8181fc0b5a34eafb32c6250dd150, type: 3}
   audioManager: {fileID: 0}
   tempCritterCount: 5
 --- !u!4 &1930242737
@@ -37365,7 +37441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd91c797ae365e54eb0011ea08a0c84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempCritter: {fileID: 7933420863685163261, guid: 234f8e10c11192a40a71267dc5379d05, type: 3}
+  tempCritter: {fileID: 6091291411343304234, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
   audioManager: {fileID: 0}
   tempCritterCount: 5
 --- !u!4 &2049186787
@@ -37804,7 +37880,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660809057790034821, guid: e3190eeb279b0b4489307d5885541442, type: 3}
+      propertyPath: m_TagString
+      value: Bush
       objectReference: {fileID: 0}
     - target: {fileID: 6169682569567290118, guid: e3190eeb279b0b4489307d5885541442, type: 3}
       propertyPath: m_Sprite

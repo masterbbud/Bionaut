@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7599277267642513931}
   - component: {fileID: 137657576480678857}
   - component: {fileID: 6091291411343304234}
+  - component: {fileID: -353992690719980987}
   m_Layer: 12
   m_Name: Skittish Critter
   m_TagString: Untagged
@@ -164,12 +165,48 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1500949177723076901}
   rb: {fileID: 7599277267642513931}
   maxForce: 5
+  speed: 5.5
+  playerRadius: 10
+  nextWaypointDistance: 1
+  repathRate: 0.5
+  endDistance: 1
   maxDisBetweenCritters: 1
   critterData: {fileID: 11400000, guid: 27d98e4eb9d9d83488682a5009ec0828, type: 2}
   mass: 1
   maxSpeed: 4
+  audioManager: {fileID: 0}
   wanderTime: 1
   wanderRadius: 1
+  bushSeekRadius: 8
   wanderWeight: 1
-  fleeWeight: 4
+  fleeWeight: 1
+  pathWeight: 4
   distance: 5
+--- !u!114 &-353992690719980987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189112910823606195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1242396684705484395}
   - component: {fileID: 1835385093796486519}
   - component: {fileID: 2865813514067467809}
+  - component: {fileID: 2026766080686047068}
   m_Layer: 12
   m_Name: Curious Critter
   m_TagString: Untagged
@@ -164,14 +165,49 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6462873572162511502}
   rb: {fileID: 1242396684705484395}
   maxForce: 5
+  speed: 5.5
+  playerRadius: 10
+  nextWaypointDistance: 1
+  repathRate: 0.1
+  endDistance: 1
   maxDisBetweenCritters: 1
   critterData: {fileID: 11400000, guid: b50a1accd29fd5148b68a1897fb8e920, type: 2}
   mass: 1
   maxSpeed: 3
+  audioManager: {fileID: 0}
   wanderTime: 1
   wanderRadius: 1
   wanderWeight: 1
-  seekWeight: 4
-  fleeWeight: 10
+  seekWeight: 0
+  fleeWeight: 0
+  pathWeight: 1
   fleeDistance: 3
   seekDistance: 10
+--- !u!114 &2026766080686047068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40572067395671464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1

@@ -6,6 +6,11 @@ using Pathfinding;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 
+public enum BehaviourEnum {
+    FLEE,
+    ATTACK
+}
+
 public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, IKnifeHittable
 {
     [SerializeField]
@@ -48,18 +53,19 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
     public AudioManager audioManager;
     private bool asleep = false;   // was the critter hit
 
+    protected BehaviourEnum lastBehavior = BehaviourEnum.FLEE;
+    protected float stayInStateTime = 0.0f;
+
     public CritterData critterData;
 
     // While true, the critter doesn't move on its own and can go beyond its
     // max speed.
     private bool freeBody = false;    // ??
     private bool knockedOut = false;   // is the critter knocked out
+    private int stamina;   // like health?
+    
 
-    [SerializeField]
-    private int maxHealth = 3;  // starting health variable
-
-    [SerializeField]
-    private int health;  // changing health variable
+    [SerializeField] private int maxStamina = 1;
 
     private Vector2 externalVelocity;
 
@@ -70,7 +76,7 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        health = maxHealth;
+        stamina = maxStamina;
     }
 
 
@@ -79,7 +85,7 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
     {
         if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius)
         {
-            seekingOnPath();
+            // seekingOnPath();
         }
 
         if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius - 0.5f)
@@ -106,79 +112,7 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
     protected abstract Vector2 CalculateBehavior();
 
 
-    // method that makes critter seek on the path
-    void seekingOnPath()
-    {
-        if (!knockedOut) {
-            // updates lastRepath and calls StartPath()
-            if (Time.time > lastRepath + repathRate && seeker.IsDone())
-            {
-                lastRepath = Time.time;
-                seeker.StartPath(transform.position, CalculateBehavior(), OnPathComplete);  // start the path (startPos, endPos, callback)
-                                                                                            // CalculateBahavior() sets the position for the critter to seek
-            }
-
-            // if there is no valid path, return
-            if (path == null)
-            {
-                return;
-            }
-
-
-            reachedEndOfPath = false;
-            float distanceToWaypoint;  // distance to the next waypoint in the path
-
-            // check if agent is close enough to the current waypoint to switch to the next one
-            while (true)
-            {
-                distanceToWaypoint = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);  // calculates distance to next waypoint
-                if (distanceToWaypoint < nextWaypointDistance)
-                {
-                    if (currentWaypoint + 1 < path.vectorPath.Count)  // is there another waypoint or is the agent at the end of the path
-                    {
-                        currentWaypoint++;
-                    }
-                    else
-                    {
-                        reachedEndOfPath = true;  // can use this variable to trigger special code if needed
-                        break;
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            // Slow down smoothly (goes from 1 to 0) upon approaching the last waypoint at the end of the path
-            float speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint / nextWaypointDistance) : 1f;
-            if (asleep) {
-                speedFactor *= 0.1f;
-            }
-
-            Vector3 direction = (path.vectorPath[currentWaypoint] - transform.position).normalized;  // Direction to the next waypoint
-
-            Vector3 velocity = direction * speed * speedFactor;  // Multiply the direction by our desired speed to get a velocity
-
-            transform.position += velocity * Time.deltaTime;  // modify the agent position
-
-            
-            // flips sprite
-            if (Math.Abs(velocity.x) > 0.15f)  // Prevent sprite jitter
-            {
-                if (velocity.x > 0)
-                {
-                    spriteRenderer.flipX = false;
-                }
-                else
-                {
-                    spriteRenderer.flipX = true;
-                }
-            }
-        }
-        
-        
-    }
+    
 
     // if there is no error for p, set path to p
     void OnPathComplete(Path p)
@@ -218,10 +152,7 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
         return stopPoint;
     }
 
-
-
     //    ------ Player Tools Interacting with Critters ------
-
 
     // When the critter is hit with a rifle, call FallAsleep()
     public virtual void OnRifleHit()
@@ -247,7 +178,7 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
             return;
         }
         Player.inventory.AddCritter(critterData);
-        CritterManager.DeleteCritter(this);
+        // CritterManager.DeleteCritter(this);
         Destroy(gameObject);
         CatchCritterDialogBehavior.Show(critterData);
     }
@@ -266,67 +197,28 @@ public abstract class CritterAI : MonoBehaviour, IRifleHittable, INetHittable, I
     {
         freeBody = true;
         float knockBackAmount = 10f;
-        
-        // make red color and turn sprite red
-        spriteRenderer.color = Color.red;
-
-        health -= 1;
-
-        if (health <= 0)
+        stamina -= 1;
+        Debug.Log(stamina);
+        if (stamina <= 0)
         {
-            knockedOut = true;
-            rb.drag = 5f;
-
-            GetComponent<ParticleSystem>().Play();
-            spriteRenderer.color = Color.clear;
-            yield return new WaitForSeconds(1.5f);
-
-            CritterManager.DeleteCritter(this);
-            Destroy(gameObject);
+            // We have to do this bc color is a readonly field
+            Color c = spriteRenderer.color;
+            c = new Color(0.6f, 0.6f, 0.6f);
+            spriteRenderer.color = c;
         }
-
         ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
         yield return new WaitForSeconds(0.5f);
 
-        // return sprite color back to normal
-        spriteRenderer.color = Color.white;
-
+        if (stamina <= 0)
+        {
+            knockedOut = true;
+            rb.drag = 5f;
+        }
         freeBody = false;
     }
 
     private void ApplyForce(Vector2 force) {
         externalVelocity += force;
     }
-
-
-    // calls DamagePlayer if an attack critter is within endDistance
-    public virtual void AttackCritterHit()
-    {
-        // if distance bettween critter and Player is 
-        if (Vector2.Distance(transform.position, Player.main.transform.position) < endDistance)
-        {
-            StartCoroutine(DamagePlayer());
-        }
-    }
-
-    // Subtracts health from player
-    IEnumerator DamagePlayer()
-    {
-        if (Player.main.GetComponent<Player>().health <= 0)
-        {
-            Debug.Log("Player dead");
-        }
-
-        // make red color and turn sprite red
-        Player.main.GetComponent<Player>().SpriteRenderer.color = Color.red;
-
-        Player.main.GetComponent<Player>().health -= 1;
-
-        yield return new WaitForSeconds(1.0f);
-
-        // return sprite color back to normal
-        Player.main.GetComponent<Player>().SpriteRenderer.color = Color.white;
-    }
-
 
 }

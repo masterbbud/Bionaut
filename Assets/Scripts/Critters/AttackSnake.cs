@@ -11,7 +11,7 @@ public class AttackSnake : CritterAI
     // sets seek point to Player
     protected override Vector2 CalculateBehavior()
     {
-        AttackCritterHit();
+        //AttackCritterHit();
         stopPoint = StopAttackPoint();
         return stopPoint;
 

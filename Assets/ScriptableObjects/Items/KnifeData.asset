@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Knife
   description: This is a knife
-  sprite: {fileID: 21300000, guid: 1990e225255a12e4e9e2c48566ae1d8b, type: 3}
+  sprite: {fileID: 21300000, guid: acc04f4dd878d4c188af31fc94ddadc8, type: 3}

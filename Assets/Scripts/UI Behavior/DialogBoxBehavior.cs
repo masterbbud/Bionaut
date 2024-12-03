@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 /*
@@ -41,6 +42,22 @@ public class DialogBoxBehavior : MonoBehaviour
         }
 
         // menuPanel.Add(radialButton);
+        SceneManager.sceneLoaded += SetMenuActiveByScene;
+    }
+    void SetMenuActiveByScene(Scene scene, LoadSceneMode mode)
+    {
+        // Player should be inactive on the planet map scene and start scene
+        if (scene.name == "PlanetMapScene" || scene.name == "MainMenu")
+        {
+            banner.style.display = DisplayStyle.None;
+            main.gameObject.SetActive(false);
+        }
+        // Player should be active on all other scenes
+        else
+        {
+            main.gameObject.SetActive(true);
+            banner.style.display = DisplayStyle.None;
+        }
     }
 
     /// <summary>
@@ -49,6 +66,7 @@ public class DialogBoxBehavior : MonoBehaviour
     private void Start()
     {
         menuPanel.style.display = DisplayStyle.Flex;
+        banner.style.display = DisplayStyle.None;
     }
 
     private void Update()
@@ -69,7 +87,9 @@ public class DialogBoxBehavior : MonoBehaviour
         StartCoroutine(FlashBanner(secs));
     }
 
-    IEnumerator FlashBanner(float secs) {
+    IEnumerator FlashBanner(float secs)
+    {
+        yield return new WaitForFixedUpdate();
         banner.style.display = DisplayStyle.Flex;
         yield return new WaitForSeconds(secs);
         banner.style.display = DisplayStyle.None;

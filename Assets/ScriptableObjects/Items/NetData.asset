@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Net
   description: This is a net
-  sprite: {fileID: 21300000, guid: d77a1f61145ab3f48ba6a7567eb7f199, type: 3}
+  sprite: {fileID: 21300000, guid: 7f2620aaff3614a4f9450955dc27180d, type: 3}

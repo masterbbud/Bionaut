@@ -50,22 +50,42 @@ public class MainMenuBehavior : MonoBehaviour
 
     public static bool showing = false;
     private static bool shouldShowMenu = false;
+    private static bool canShowMenu = false;
 
-    private static bool initialized = false;
+    private static GameObject main;
 
     //a ton of query selectors, and registering callback function
     private void Awake()
     {
-        if (initialized) {
+        if (main) {
             DestroyImmediate(gameObject);
             return;
         } else {
             DontDestroyOnLoad(gameObject);
-            initialized = true;
+            main = gameObject;
         }
 
         InitializeContent();
         RegisterAllCallbacks();
+        SceneManager.sceneLoaded += SetMenuActiveByScene;
+    }
+
+    void SetMenuActiveByScene(Scene scene, LoadSceneMode mode)
+    {
+        // Player should be inactive on the planet map scene and start scene
+        if (scene.name == "PlanetMapScene" || scene.name == "MainMenu")
+        {
+            CloseUI();
+            //main.SetActive(false);
+            canShowMenu = false;
+        }
+        // Player should be active on all other scenes
+        else
+        {
+            //main.SetActive(true);
+            canShowMenu = true;
+            CloseUI();
+        }
     }
 
     private void InitializeContent() {
@@ -122,7 +142,7 @@ public class MainMenuBehavior : MonoBehaviour
     private void Update()
     {
         //turn off and on the mainUI
-        if ((Input.GetKeyDown(KeyCode.E) || shouldShowMenu) && !showing && !CatchCritterDialogBehavior.showing)
+        if ((Input.GetKeyDown(KeyCode.E) || shouldShowMenu) && !showing && !CatchCritterDialogBehavior.showing && canShowMenu)
         {
             shouldShowMenu = false;
             mainMenuUI.rootVisualElement.style.display = DisplayStyle.Flex;

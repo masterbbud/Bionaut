@@ -17,6 +17,11 @@ public class ToolBeltBehavior : MonoBehaviour
     private Button emptyButton;
     private Player player;
 
+    //Visual elements for all the tools
+    private VisualElement knifeImage;
+    private VisualElement netImage;
+    private VisualElement rifleImage;
+
     //private ButtonCreation radialButton = new ButtonCreation();
 
     // If true, the UI is being shown. This allows us to stop other events when the
@@ -29,6 +34,10 @@ public class ToolBeltBehavior : MonoBehaviour
     private void Awake()
     {
         toolBeltUI = GetComponent<UIDocument>();
+        knifeImage = toolBeltUI.rootVisualElement.Q<VisualElement>("knife-image");
+        netImage = toolBeltUI.rootVisualElement.Q<VisualElement>("net-image");
+        rifleImage = toolBeltUI.rootVisualElement.Q<VisualElement>("rifle-image");
+
         netButton = toolBeltUI.rootVisualElement.Q<Button>("btn-net");
         rifleButton = toolBeltUI.rootVisualElement.Q<Button>("btn-rifle");
         emptyButton = toolBeltUI.rootVisualElement.Q<Button>("btn-empty");
@@ -77,18 +86,30 @@ public class ToolBeltBehavior : MonoBehaviour
         if (evt.target == emptyButton)
         {
             player.SelectTool(0);
+            knifeImage.style.display = DisplayStyle.None;
+            netImage.style.display = DisplayStyle.None;
+            rifleImage.style.display = DisplayStyle.None;
         }
         else if (evt.target == rifleButton)
         {
             player.SelectTool(1);
+            knifeImage.style.display = DisplayStyle.None;
+            netImage.style.display = DisplayStyle.None;
+            rifleImage.style.display = DisplayStyle.Flex;
         }
         else if (evt.target == netButton)
         {
             player.SelectTool(2);
+            knifeImage.style.display = DisplayStyle.None;
+            netImage.style.display = DisplayStyle.Flex;
+            rifleImage.style.display = DisplayStyle.None;
         }
         else if (evt.target == knifeButton)
         {
             player.SelectTool(3);
+            knifeImage.style.display = DisplayStyle.Flex;
+            netImage.style.display = DisplayStyle.None;
+            rifleImage.style.display = DisplayStyle.None;
         }
         evt.StopPropagation();
     }

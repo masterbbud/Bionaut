@@ -19,7 +19,7 @@ public class HealthUI : MonoBehaviour
     private GameObject player;
 
     // Max health
-    private float maxHealth = 7;
+    private float maxHealth = 100;
 
     //Saving reference to health as there is none in player
     private float health = 5;
@@ -31,10 +31,19 @@ public class HealthUI : MonoBehaviour
         healthUI = GetComponent<UIDocument>();
         healthLabel = healthUI.rootVisualElement.Q<Label>("healthLabel");
         healthBar = healthUI.rootVisualElement.Q<ProgressBar>();
+        health = player.GetComponent<Player>().health;
 
         //Set values
-        healthLabel.text = "Health: " + NumAsPercent(health) + "%";
         healthBar.value = health;
+        healthLabel.text = "Health: " + NumAsPercent(health) + "%";
+    }
+
+    //Update
+    void Update()
+    {
+        health = player.GetComponent<Player>().health;
+        healthBar.value = health;
+        healthLabel.text = "Health: " + NumAsPercent(health) + "%";
     }
 
     float NumAsPercent(float num)

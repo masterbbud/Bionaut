@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     private bool freezeMovement;
 
     [SerializeField]
-    private int maxHealth = 10;  // starting health variable
+    private int maxHealth = 100;  // starting health variable
 
     [SerializeField]
     public int health;  // changing health variable

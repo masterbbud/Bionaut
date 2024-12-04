@@ -12,7 +12,7 @@ public class CritterManager : MonoBehaviour
 {
 
     [SerializeField]
-    CritterAI tempCritter;
+    Critter tempCritter;
 
     [SerializeField]
     AudioManager audioManager;
@@ -24,14 +24,14 @@ public class CritterManager : MonoBehaviour
     
 
     // critter list
-    public static List<CritterAI> critters = new List<CritterAI>();
+    public static List<Critter> critters = new List<Critter>();
 
     // prevent non singleton constructor use
     protected CritterManager() { }
 
     private void Start()
     {
-        critters = new List<CritterAI>();
+        critters = new List<Critter>();
 
         spawnArea = GetComponent<Collider2D>();
 
@@ -44,7 +44,7 @@ public class CritterManager : MonoBehaviour
         // critter spawning
         for (int i = 0; i < tempCritterCount; i++)
         {
-            CritterAI newTempCritter = Instantiate(tempCritter, PickRandomPoint(), Quaternion.identity);
+            Critter newTempCritter = Instantiate(tempCritter, PickRandomPoint(), Quaternion.identity);
             critters.Add(newTempCritter);
             newTempCritter.AddComponent<LoopAroundPlanet>();
 
@@ -72,7 +72,7 @@ public class CritterManager : MonoBehaviour
     }
 
     // Deletes a critter from the list - this should ALWAYS be done when a critter is destroyed
-    public static void DeleteCritter(CritterAI critter)
+    public static void DeleteCritter(Critter critter)
     {
         critters.Remove(critter);
     }

@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 25aa02e963b8f476c90a79dcb1482cf5, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1305,12 +1305,35 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 1
+    spatialBlend: 0
     source: {fileID: 0}
   - name: LaserSound
     audioClip: {fileID: 8300000, guid: 0f628730af0ded545be6348284d4e5d0, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: BushSound
+    audioClip: {fileID: 8300000, guid: 781472bd04c8d7c4481f0e8664695913, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    source: {fileID: 0}
+  - name: GlorpSound
+    audioClip: {fileID: 8300000, guid: 391d5590bb067254193d41d9babf9f45, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    source: {fileID: 0}
+  - name: RattleSound
+    audioClip: {fileID: 8300000, guid: 933eca66b2fc21d4cbd807805e707e06, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
     source: {fileID: 0}
 --- !u!4 &329367970
 Transform:
@@ -35076,6 +35099,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1869152368396886202, guid: cd5d106fe2dc3de4db8d94815e2108d8, type: 3}
+      propertyPath: m_TagString
+      value: Rock
+      objectReference: {fileID: 0}
     - target: {fileID: 2085629679317979267, guid: cd5d106fe2dc3de4db8d94815e2108d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.59
@@ -36788,6 +36815,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1869152368396886202, guid: cd5d106fe2dc3de4db8d94815e2108d8, type: 3}
+      propertyPath: m_TagString
+      value: Rock
+      objectReference: {fileID: 0}
     - target: {fileID: 2085629679317979267, guid: cd5d106fe2dc3de4db8d94815e2108d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.56
@@ -37169,6 +37200,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5655151502149239945, guid: b775653fd05b39e429fbd98957913b87, type: 3}
+      propertyPath: m_PanelSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 972feef80ecf2b2418f968a3a432f8b1, type: 2}
     - target: {fileID: 6129763701920077318, guid: b775653fd05b39e429fbd98957913b87, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -43145,6 +43180,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1869152368396886202, guid: cd5d106fe2dc3de4db8d94815e2108d8, type: 3}
       propertyPath: m_Name
+      value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869152368396886202, guid: cd5d106fe2dc3de4db8d94815e2108d8, type: 3}
+      propertyPath: m_TagString
       value: Rock
       objectReference: {fileID: 0}
     - target: {fileID: 2085629679317979267, guid: cd5d106fe2dc3de4db8d94815e2108d8, type: 3}

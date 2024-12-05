@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4682794312802751012}
   m_Layer: 12
   m_Name: AttackSnake
-  m_TagString: Untagged
+  m_TagString: Agressive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,8 +202,7 @@ MonoBehaviour:
   endDistance: 1.5
   audioManager: {fileID: 0}
   critterData: {fileID: 11400000, guid: 81e14de7124aa4e46a6e8030e2c3f470, type: 2}
-  maxHealth: 3
-  health: 0
+  maxStamina: 1
 --- !u!198 &4084410030086677613
 ParticleSystem:
   m_ObjectHideFlags: 0

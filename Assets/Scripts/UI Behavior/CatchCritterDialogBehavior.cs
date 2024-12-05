@@ -117,6 +117,7 @@ public class CatchCritterDialogBehavior : MonoBehaviour
     private void TakeAlong(ClickEvent clickEvent) {
         Player.inventory.NameCritter(selectedCritter, nameField.value);
         if (Companion.main) {
+            Companion.main.GetComponent<Companion>().OnDeselect();
             DestroyImmediate(Companion.main);
         }
         GameObject companion = Instantiate(selectedCritter.prefab);

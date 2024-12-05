@@ -10,10 +10,10 @@ public class Companion : Critter
     //SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    float seekWeight;
+    protected float seekWeight;
 
     [SerializeField]
-    float distance;  // max distance that critter will flee or seek 
+    protected float distance;  // max distance that critter will flee or seek 
 
     public static GameObject main;
 
@@ -24,6 +24,7 @@ public class Companion : Critter
         max = spriteRenderer.bounds.max;
         DontDestroyOnLoad(gameObject);
         main = gameObject;
+        OnSelect();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -102,4 +103,12 @@ public class Companion : Critter
     public override void OnKnifeHit() {}
     public override void OnRifleHit() {}
     public override void OnNetHit() {}
+
+    public virtual void OnSelect() {
+
+    }
+
+    public virtual void OnDeselect() {
+        
+    }
 }

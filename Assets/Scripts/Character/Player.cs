@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     public int health;  // changing health variable
 
+    public bool isSpedUp = false;
 
 
     // Start is called before the first frame update
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
         main = gameObject;
         DontDestroyOnLoad(gameObject);
         inventory = transform.Find("Inventory").GetComponent<PlayerInventory>();
+        isSpedUp = false;
 
         // We want the player to be inactive on the planet map scene and the start scene
         SceneManager.sceneLoaded += SetPlayerActiveByScene;
@@ -107,7 +109,11 @@ public class Player : MonoBehaviour
         if (!freezeMovement) {
             Vector2 heading = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.velocity = heading * moveSpeed;
+            float moveSpeedModifier = 1.0f;
+            if (isSpedUp) {
+                moveSpeedModifier *= 1.5f;
+            }
+            rb.velocity = heading * moveSpeed * moveSpeedModifier;
         }
         else {
             rb.velocity = Vector2.zero;

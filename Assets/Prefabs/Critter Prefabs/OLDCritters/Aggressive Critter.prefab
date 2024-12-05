@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6503573006700466689}
   m_Layer: 12
   m_Name: Aggressive Critter
-  m_TagString: Untagged
+  m_TagString: Agressive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,9 +172,13 @@ MonoBehaviour:
   endDistance: 1
   maxDisBetweenCritters: 1
   critterData: {fileID: 11400000, guid: 81e14de7124aa4e46a6e8030e2c3f470, type: 2}
+  maxHealth: 30
+  health: 0
   mass: 1
   maxSpeed: 3
   audioManager: {fileID: 0}
+  animator: {fileID: 0}
+  facingDirection: {x: 0, y: 0, z: 0}
   wanderTime: 1
   wanderRadius: 1
   wanderWeight: 1

@@ -15,4 +15,4 @@ MonoBehaviour:
   planetName: Ardus
   description: Desert Planet-little to no water
   critters: []
-  sceneName: PlanetScene
+  sceneName: DryPlanet

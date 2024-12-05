@@ -97,6 +97,9 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     // Outlined within the childclasses
     protected virtual void StartSubclass() {}
 
+    //Sound Queue to be overwritten
+    protected virtual void PlaySound() {}
+
     // Update Method
     void Update()
     {
@@ -109,6 +112,11 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
         }
         
         totalForces = Vector2.zero;
+
+        if (UnityEngine.Random.Range(0f, 10f) < 0.002f)
+        {
+            PlaySound();
+        }
     }
 
     // abstract method = you implement the function in each child class

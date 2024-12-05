@@ -140,5 +140,8 @@ public class CuriousCritter : Critter
         }
     }
 
-
+    protected override void PlaySound()
+    {
+        FindObjectOfType<AudioManager>().Play("GlorpSound");
+    }
 }

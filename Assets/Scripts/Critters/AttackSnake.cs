@@ -29,4 +29,13 @@ public class AttackSnake : CritterAI
         //Vector2 closestPoint = (Vector2)Player.main.transform.position + (directionToCenter * endDistance);
         //Gizmos.DrawLine(transform.position, closestPoint);
     }
+
+    private void Update()
+    {
+        if (UnityEngine.Random.Range(0f, 10f) < 2f)
+        {
+            Debug.Log("Running");
+            FindObjectOfType<AudioManager>().Play("LaserSound");
+        }
+    }
 }

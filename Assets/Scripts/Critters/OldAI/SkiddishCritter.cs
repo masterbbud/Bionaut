@@ -119,5 +119,9 @@ public class SkiddishCritter : Critter
         }
     }
 
+    protected override void PlaySound()
+    {
+        FindObjectOfType<AudioManager>().Play("BushSound");
+    }
 
 }

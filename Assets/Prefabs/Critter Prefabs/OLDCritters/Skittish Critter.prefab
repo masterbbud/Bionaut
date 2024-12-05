@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 69
   m_Sprite: {fileID: 21300000, guid: 6bfe328942c69f64792e74ccbfe05701, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -172,9 +172,13 @@ MonoBehaviour:
   endDistance: 1
   maxDisBetweenCritters: 1
   critterData: {fileID: 11400000, guid: 27d98e4eb9d9d83488682a5009ec0828, type: 2}
+  maxHealth: 30
+  health: 0
   mass: 1
   maxSpeed: 4
   audioManager: {fileID: 0}
+  animator: {fileID: 0}
+  facingDirection: {x: 0, y: 0, z: 0}
   wanderTime: 1
   wanderRadius: 1
   bushSeekRadius: 8

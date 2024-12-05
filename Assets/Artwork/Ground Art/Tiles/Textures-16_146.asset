@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Textures-16_146
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -95133327, guid: e4a86ec6ab077ef44854fcf9151a0376, type: 3}
-  m_Color: {r: 0.9496855, g: 0.76292837, b: 0.6181914, a: 1}
+  m_Color: {r: 0.6603774, g: 0.41753188, b: 0.22635566, a: 1}
   m_Transform:
     e00: 1
     e01: 0

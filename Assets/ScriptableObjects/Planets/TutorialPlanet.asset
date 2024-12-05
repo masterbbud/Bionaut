@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0b3c1a6c854704d84f0de55dd528a6, type: 3}
   m_Name: TutorialPlanet
   m_EditorClassIdentifier: 
-  planetName: Tutorial Planet
-  description: This is the first planet
+  planetName: Silva
+  description: Grassland Planet- Filled with life and wonder
   critters:
-  - {fileID: 11400000, guid: 5e8297ca5cf3628419e7fb716e546340, type: 2}
+  - {fileID: 11400000, guid: b50a1accd29fd5148b68a1897fb8e920, type: 2}
+  - {fileID: 11400000, guid: 27d98e4eb9d9d83488682a5009ec0828, type: 2}
+  - {fileID: 11400000, guid: 81e14de7124aa4e46a6e8030e2c3f470, type: 2}
   sceneName: PlanetScene

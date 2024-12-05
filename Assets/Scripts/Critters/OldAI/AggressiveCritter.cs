@@ -98,5 +98,8 @@ public class AggressiveCritter : Critter
 
     }
 
-   
+    protected override void PlaySound()
+    {
+        FindObjectOfType<AudioManager>().Play("RattleSound");
+    }
 }

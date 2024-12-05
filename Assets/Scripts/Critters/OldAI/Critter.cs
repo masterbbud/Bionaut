@@ -62,8 +62,17 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     // max speed.
     private bool freeBody = false;    // ??
     private bool knockedOut = false;   // is the critter knocked out
-    private int stamina;   // like health?
-    private int maxStamina;   // like health?
+    //private int stamina;   // like health?
+    //private int maxStamina;   // like health?
+
+
+    [SerializeField]
+    private int maxHealth = 30;  // starting health variable
+
+    [SerializeField]
+    private int health;  // changing health variable
+
+
 
     [SerializeField]
     float mass = 1f;  // mass of critter; used in ApplyForces()
@@ -77,6 +86,9 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     protected BehaviourEnum lastBehavior = BehaviourEnum.FLEE;
     protected float stayInStateTime = 0.0f;
 
+    public Animator animator;
+    public Vector3 facingDirection = Vector3.zero;
+
 
 
     /*
@@ -89,13 +101,17 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        stamina = maxStamina;
+        //stamina = maxStamina;
+        health = maxHealth;
         randWanderAngle = UnityEngine.Random.Range(0f, 360f);
         StartSubclass();
     }
 
     // Outlined within the childclasses
     protected virtual void StartSubclass() {}
+
+    //Sound Queue to be overwritten
+    protected virtual void PlaySound() {}
 
     // Update Method
     void Update()
@@ -109,7 +125,57 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
         }
         
         totalForces = Vector2.zero;
+
+        if (UnityEngine.Random.Range(0f, 10f) < 0.002f)
+        {
+            PlaySound();
+        }
+        UpdateAnimation();
     }
+
+
+    // Update Animation Method
+    void UpdateAnimation()
+    {
+        // Update walking animation
+        if (rb.velocity != Vector2.zero)
+        {
+            animator.SetBool("Walking", true);
+            animator.SetFloat("Horizontal", rb.velocity.x);
+            animator.SetFloat("Vertical", rb.velocity.y);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
+        }
+
+        // We want to use the facing direction based on the player moving direction
+
+        if (rb.velocity != Vector2.zero)
+        {
+            double angle = Math.Atan2(rb.velocity.y, rb.velocity.x);
+            angle /= Math.PI / 2;
+            if (angle == 1.5 || angle == -0.5)
+            {
+                angle += 0.5;
+                // The animator treats direction slightly differently, so we have to do this to prioritize
+                // the sideways angles
+            }
+            angle = Math.Floor(angle);
+            angle *= Math.PI / 2;
+            facingDirection = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0);
+
+            // TODO this has imperfect behavior when traveling against a wall
+        }
+
+    }
+
+
+
+
+
+
+
 
     // abstract method = you implement the function in each child class
     protected abstract Vector2 CalculateSteeringForces();
@@ -439,22 +505,58 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     {
         freeBody = true;
         float knockBackAmount = 250f;
-        stamina -= 1;
-        Debug.Log(stamina);
-        if (stamina <= 0) {
+
+        // make red color and turn sprite red
+        spriteRenderer.color = Color.red;
+
+        health -= 10;
+
+        if (health <= 0) {
+            knockedOut = true;
+            rb.drag = 5f;
+
             // We have to do this bc color is a readonly field
             Color c = spriteRenderer.color;
             c = new Color(0.6f, 0.6f, 0.6f);
             spriteRenderer.color = c;
         }
+        
         ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
         yield return new WaitForSeconds(0.5f);
-        
-        if (stamina <= 0) {
-            knockedOut = true;
-            rb.drag = 5f;
-        }
+
+        spriteRenderer.color = Color.white;
+
         freeBody = false;
+    }
+
+
+    // calls DamagePlayer if an attack critter is within endDistance
+    public virtual void AttackCritterHit()
+    {
+        // if distance bettween critter and Player is 
+        if (Vector2.Distance(transform.position, Player.main.transform.position) < endDistance)
+        {
+            StartCoroutine(DamagePlayer());
+        }
+    }
+
+    // Subtracts health from player
+    IEnumerator DamagePlayer()
+    {
+        if (Player.main.GetComponent<Player>().health <= 0)
+        {
+            Debug.Log("Player dead");
+        }
+
+        // make red color and turn sprite red
+        Player.main.GetComponent<Player>().SpriteRenderer.color = Color.red;
+
+        Player.main.GetComponent<Player>().health -= 10;
+
+        yield return new WaitForSeconds(1.0f);
+
+        // return sprite color back to normal
+        Player.main.GetComponent<Player>().SpriteRenderer.color = Color.white;
     }
 
 

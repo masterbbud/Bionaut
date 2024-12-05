@@ -79,6 +79,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     public string GetCritterName(CritterData critter) {
+        Debug.Log(critterNames[critter]);
         return critterNames[critter];
     }
 }

@@ -5,13 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class SlimeCompanion : Companion
+public class BushCompanion : Companion
 {
 
     [SerializeField]
-    private float bounceRadius = 5;
+    private float killRadius = 5;
 
-    private GameObject closestEnemy;
+    private GameObject closest;
 
     // this method was created in parent class but each child class has to implement it separately
     protected override Vector2 CalculateSteeringForces()
@@ -42,14 +42,14 @@ public class SlimeCompanion : Companion
             spriteRenderer.flipX = true;
         }
 
-        Debug.Log(closestEnemy);
-        if (closestEnemy != null && !closestEnemy.IsDestroyed() && Vector2.Distance(transform.position, closestEnemy.transform.position) < bounceRadius) {
+        Debug.Log(closest);
+        if (closest != null && !closest.IsDestroyed() && Vector2.Distance(transform.position, closest.transform.position) < killRadius) {
             maxSpeed = 12;
-            if (Vector2.Distance(transform.position, closestEnemy.transform.position) < 1.5f) {
-                closestEnemy.GetComponent<Critter>().BounceAway(transform.position);
-                closestEnemy = null;
+            if (Vector2.Distance(transform.position, closest.transform.position) < 2.5f) {
+                Destroy(closest);
+                closest = null;
             } else {
-                return Seek(closestEnemy.transform.position) - rb.velocity;
+                return Seek(closest.transform.position) - rb.velocity;
             }
         }
 
@@ -57,8 +57,6 @@ public class SlimeCompanion : Companion
         {
             return -1 * rb.velocity;
         }
-
-
 
         Vector2 fullForce = seekForce + pathForce;
         fullForce -= fullForce * 2 * Mathf.Pow(20, -1 * Mathf.Abs(Vector2.Distance(transform.position, Player.main.transform.position) - playerRadius / 2));
@@ -68,7 +66,7 @@ public class SlimeCompanion : Companion
 
     protected override Vector2 CalculateBehavior()
     {
-        GameObject[] agressives = GameObject.FindGameObjectsWithTag("Agressive");
+        GameObject[] agressives = GameObject.FindGameObjectsWithTag("Rock");
         float dist = 9999;
         GameObject closest = null;
         foreach (GameObject agg in agressives) {
@@ -77,8 +75,8 @@ public class SlimeCompanion : Companion
                 closest = agg;
             }
         }
-        if (dist < bounceRadius) {
-            closestEnemy = closest;
+        if (dist < killRadius) {
+            this.closest = closest;
             return closest.transform.position;
         }
         return StopAttackPoint();

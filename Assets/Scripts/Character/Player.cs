@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             float moveSpeedModifier = 1.0f;
             if (isSpedUp) {
-                moveSpeedModifier *= 1.5f;
+                moveSpeedModifier *= 1.35f;
             }
             rb.velocity = heading * moveSpeed * moveSpeedModifier;
         }

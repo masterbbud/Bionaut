@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlobCritter
   m_EditorClassIdentifier: 
   critterName: Blob
-  description: This is a blob. It blobs around.
+  description: This is a blob. It blobs around. Will protect you from agressive creatures.
   sprites:
   - {fileID: 21300000, guid: 24e40a3a4de9d894592356dc08e0182b, type: 3}
   - {fileID: 21300000, guid: 15cf061bf8010714ebf9666401c99012, type: 3}

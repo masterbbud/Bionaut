@@ -515,14 +515,16 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
                 knockedOut = true;
                 rb.drag = 5f;
 
-                // We have to do this bc color is a readonly field
-                Color c = spriteRenderer.color;
-                c = new Color(0.6f, 0.6f, 0.6f);
-                spriteRenderer.color = c;
+                GetComponent<ParticleSystem>().Play();
+                spriteRenderer.color = Color.clear;
+                yield return new WaitForSeconds(1.5f);
+
+                CritterManager.DeleteCritter(this);
+                Destroy(gameObject);
             }
 
         }
-        
+
         ApplyForce((transform.position - from).normalized * knockBackAmount);
         yield return new WaitForSeconds(0.5f);
 
@@ -530,6 +532,8 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
 
         freeBody = false;
     }
+
+
 
     public void BounceAway(Vector2 from) {
         if (!knockedOut) {

@@ -116,10 +116,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8299984015497435401}
-    m_Position: {x: 290, y: 120, z: 0}
+    m_Position: {x: 290, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6450283075030438963}
-    m_Position: {x: 120, y: -120, z: 0}
+    m_Position: {x: -10, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4067539723880748985}
     m_Position: {x: 300, y: 200, z: 0}
@@ -144,18 +144,6 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: IsFleeing
     m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Horizontal
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Vertical
-    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0

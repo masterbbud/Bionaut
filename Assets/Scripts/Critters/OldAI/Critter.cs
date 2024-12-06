@@ -61,7 +61,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     // While true, the critter doesn't move on its own and can go beyond its
     // max speed.
     private bool freeBody = false;    // ??
-    private bool knockedOut = false;   // is the critter knocked out
+    public bool knockedOut = false;   // is the critter knocked out
     //private int stamina;   // like health?
     //private int maxStamina;   // like health?
 
@@ -129,43 +129,6 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
         if (UnityEngine.Random.Range(0f, 10f) < 0.002f)
         {
             PlaySound();
-        }
-        UpdateAnimation();
-    }
-
-
-    // Update Animation Method
-    void UpdateAnimation()
-    {
-        // Update walking animation
-        // if (rb.velocity != Vector2.zero)
-        // {
-        //     animator.SetBool("Walking", true);
-        //     animator.SetFloat("Horizontal", rb.velocity.x);
-        //     animator.SetFloat("Vertical", rb.velocity.y);
-        // }
-        // else
-        // {
-        //     animator.SetBool("Walking", false);
-        // }
-
-        // We want to use the facing direction based on the player moving direction
-
-        if (rb.velocity != Vector2.zero)
-        {
-            double angle = Math.Atan2(rb.velocity.y, rb.velocity.x);
-            angle /= Math.PI / 2;
-            if (angle == 1.5 || angle == -0.5)
-            {
-                angle += 0.5;
-                // The animator treats direction slightly differently, so we have to do this to prioritize
-                // the sideways angles
-            }
-            angle = Math.Floor(angle);
-            angle *= Math.PI / 2;
-            facingDirection = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0);
-
-            // TODO this has imperfect behavior when traveling against a wall
         }
 
     }
@@ -319,14 +282,17 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     // radius around player for attack player to stop
     public Vector2 StopAttackPoint()
     {
-        // Get the vector from the GameObject to the circle's center
         Vector2 directionToCenter = (transform.position - Player.main.transform.position).normalized;
 
-        // Calculate the closest point on the circle
-        Vector2 stopPoint = (Vector2)Player.main.transform.position + (directionToCenter * endDistance);
+        // Dynamically adjust the stop distance based on player speed or other factors
+        float playerSpeed = Player.main.GetComponent<Rigidbody2D>().velocity.magnitude;
+        float dynamicDistance = endDistance + (playerSpeed * 0.1f); // Scale distance by player speed
+
+        Vector2 stopPoint = (Vector2)Player.main.transform.position + (directionToCenter * dynamicDistance);
 
         return stopPoint;
     }
+
 
 
     // Seek

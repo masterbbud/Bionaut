@@ -73,7 +73,7 @@ public class SkiddishCritter : Critter
         if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
         {
             maxSpeed = 10;
-            // return fleeForce; // wanderForce + separationForce + cohesionForce + alignmentForce;
+            return fleeForce; //wanderForce + separationForce + cohesionForce + alignmentForce;
         }
 
         maxSpeed = 3;

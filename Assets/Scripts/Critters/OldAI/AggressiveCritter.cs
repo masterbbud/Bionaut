@@ -81,6 +81,7 @@ public class AggressiveCritter : Critter
 
     protected override Vector2 CalculateBehavior()
     {
+        AttackCritterHit();
         return StopAttackPoint();
 
     }

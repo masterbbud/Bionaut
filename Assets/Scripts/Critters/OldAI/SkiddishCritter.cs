@@ -68,15 +68,15 @@ public class SkiddishCritter : Critter
 
 
     // Gizmos Method
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.green;
 
-        if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
-        {
-            Gizmos.DrawLine(Player.main.transform.position, transform.position);
-        }
-    }
+    //     if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
+    //     {
+    //         Gizmos.DrawLine(Player.main.transform.position, transform.position);
+    //     }
+    // }
 
 
 }

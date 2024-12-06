@@ -170,6 +170,8 @@ MonoBehaviour:
   mass: 1
   maxSpeed: 4
   audioManager: {fileID: 0}
+  animator: {fileID: 7845719797132784782}
+  facingDirection: {x: 0, y: 0, z: 0}
   wanderTime: 1
   wanderRadius: 1
   wanderWeight: 1

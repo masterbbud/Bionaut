@@ -38334,7 +38334,7 @@ PrefabInstance:
     - target: {fileID: 156896474629470394, guid: f6974f61940c47943bbd2af75ed7f21f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 28aa59cd230dc064293bb79add6cdfe9, type: 3}
+      objectReference: {fileID: 193818144, guid: a311669d0004be34b9f624b604d13bda, type: 3}
     - target: {fileID: 156896474629470394, guid: f6974f61940c47943bbd2af75ed7f21f, type: 3}
       propertyPath: m_SortingOrder
       value: 10
@@ -39903,7 +39903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af50c6c6b0602e1468734dbb54285898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPartData: {fileID: 11400000, guid: 55e9f9ccc6d75524683836630608745a, type: 2}
+  shipPartData: {fileID: 11400000, guid: ad4770cac6cad5d47ae3d6aae1d31e66, type: 2}
 --- !u!1001 &1987228598
 PrefabInstance:
   m_ObjectHideFlags: 0

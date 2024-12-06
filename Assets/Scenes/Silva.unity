@@ -35540,7 +35540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempCritter: {fileID: 1105663142395349783, guid: d4bd8181fc0b5a34eafb32c6250dd150, type: 3}
   audioManager: {fileID: 0}
-  tempCritterCount: 2
+  tempCritterCount: 5
 --- !u!4 &994751695
 Transform:
   m_ObjectHideFlags: 0
@@ -36265,7 +36265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempCritter: {fileID: 6091291411343304234, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
   audioManager: {fileID: 0}
-  tempCritterCount: 2
+  tempCritterCount: 5
 --- !u!4 &1179864653
 Transform:
   m_ObjectHideFlags: 0

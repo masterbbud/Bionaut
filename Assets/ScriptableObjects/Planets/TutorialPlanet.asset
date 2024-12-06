@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutorialPlanet
   m_EditorClassIdentifier: 
   planetName: Silva
-  description: Grassland Planet- Filled with life and wonder
+  description: New Home- Lush grass oh my!
   critters:
   - {fileID: 11400000, guid: b50a1accd29fd5148b68a1897fb8e920, type: 2}
   - {fileID: 11400000, guid: 27d98e4eb9d9d83488682a5009ec0828, type: 2}

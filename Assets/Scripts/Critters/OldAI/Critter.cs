@@ -110,6 +110,9 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     // Outlined within the childclasses
     protected virtual void StartSubclass() {}
 
+    //Sound Queue to be overwritten
+    protected virtual void PlaySound() {}
+
     // Update Method
     void Update()
     {
@@ -123,6 +126,10 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
         
         totalForces = Vector2.zero;
 
+        if (UnityEngine.Random.Range(0f, 10f) < 0.002f)
+        {
+            PlaySound();
+        }
         UpdateAnimation();
     }
 
@@ -131,16 +138,16 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     void UpdateAnimation()
     {
         // Update walking animation
-        if (rb.velocity != Vector2.zero)
-        {
-            animator.SetBool("Walking", true);
-            animator.SetFloat("Horizontal", rb.velocity.x);
-            animator.SetFloat("Vertical", rb.velocity.y);
-        }
-        else
-        {
-            animator.SetBool("Walking", false);
-        }
+        // if (rb.velocity != Vector2.zero)
+        // {
+        //     animator.SetBool("Walking", true);
+        //     animator.SetFloat("Horizontal", rb.velocity.x);
+        //     animator.SetFloat("Vertical", rb.velocity.y);
+        // }
+        // else
+        // {
+        //     animator.SetBool("Walking", false);
+        // }
 
         // We want to use the facing direction based on the player moving direction
 
@@ -489,37 +496,49 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     public virtual void OnKnifeHit()
     {
         if (!knockedOut) {
-            StartCoroutine(KnockBack());
+            StartCoroutine(KnockBack(true, 250f, Player.main.transform.position));
         }
     }
 
     // critter gets knocked back and loses stamina
-    IEnumerator KnockBack()
+    IEnumerator KnockBack(bool damage, float knockBackAmount, Vector3 from)
     {
         freeBody = true;
-        float knockBackAmount = 250f;
 
-        // make red color and turn sprite red
-        spriteRenderer.color = Color.red;
 
-        health -= 10;
+        if (damage) {
+            // make red color and turn sprite red
+            spriteRenderer.color = Color.red;
+            health -= 10;
 
-        if (health <= 0) {
-            knockedOut = true;
-            rb.drag = 5f;
+            if (health <= 0) {
+                knockedOut = true;
+                rb.drag = 5f;
 
-            // We have to do this bc color is a readonly field
-            Color c = spriteRenderer.color;
-            c = new Color(0.6f, 0.6f, 0.6f);
-            spriteRenderer.color = c;
+                GetComponent<ParticleSystem>().Play();
+                spriteRenderer.color = Color.clear;
+                yield return new WaitForSeconds(1.5f);
+
+                CritterManager.DeleteCritter(this);
+                Destroy(gameObject);
+            }
+
         }
-        
-        ApplyForce((transform.position - Player.main.transform.position).normalized * knockBackAmount);
+
+        ApplyForce((transform.position - from).normalized * knockBackAmount);
         yield return new WaitForSeconds(0.5f);
 
         spriteRenderer.color = Color.white;
 
         freeBody = false;
+    }
+
+
+
+    public void BounceAway(Vector2 from) {
+        if (!knockedOut) {
+            StartCoroutine(KnockBack(false, 500f, from));
+        }
     }
 
 

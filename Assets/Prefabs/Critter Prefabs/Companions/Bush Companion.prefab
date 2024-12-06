@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6584050090832601128}
   - component: {fileID: 7858478440446397434}
-  - component: {fileID: 5717164367610965649}
   - component: {fileID: 1083241379483199499}
   - component: {fileID: 7651496543860651043}
   - component: {fileID: 8369873233053049891}
   - component: {fileID: 3569322935622300210}
+  - component: {fileID: 5886238118406010188}
+  - component: {fileID: 3759932484743679781}
   m_Layer: 11
   m_Name: Bush Companion
   m_TagString: Untagged
@@ -89,28 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5717164367610965649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3222268276995171313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3bf501033ccdf046bc2a8d95c4449aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 7858478440446397434}
-  maxForce: 7
-  maxDistance: 1
-  critterData: {fileID: 0}
-  rb: {fileID: 1083241379483199499}
-  mass: 1
-  maxSpeed: 6
-  maxStamina: 0
-  seekWeight: 4
-  distance: 3
 --- !u!50 &1083241379483199499
 Rigidbody2D:
   serializedVersion: 4
@@ -4979,3 +4958,64 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5886238118406010188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222268276995171313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &3759932484743679781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222268276995171313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99d8c26042317c4787102c2d8f71a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  rb: {fileID: 0}
+  maxForce: 5
+  speed: 5.5
+  playerRadius: 10
+  nextWaypointDistance: 1
+  repathRate: 0.5
+  endDistance: 1
+  maxDisBetweenCritters: 1
+  critterData: {fileID: 0}
+  maxHealth: 30
+  health: 0
+  mass: 1
+  maxSpeed: 6
+  audioManager: {fileID: 0}
+  animator: {fileID: 0}
+  facingDirection: {x: 0, y: 0, z: 0}
+  seekWeight: 1
+  pathWeight: 4
+  distance: 3
+  killRadius: 7

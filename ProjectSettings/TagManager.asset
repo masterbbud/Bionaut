@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bush
+  - Agressive
+  - Rock
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Companion
   - Critter
   - Interaction
-  - 
+  - Bush
   - 
   - 
   - 

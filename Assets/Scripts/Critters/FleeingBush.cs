@@ -16,6 +16,7 @@ public class FleeingBush : CritterAI
     // sets the position for the critter to "flee" to
     protected override Vector2 CalculateBehavior()
     {
+        
         fleePoint = PickFleePoint();
         return fleePoint;
         

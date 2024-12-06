@@ -10,7 +10,7 @@ public class AggressiveCritter : Critter
     float wanderTime, wanderRadius;  // time in seconds for CalcFutureTime(), radius of target point
 
     [SerializeField]
-    float wanderWeight, seekWeight; // weights for behaviors
+    float wanderWeight, seekWeight, pathWeight; // weights for behaviors
 
     // separationWeight, cohesionWeight, alignmentWeight;
 
@@ -33,6 +33,13 @@ public class AggressiveCritter : Critter
         Vector2 wanderForce = Wander(wanderTime, wanderRadius) * wanderWeight;
 
         Vector2 seekForce = Seek(Player.main.transform.position) * seekWeight;
+
+        Vector2 pathForce = Vector2.zero;
+        
+        if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius)
+        {
+            pathForce = SeekOnPath() * pathWeight;
+        }
 
         //Vector2 separationForce = Separation(CritterManager.critters) * separationWeight;
 
@@ -61,12 +68,23 @@ public class AggressiveCritter : Critter
             maxSpeed = 5;
             return -1 * rb.velocity + seekForce; // + wanderForce + separationForce + cohesionForce + alignmentForce;
         }
+
         maxSpeed = 3;
-        return wanderForce; // + separationForce + cohesionForce + alignmentForce;
+
+        
+        Vector2 fullForce = wanderForce + pathForce;
+        fullForce -= fullForce * 2 * Mathf.Pow(20, -1 * Mathf.Abs(Vector2.Distance(transform.position, Player.main.transform.position) - playerRadius / 2));
+
+        return fullForce;
 
     }
 
+    protected override Vector2 CalculateBehavior()
+    {
+        AttackCritterHit();
+        return StopAttackPoint();
 
+    }
 
     // Gizmos Method
     private void OnDrawGizmos()
@@ -81,5 +99,8 @@ public class AggressiveCritter : Critter
 
     }
 
-   
+    protected override void PlaySound()
+    {
+        FindObjectOfType<AudioManager>().Play("RattleSound");
+    }
 }

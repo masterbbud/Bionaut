@@ -10,7 +10,7 @@ public class CuriousCritter : Critter
     float wanderTime, wanderRadius;   // time in seconds for CalcFutureTime(), radius of target point
 
     [SerializeField]
-    float wanderWeight, seekWeight, fleeWeight;  // weights for behaviors
+    float wanderWeight, seekWeight, fleeWeight, pathWeight;  // weights for behaviors
 
     // separationWeight, cohesionWeight, alignmentWeight;
 
@@ -37,6 +37,13 @@ public class CuriousCritter : Critter
         Vector2 seekForce = Seek(Player.main.transform.position) * seekWeight;
 
         Vector2 fleeForce = Flee(Player.main.transform.position) * fleeWeight;
+        
+        Vector2 pathForce = Vector2.zero;
+        
+        if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius)
+        {
+            pathForce = SeekOnPath() * pathWeight;
+        }
 
         //Vector2 separationForce = Separation(CritterManager.critters) * separationWeight;
 
@@ -59,27 +66,63 @@ public class CuriousCritter : Critter
         }
 
         // if the player is within a distance - critter flees
-        if (Vector2.Distance(Player.main.transform.position, transform.position) < fleeDistance)
-        {
-            maxSpeed = 10;
-            return fleeForce;
-            // + wanderForce + separationForce + cohesionForce + alignmentForce;
-        }
-        // if the player is within a distance and player/critter distance is greater than 4 - critter seeks
-        else if (Vector2.Distance(Player.main.transform.position, transform.position) < seekDistance && Vector2.Distance(Player.main.transform.position, transform.position) > 4)
-        {
-            maxSpeed = 3;
-            return -1 * rb.velocity + seekForce;
-            // + wanderForce + separationForce + cohesionForce + alignmentForce;
-        }
+        // if (Vector2.Distance(Player.main.transform.position, transform.position) < fleeDistance)
+        // {
+        //     maxSpeed = 10;
+        //     return fleeForce;
+        //     // + wanderForce + separationForce + cohesionForce + alignmentForce;
+        // }
+        // // if the player is within a distance and player/critter distance is greater than 4 - critter seeks
+        // else if (Vector2.Distance(Player.main.transform.position, transform.position) < seekDistance && Vector2.Distance(Player.main.transform.position, transform.position) > 4)
+        // {
+        //     maxSpeed = 3;
+        //     return -1 * rb.velocity + seekForce;
+        //     // + wanderForce + separationForce + cohesionForce + alignmentForce;
+        // }
         // otherwise wander
         maxSpeed = 3;
-        return wanderForce;
+
+        
+        Vector2 fullForce = wanderForce + pathForce;
+        fullForce -= fullForce * 2 * Mathf.Pow(20, -1 * Mathf.Abs(Vector2.Distance(transform.position, Player.main.transform.position) - playerRadius / 2));
+
+        return fullForce;
         // + separationForce + cohesionForce + alignmentForce;
 
     }
 
-
+    // sets the position for the critter to "flee" to
+    protected override Vector2 CalculateBehavior()
+    {
+        // if (stayInStateTime > 0) {
+        //     stayInStateTime -= Time.deltaTime;
+        //     if (lastBehavior == BehaviourEnum.FLEE) {
+        //         return PickFleePoint();
+        //     }
+        //     else if (lastBehavior == BehaviourEnum.ATTACK) {
+        //         return StopAttackPoint();
+        //     }
+        // }
+        // stayInStateTime = 0.5f;
+        // Debug.Log("reevaluating");
+        if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius / 2)
+        {
+            if (lastBehavior != BehaviourEnum.FLEE) {
+                rb.velocity /= 4;
+            }
+            lastBehavior = BehaviourEnum.FLEE;
+            return PickFleePoint();
+        }
+        else
+        {
+            if (lastBehavior != BehaviourEnum.ATTACK) {
+                rb.velocity /= 4;
+            }
+            lastBehavior = BehaviourEnum.ATTACK;
+            return StopAttackPoint();
+        }
+        
+    }
 
     // Gizmos Method
     private void OnDrawGizmos()
@@ -97,5 +140,8 @@ public class CuriousCritter : Critter
         }
     }
 
-
+    protected override void PlaySound()
+    {
+        FindObjectOfType<AudioManager>().Play("GlorpSound");
+    }
 }

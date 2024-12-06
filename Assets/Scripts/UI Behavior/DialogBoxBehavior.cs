@@ -47,7 +47,7 @@ public class DialogBoxBehavior : MonoBehaviour
     void SetMenuActiveByScene(Scene scene, LoadSceneMode mode)
     {
         // Player should be inactive on the planet map scene and start scene
-        if (scene.name == "PlanetMapScene" || scene.name == "MainMenu")
+        if (scene.name == "PlanetMapScene" || scene.name == "MainMenu" || scene.name == "Ardus")
         {
             banner.style.display = DisplayStyle.None;
             main.gameObject.SetActive(false);

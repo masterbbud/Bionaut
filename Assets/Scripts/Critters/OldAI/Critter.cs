@@ -130,43 +130,6 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
         {
             PlaySound();
         }
-        UpdateAnimation();
-    }
-
-
-    // Update Animation Method
-    void UpdateAnimation()
-    {
-        // Update walking animation
-        // if (rb.velocity != Vector2.zero)
-        // {
-        //     animator.SetBool("Walking", true);
-        //     animator.SetFloat("Horizontal", rb.velocity.x);
-        //     animator.SetFloat("Vertical", rb.velocity.y);
-        // }
-        // else
-        // {
-        //     animator.SetBool("Walking", false);
-        // }
-
-        // We want to use the facing direction based on the player moving direction
-
-        if (rb.velocity != Vector2.zero)
-        {
-            double angle = Math.Atan2(rb.velocity.y, rb.velocity.x);
-            angle /= Math.PI / 2;
-            if (angle == 1.5 || angle == -0.5)
-            {
-                angle += 0.5;
-                // The animator treats direction slightly differently, so we have to do this to prioritize
-                // the sideways angles
-            }
-            angle = Math.Floor(angle);
-            angle *= Math.PI / 2;
-            facingDirection = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0);
-
-            // TODO this has imperfect behavior when traveling against a wall
-        }
 
     }
 

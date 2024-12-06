@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BushCritter
   m_EditorClassIdentifier: 
   critterName: Bush
-  description: It's cute and very bushy.
+  description: It's cute and very bushy. Can destroy boulders.
   sprites:
   - {fileID: 21300000, guid: fda5cf9320e4b8842957e382b0300a99, type: 3}
   - {fileID: 21300000, guid: 2d4296ad4368edc45ab5dea3a751428f, type: 3}

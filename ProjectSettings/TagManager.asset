@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bush
+  - Agressive
+  - Rock
   layers:
   - Default
   - TransparentFX

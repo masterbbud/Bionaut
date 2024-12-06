@@ -274,6 +274,7 @@ public class MainMenuBehavior : MonoBehaviour
 
     private void ChoosePlayerCritter(ClickEvent evt) {
         if (Companion.main) {
+            Companion.main.GetComponent<Companion>().OnDeselect();
             DestroyImmediate(Companion.main);
         }
         Instantiate(selectedCritter.prefab);

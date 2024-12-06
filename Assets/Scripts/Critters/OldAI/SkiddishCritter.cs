@@ -73,7 +73,7 @@ public class SkiddishCritter : Critter
         if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
         {
             maxSpeed = 10;
-            // return fleeForce; // wanderForce + separationForce + cohesionForce + alignmentForce;
+            return fleeForce; //wanderForce + separationForce + cohesionForce + alignmentForce;
         }
 
         maxSpeed = 3;
@@ -109,15 +109,19 @@ public class SkiddishCritter : Critter
     }
 
     // Gizmos Method
-    private void OnDrawGizmos()
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.green;
+
+    //     if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
+    //     {
+    //         Gizmos.DrawLine(Player.main.transform.position, transform.position);
+    //     }
+    // }
+
+    protected override void PlaySound()
     {
-        Gizmos.color = Color.green;
-
-        if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
-        {
-            Gizmos.DrawLine(Player.main.transform.position, transform.position);
-        }
+        FindObjectOfType<AudioManager>().Play("BushSound");
     }
-
 
 }

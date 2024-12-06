@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SnakeCritter
   m_EditorClassIdentifier: 
   critterName: Snake
-  description: It's got spikes on its back- don't let it out of your sight.
+  description: It's got spikes on its back- don't let it out of your sight. Will
+    increase your speed.
   sprites:
   - {fileID: 21300000, guid: 34f6be55ddbba564e9e8c32910fbf524, type: 3}
   - {fileID: 21300000, guid: 6ed9c1f6d51982b42a54a7deef0c69e8, type: 3}

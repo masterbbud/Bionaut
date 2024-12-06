@@ -30,61 +30,48 @@ public class SkiddishCritter : Critter
 
     protected override Vector2 CalculateSteeringForces()
     {
-        min = spriteRenderer.bounds.min;
-        max = spriteRenderer.bounds.max;
-
         Vector2 wanderForce = Wander(wanderTime, wanderRadius) * wanderWeight;
-
         Vector2 fleeForce = Flee(Player.main.transform.position) * fleeWeight;
 
-        Vector2 pathForce = Vector2.zero;
-        
-        if (Vector2.Distance(transform.position, Player.main.transform.position) < playerRadius)
+        if (closestBush != null && !closestBush.IsDestroyed() &&
+            Vector2.Distance(transform.position, closestBush.transform.position) < 0.5f)
         {
-            pathForce = SeekOnPath() * pathWeight;
-        }
-
-        //Vector2 separationForce = Separation(CritterManager.critters) * separationWeight;
-
-        //Vector2 cohesionForce = Cohesion(CritterManager.critters) * cohesionWeight;
-
-        //Vector2 alignmentForce = Alignment(CritterManager.critters) * alignmentWeight;
-
-
-        // flips sprite based on direction critter is going
-        if (Math.Abs(rb.velocity.x) > 0.1f)  // Prevent sprite jitter
-        {
-            if (rb.velocity.x > 0)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else
-            {
-                spriteRenderer.flipX = true;
-            }
-        }
-
-        if (closestBush != null && !closestBush.IsDestroyed() && Vector2.Distance(transform.position, closestBush.transform.position) < 0.5) {
             maxSpeed = 0.5f;
+            animator.SetBool("IsFleeing", true);
             return wanderForce;
         }
 
-        // if the player is within a distance - critter flees, otherwise it wanders
+        // Flee behavior
         if (Vector2.Distance(Player.main.transform.position, transform.position) < distance)
         {
             maxSpeed = 10;
-            return fleeForce; //wanderForce + separationForce + cohesionForce + alignmentForce;
+            animator.SetBool("IsFleeing", true);
+
+            // Flip sprite to face away from the player
+            Vector2 fleeDirection = (transform.position - Player.main.transform.position).normalized;
+            spriteRenderer.flipX = fleeDirection.x < 0; // Corrected flipping logic
+
+            return fleeForce;
         }
 
+        // Default wander behavior
         maxSpeed = 3;
+        animator.SetBool("IsFleeing", true);
 
-        
-        Vector2 fullForce = wanderForce + pathForce;
-        fullForce -= fullForce * 2 * Mathf.Pow(20, -1 * Mathf.Abs(Vector2.Distance(transform.position, Player.main.transform.position) - playerRadius / 2));
+        // Flip sprite based on movement direction
+        if (rb.velocity.x > 0.1f)
+        {
+            spriteRenderer.flipX = false; // Moving right
+        }
+        else if (rb.velocity.x < -0.1f)
+        {
+            spriteRenderer.flipX = true; // Moving left
+        }
 
-        return fullForce;
-
+        return wanderForce;
     }
+
+
 
     // sets the position for the critter to "flee" to
     protected override Vector2 CalculateBehavior()
@@ -102,6 +89,7 @@ public class SkiddishCritter : Critter
         if (dist < bushSeekRadius) {
             Debug.Log("bush");
             closestBush = closest;
+            animator.SetBool("IsFleeing", true);
             return closest.transform.position;
         }
         return PickFleePoint();

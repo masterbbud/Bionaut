@@ -35087,6 +35087,94 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80f9324603d02c141983a1a6dfecd6f4, type: 3}
+--- !u!1001 &844726196
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 137657576480678857, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_Radius
+      value: 1.9106514
+      objectReference: {fileID: 0}
+    - target: {fileID: 137657576480678857, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.022829372
+      objectReference: {fileID: 0}
+    - target: {fileID: 137657576480678857, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.08470495
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500949177723076901, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6d237720b73a345a38210de970fe2560, type: 3}
+    - target: {fileID: 3189112910823606195, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_Name
+      value: Skittish Critter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.9455853
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -16.750101
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012376703041566037, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091291411343304234, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1157851237}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3189112910823606195, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1157851237}
+  m_SourcePrefab: {fileID: 100100000, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
 --- !u!1001 &854242955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36129,6 +36217,32 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &1157851236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3189112910823606195, guid: 3898bd7633d925d428fdeaa534d7412c, type: 3}
+  m_PrefabInstance: {fileID: 844726196}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1157851237
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157851236}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08698b4565a8d43cc8c082ddeca9776b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1179864649
 GameObject:
   m_ObjectHideFlags: 0
@@ -108218,3 +108332,4 @@ SceneRoots:
   - {fileID: 8685833552558335446}
   - {fileID: 3901170278943212635}
   - {fileID: 6839810322232987277}
+  - {fileID: 844726196}

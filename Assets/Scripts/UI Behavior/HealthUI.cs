@@ -29,8 +29,27 @@ public class HealthUI : MonoBehaviour
 
     private bool mainShowing = false;
 
+    private static GameObject main;
+
     // Start is called before the first frame update
     void Awake()
+    {
+        if (main)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+            main = gameObject;
+        }
+
+        Initialize();
+        SceneManager.sceneLoaded += SetMenuActiveByScene;
+    }
+
+    private void Initialize()
     {
         //Grab values
         healthUI = GetComponent<UIDocument>();
@@ -41,14 +60,13 @@ public class HealthUI : MonoBehaviour
         //Set values
         healthBar.value = health;
         healthLabel.text = "Health: " + NumAsPercent(health) + "%";
-
-        SceneManager.sceneLoaded += SetMenuActiveByScene;
     }
 
     //Update
     void Update()
     {
         health = player.GetComponent<Player>().health;
+        Debug.Log(healthBar);
         healthBar.value = health;
         healthLabel.text = "Health: " + NumAsPercent(health) + "%";
 

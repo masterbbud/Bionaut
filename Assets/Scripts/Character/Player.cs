@@ -132,6 +132,8 @@ public class Player : MonoBehaviour
 
     }
 
+
+
     void UpdateAnimation()
     {
         // Update walking animation
@@ -216,6 +218,12 @@ public class Player : MonoBehaviour
     {
         animator.SetTrigger("UseKnife");
         freezeMovement = true;
+    }
+
+    public void AnimateUseNet(bool useNet)
+    {
+        animator.SetTrigger("UseNet");
+        //freezeMovement = true;
     }
 
     public void UnlockMovement()

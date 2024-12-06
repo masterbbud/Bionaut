@@ -27,6 +27,9 @@ public class Net : Tool
         // Enable the collider for a few frames
         coll.enabled = true;
         sr.enabled = true; // This will get removed eventually
+
+        Player.main.GetComponent<Player>().AnimateUseNet(true);
+
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();

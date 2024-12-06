@@ -218,7 +218,6 @@ Transform:
   - {fileID: 8109367588169139984}
   - {fileID: 5751917836527439042}
   - {fileID: 3645581171518315728}
-  - {fileID: 5103490601554083688}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5522651920722058208
@@ -345,6 +344,9 @@ MonoBehaviour:
   currentTool: {fileID: 0}
   toolbelt: {fileID: 2161691637263077643}
   facingDirection: {x: 0, y: 0, z: 0}
+  maxHealth: 100
+  health: 0
+  isSpedUp: 0
 --- !u!58 &5476433538285766517
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -507,69 +509,6 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 82576b2bccd17eb48bb55810ea9bf885, type: 2}
   bulletFab: {fileID: 5607843986190932244, guid: 813902534e4ca044b95dda87c0067e31, type: 3}
   bulletSpeed: 10
---- !u!1 &8486000612018199581
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5103490601554083688}
-  - component: {fileID: 5655151502149239945}
-  - component: {fileID: 316937738465191473}
-  m_Layer: 0
-  m_Name: HealthUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5103490601554083688
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8486000612018199581}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.38442302, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6211241274284507229}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5655151502149239945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8486000612018199581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 972feef80ecf2b2418f968a3a432f8b1, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 22a50779d974d433591b8359dbabb6ad, type: 3}
-  m_SortingOrder: 0
---- !u!114 &316937738465191473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8486000612018199581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42cc4119dae6a4134808bd35592d1460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthUI: {fileID: 5655151502149239945}
-  player: {fileID: 3663449752106516533}
 --- !u!1 &8647419303692811739
 GameObject:
   m_ObjectHideFlags: 0

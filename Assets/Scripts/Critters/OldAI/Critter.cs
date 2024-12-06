@@ -61,7 +61,7 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     // While true, the critter doesn't move on its own and can go beyond its
     // max speed.
     private bool freeBody = false;    // ??
-    private bool knockedOut = false;   // is the critter knocked out
+    public bool knockedOut = false;   // is the critter knocked out
     //private int stamina;   // like health?
     //private int maxStamina;   // like health?
 
@@ -282,14 +282,17 @@ public abstract class Critter : MonoBehaviour, IRifleHittable, INetHittable, IKn
     // radius around player for attack player to stop
     public Vector2 StopAttackPoint()
     {
-        // Get the vector from the GameObject to the circle's center
         Vector2 directionToCenter = (transform.position - Player.main.transform.position).normalized;
 
-        // Calculate the closest point on the circle
-        Vector2 stopPoint = (Vector2)Player.main.transform.position + (directionToCenter * endDistance);
+        // Dynamically adjust the stop distance based on player speed or other factors
+        float playerSpeed = Player.main.GetComponent<Rigidbody2D>().velocity.magnitude;
+        float dynamicDistance = endDistance + (playerSpeed * 0.1f); // Scale distance by player speed
+
+        Vector2 stopPoint = (Vector2)Player.main.transform.position + (directionToCenter * dynamicDistance);
 
         return stopPoint;
     }
+
 
 
     // Seek

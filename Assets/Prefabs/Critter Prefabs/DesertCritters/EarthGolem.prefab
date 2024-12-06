@@ -172,7 +172,7 @@ MonoBehaviour:
   playerRadius: 10
   nextWaypointDistance: 1
   repathRate: 0.5
-  endDistance: 2
+  endDistance: 3
   maxDisBetweenCritters: 1
   critterData: {fileID: 11400000, guid: 52113df7b1a44b6408574b82a58231c3, type: 2}
   knockedOut: 0

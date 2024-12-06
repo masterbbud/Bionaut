@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7132285707437128927}
   - component: {fileID: 4963895272107267037}
   - component: {fileID: 3885973456606026319}
+  - component: {fileID: 6590746824275305282}
   m_Layer: 12
   m_Name: Aggressive Critter
   m_TagString: Agressive
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3189112910823606195}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a29d712f80cad548906120e3da900bc, type: 3}
   m_Name: 
@@ -5044,3 +5045,39 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6590746824275305282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189112910823606195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e65077954e28eb40a9cb906ae463f90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1500949177723076901}
+  rb: {fileID: 7599277267642513931}
+  maxForce: 5
+  speed: 5.5
+  playerRadius: 10
+  nextWaypointDistance: 1
+  repathRate: 0.5
+  endDistance: 1
+  maxDisBetweenCritters: 1
+  critterData: {fileID: 11400000, guid: 81e14de7124aa4e46a6e8030e2c3f470, type: 2}
+  knockedOut: 0
+  maxHealth: 30
+  health: 0
+  mass: 1
+  maxSpeed: 3
+  audioManager: {fileID: 0}
+  animator: {fileID: 3885973456606026319}
+  facingDirection: {x: 0, y: 0, z: 0}
+  wanderTime: 1
+  wanderRadius: 1
+  wanderWeight: 1
+  seekWeight: 1
+  pathWeight: 4
+  distance: 5

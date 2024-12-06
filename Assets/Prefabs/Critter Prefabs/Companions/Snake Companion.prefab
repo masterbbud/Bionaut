@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -1168931437563835123}
   - component: {fileID: 2337765451059634612}
   - component: {fileID: -8229631850985899510}
+  - component: {fileID: 3309493457857673607}
   m_Layer: 11
   m_Name: Snake Companion
   m_TagString: Untagged
@@ -5053,3 +5054,24 @@ MonoBehaviour:
   seekWeight: 1
   pathWeight: 4
   distance: 3
+--- !u!95 &3309493457857673607
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222268276995171313}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2b160c3b62753d4fa502c9e7d54173c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

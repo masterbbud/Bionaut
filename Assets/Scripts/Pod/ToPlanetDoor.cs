@@ -5,22 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ToPlanetDoor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == Player.main) {
-            // then enter the planet
-            SceneManager.LoadScene("Silva"); // will eventually depend on the selected planet
+        if (other.gameObject == Player.main)
+        {
+            // Load the scene for the selected planet
+            Debug.Log($"Entering Planet Scene: {UIPlanet.selectedPlanetScene}");
+            SceneManager.LoadScene(UIPlanet.selectedPlanetScene);
         }
     }
 }

@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Silva.unity
     guid: 0378314c312144a438270fd1a6696d18
+  - enabled: 1
+    path: Assets/Scenes/DryPlanet.unity
+    guid: e8c350ea1914b0c46bfd592a7f9eb681
   m_configObjects: {}

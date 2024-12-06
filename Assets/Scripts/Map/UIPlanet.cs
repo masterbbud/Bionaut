@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,25 +14,26 @@ public class UIPlanet : MonoBehaviour
     private bool fullyExpanded = false;
     private float expandLerpValue = 0f;
     private static readonly float zoomSeconds = 1;
-    
-    public PlanetData planetData;
+
+    public PlanetData planetData; // Stores data about the planet
 
     public GameObject planetOverlay;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    // Static variable to keep track of the selected planet
+    public static string selectedPlanetScene = "Silva"; // Default to the Tutorial Planet
+
     void Update()
     {
-        if (expanded == true && expandLerpValue < 1) {
-            //expandLerpValue += Time.deltaTime * 
-        }
-        if (fullyExpanded && Input.GetMouseButtonDown(0) && !GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition))) 
+        if (expanded == true && expandLerpValue < 1)
         {
-            // leave planet selection
+            // Smooth expansion (currently not implemented)
+            // expandLerpValue += Time.deltaTime * expandSpeed;
+        }
+
+        if (fullyExpanded && Input.GetMouseButtonDown(0) &&
+            !GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            // Leave planet selection if clicked outside the planet
             StartCoroutine(ZoomOut());
         }
     }
@@ -44,6 +44,7 @@ public class UIPlanet : MonoBehaviour
         planetOverlay.SetActive(false);
         fullyExpanded = false;
         float planetSize = GetComponent<SpriteRenderer>().bounds.extents.y * 2;
+
         for (float zoom = 0f; zoom <= 1f; zoom += .01f / zoomSeconds)
         {
             Camera.main.transform.position = new Vector3(
@@ -54,6 +55,7 @@ public class UIPlanet : MonoBehaviour
             Camera.main.orthographicSize = Mathf.SmoothStep(planetSize * 0.75f, 5, zoom);
             yield return new WaitForSeconds(.01f);
         }
+
         expanded = false;
     }
 
@@ -62,7 +64,7 @@ public class UIPlanet : MonoBehaviour
         // Zoom in to see the specific planet over zoomSeconds
         expanded = true;
         float planetSize = GetComponent<SpriteRenderer>().bounds.extents.y * 2;
-        Debug.Log(planetSize);
+
         for (float zoom = 0f; zoom <= 1f; zoom += .01f / zoomSeconds)
         {
             Camera.main.transform.position = new Vector3(
@@ -73,29 +75,37 @@ public class UIPlanet : MonoBehaviour
             Camera.main.orthographicSize = Mathf.SmoothStep(5, planetSize * 0.75f, zoom);
             yield return new WaitForSeconds(.01f);
         }
+
         fullyExpanded = true;
-        
-        // show planet description
+
+        // Display planet description
         planetOverlay.transform.Find("Name").GetComponent<TMP_Text>().text = planetData.planetName;
         planetOverlay.transform.Find("Description").GetComponent<TMP_Text>().text = planetData.description;
-        // planetOverlay.transform.Find("LaunchButton").GetComponent<Button>().onClick = description;
-        planetOverlay.SetActive(true);
 
+        // Activate the overlay
+        planetOverlay.SetActive(true);
     }
 
-    void GoToThisPlanet() {
-        Debug.Log(planetData.sceneName);
+    void GoToThisPlanet()
+    {
+        // Assign the selected planet's scene name
+        selectedPlanetScene = planetData.sceneName;
+        Debug.Log($"Selected Planet: {selectedPlanetScene}");
+
+        // Load the pod scene
         SceneManager.LoadScene("InPodScene");
     }
 
     void OnMouseDown()
     {
-        if (!expanded) {
+        if (!expanded)
+        {
             expanded = true;
             StartCoroutine(ZoomIn());
         }
-        else {
-            // go to planet!
+        else
+        {
+            // Go to the selected planet
             GoToThisPlanet();
         }
     }

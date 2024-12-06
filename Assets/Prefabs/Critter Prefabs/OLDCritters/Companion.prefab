@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8369873233053049891}
   - component: {fileID: 3569322935622300210}
   m_Layer: 11
-  m_Name: Blob Companion
+  m_Name: Companion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 90
+  m_SortingOrder: 69
   m_Sprite: {fileID: 21300000, guid: 24e40a3a4de9d894592356dc08e0182b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,13 +102,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7858478440446397434}
-  maxForce: 7
-  maxDistance: 1
-  critterData: {fileID: 0}
   rb: {fileID: 1083241379483199499}
+  maxForce: 7
+  speed: 5.5
+  playerRadius: 10
+  nextWaypointDistance: 1
+  repathRate: 0.5
+  endDistance: 1
+  maxDisBetweenCritters: 1
+  critterData: {fileID: 0}
+  maxHealth: 30
+  health: 0
   mass: 1
   maxSpeed: 6
-  maxStamina: 0
+  audioManager: {fileID: 0}
+  animator: {fileID: 0}
+  facingDirection: {x: 0, y: 0, z: 0}
   seekWeight: 4
   distance: 3
 --- !u!50 &1083241379483199499

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -353992690719980987}
   - component: {fileID: 4565910241992243430}
   - component: {fileID: 2635575528786431165}
+  - component: {fileID: 354438328427602785}
   m_Layer: 12
   m_Name: Skittish Critter
   m_TagString: Untagged
@@ -32,8 +33,8 @@ Transform:
   m_GameObject: {fileID: 3189112910823606195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.278, y: 0.251, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 69
-  m_Sprite: {fileID: 21300000, guid: 6bfe328942c69f64792e74ccbfe05701, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f7342f5a1da14f3eaae2cc00d62f30d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &7599277267642513931
 Rigidbody2D:
   serializedVersion: 4
@@ -149,9 +150,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.059333086, y: -0.084704936}
+  m_Offset: {x: -0.15045185, y: -0.08470495}
   serializedVersion: 2
-  m_Radius: 0.7060686
+  m_Radius: 1.7046449
 --- !u!114 &6091291411343304234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +180,7 @@ MonoBehaviour:
   mass: 1
   maxSpeed: 4
   audioManager: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 354438328427602785}
   facingDirection: {x: 0, y: 0, z: 0}
   wanderTime: 1
   wanderRadius: 1
@@ -5022,3 +5023,24 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!95 &354438328427602785
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189112910823606195}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08698b4565a8d43cc8c082ddeca9776b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

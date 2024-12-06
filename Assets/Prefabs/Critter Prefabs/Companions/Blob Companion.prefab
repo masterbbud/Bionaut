@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3569322935622300210}
   - component: {fileID: 6009656865801499676}
   - component: {fileID: 269612426254702770}
+  - component: {fileID: 4094571513452766414}
   m_Layer: 11
   m_Name: Blob Companion
   m_TagString: Untagged
@@ -5008,6 +5009,7 @@ MonoBehaviour:
   endDistance: 1
   maxDisBetweenCritters: 1
   critterData: {fileID: 11400000, guid: b50a1accd29fd5148b68a1897fb8e920, type: 2}
+  knockedOut: 0
   maxHealth: 30
   health: 0
   mass: 1
@@ -5019,3 +5021,24 @@ MonoBehaviour:
   pathWeight: 4
   distance: 3
   bounceRadius: 7
+--- !u!95 &4094571513452766414
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222268276995171313}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 10845db93c850b740b390b41b7225082, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

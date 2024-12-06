@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2026766080686047068}
   - component: {fileID: 3887780194021780471}
   - component: {fileID: 4266244473455486313}
+  - component: {fileID: 4132181990045833616}
   m_Layer: 12
   m_Name: Curious Critter
   m_TagString: Untagged
@@ -174,6 +175,7 @@ MonoBehaviour:
   endDistance: 1
   maxDisBetweenCritters: 1
   critterData: {fileID: 11400000, guid: b50a1accd29fd5148b68a1897fb8e920, type: 2}
+  knockedOut: 0
   maxHealth: 30
   health: 0
   mass: 1
@@ -5023,3 +5025,24 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!95 &4132181990045833616
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40572067395671464}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cfc0a041b1ea35043adba6d5f4aac71c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

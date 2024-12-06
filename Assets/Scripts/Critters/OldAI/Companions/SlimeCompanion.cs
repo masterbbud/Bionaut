@@ -33,13 +33,10 @@ public class SlimeCompanion : Companion
             pathForce = SeekOnPath() * pathWeight;
         }
 
-        if (rb.velocity.x < 0)
+        // Flip sprite based on direction
+        if (Mathf.Abs(rb.velocity.x) > 0.1f)
         {
-            spriteRenderer.flipX = false;
-        }
-        else
-        {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = rb.velocity.x < 0;
         }
 
         Debug.Log(closestEnemy);

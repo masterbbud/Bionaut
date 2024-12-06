@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3569322935622300210}
   - component: {fileID: 5886238118406010188}
   - component: {fileID: 3759932484743679781}
+  - component: {fileID: 6832174711082914763}
   m_Layer: 11
   m_Name: Bush Companion
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.66, y: -0.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 90
-  m_Sprite: {fileID: 21300000, guid: fda5cf9320e4b8842957e382b0300a99, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f7342f5a1da14f3eaae2cc00d62f30d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4998,8 +4999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99d8c26042317c4787102c2d8f71a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  rb: {fileID: 0}
+  spriteRenderer: {fileID: 7858478440446397434}
+  rb: {fileID: 1083241379483199499}
   maxForce: 5
   speed: 5.5
   playerRadius: 10
@@ -5008,6 +5009,7 @@ MonoBehaviour:
   endDistance: 1
   maxDisBetweenCritters: 1
   critterData: {fileID: 0}
+  knockedOut: 0
   maxHealth: 30
   health: 0
   mass: 1
@@ -5019,3 +5021,24 @@ MonoBehaviour:
   pathWeight: 4
   distance: 3
   killRadius: 7
+--- !u!95 &6832174711082914763
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222268276995171313}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a756de4ed12aab45a8c300a047c4f60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

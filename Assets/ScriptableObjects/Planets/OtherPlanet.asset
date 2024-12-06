@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0b3c1a6c854704d84f0de55dd528a6, type: 3}
   m_Name: OtherPlanet
   m_EditorClassIdentifier: 
-  planetName: Other Planet
-  description: This is another planet
-  sceneName: PlanetScene
+  planetName: Ardus
+  description: Desert Planet-little to no water
+  critters: []
+  sceneName: DryPlanet
